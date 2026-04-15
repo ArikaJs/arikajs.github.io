@@ -38,7 +38,7 @@
             <div class="sidebar-section">
                 <h4>Getting Started</h4>
                 <ul>
-                    <li><a href="docs.html" class="active">Installation</a></li>
+                    <li><a href="docs.html">Installation</a></li>
                     <li><a href="configuration.html">Configuration</a></li>
                     <li><a href="structure.html">Directory Structure</a></li>
                 </ul>
@@ -46,7 +46,7 @@
             <div class="sidebar-section">
                 <h4>The Basics</h4>
                 <ul>
-                    <li><a href="routing.html">Routing</a></li>
+                    <li><a href="routing.html" class="active">Routing</a></li>
                     <li><a href="middleware.html">Middleware</a></li>
                     <li><a href="controllers.html">Controllers</a></li>
                     <li><a href="requests.html">Requests</a></li>
@@ -74,52 +74,49 @@
         </aside>
 
         <main class="docs-content">
-            <h1 class="docs-title">Installation</h1>
-            <p class="docs-lead">ArikaJS is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.</p>
+            <h1 class="docs-title">Routing</h1>
+            <p class="docs-lead">The most basic ArikaJS routes accept a URI and a closure, providing a very simple and expressive method of defining routes and behavior.</p>
 
-            <section id="meet-arikajs">
-                <h2>Meet ArikaJS</h2>
-                <p>ArikaJS is a Node.js framework designed for extreme performance and developer happiness. It is built from the ground up to be type-safe, modular, and easy to use, drawing inspiration from industry leaders like Laravel and NestJS.</p>
-            </section>
-
-            <section id="prerequisites">
-                <h2>Prerequisites</h2>
-                <p>Before creating your first ArikaJS project, you should ensure that your local machine has Node.js and npm installed. We recommend the latest LTS version of Node.js.</p>
-                <ul>
-                    <li>Node.js 20.x or higher</li>
-                    <li>npm 10.x, Yarn, or pnpm</li>
-                </ul>
-            </section>
-
-            <section id="creating-a-project">
-                <h2>Your First ArikaJS Project</h2>
-                <p>You may create a new ArikaJS project via the ArikaJS CLI. The CLI is available via <code>npx</code>, so there is no need to install it globally:</p>
+            <section id="basic-routing">
+                <h2>Basic Routing</h2>
+                <p>The default ArikaJS routes are defined in your <code>routes/web.ts</code> and <code>routes/api.ts</code> files. The <code>web.ts</code> file defines routes that are for your web interface.</p>
                 
                 <div class="code-block">
-<pre><code>npx @arikajs/cli new my-app</code></pre>
-                </div>
+                    <div class="code-header">routes/web.ts</div>
+<pre><code><span class="kw">import</span> { Route } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
-                <p>After the project has been created, you should enter the project's directory and start the ArikaJS development server:</p>
-
-                <div class="code-block">
-<pre><code>cd my-app
-arika serve --dev</code></pre>
+Route.<span class="fn">get</span>(<span class="str">'/greeting'</span>, () => {
+    <span class="kw">return</span> <span class="str">'Hello World'</span>;
+});</code></pre>
                 </div>
             </section>
 
-            <section id="initial-configuration">
-                <h2>Initial Configuration</h2>
-                <p>The ArikaJS framework requires very little configuration out of the box. However, you should check your <code>.env</code> file to ensure the <code>APP_KEY</code> is generated. You can generate a new key using the CLI:</p>
-
+            <section id="available-methods">
+                <h2>Available Router Methods</h2>
+                <p>The router allows you to register routes that respond to any HTTP verb:</p>
                 <div class="code-block">
-<pre><code>arika key:generate</code></pre>
+<pre><code>Route.<span class="fn">get</span>(uri, callback);
+Route.<span class="fn">post</span>(uri, callback);
+Route.<span class="fn">put</span>(uri, callback);
+Route.<span class="fn">patch</span>(uri, callback);
+Route.<span class="fn">delete</span>(uri, callback);</code></pre>
+                </div>
+            </section>
+
+            <section id="route-parameters">
+                <h2>Route Parameters</h2>
+                <p>Sometimes you will need to capture segments of the URI within your route. For example, you may need to capture a user's ID from the URL:</p>
+                <div class="code-block">
+<pre><code>Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, (req) => {
+    <span class="kw">return</span> <span class="str">'User '</span> + req.params.id;
+});</code></pre>
                 </div>
             </section>
 
             <div class="docs-footer">
                 <div class="prev-next">
-                    <span class="prev"></span>
-                    <a href="routing.html" class="next">Basic Routing →</a>
+                    <a href="docs.html" class="prev">← Installation</a>
+                    <a href="middleware.html" class="next">Middleware →</a>
                 </div>
             </div>
         </main>
