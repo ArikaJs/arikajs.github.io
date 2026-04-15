@@ -39,13 +39,12 @@
             <div class='sidebar-section'>
                 <h4>Getting Started</h4>
                 <ul>
-                    <li><a href='docs.html' >Installation</a></li>
-                    <li><a href='configuration.html'>Configuration</a></li>
-                    <li><a href='agentic.html'>Agentic Development</a></li>
-                    <li><a href='structure.html'>Directory Structure</a></li>
-                    <li><a href='frontend.html'>Frontend</a></li>
-                    <li><a href='starter-kits.html'>Starter Kits</a></li>
-                    <li><a href='deployment.html'>Deployment</a></li>
+                    <li><a href="docs.html">Installation</a></li>
+                    <li><a href="configuration.html">Configuration</a></li>
+                    <li><a href="structure.html">Directory Structure</a></li>
+                    <li><a href="frontend.html">Frontend</a></li>
+                    <li><a href="starter-kits.html">Starter Kits</a></li>
+                    <li><a href="deployment.html" class="active" >Deployment</a></li>
                 </ul>
             </div>
             <div class='sidebar-section'>
@@ -157,52 +156,38 @@
 
 
         <main class="docs-content">
-            <h1 class="docs-title">Installation</h1>
-            <p class="docs-lead">ArikaJS is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.</p>
+            <h1 class="docs-title">Deployment</h1>
+            <p class="docs-lead">When you're ready to deploy your ArikaJS application to production, there are a few important steps you should take to ensure your application is running as efficiently as possible.</p>
 
-            <section id="meet-arikajs">
-                <h2>Meet ArikaJS</h2>
-                <p>ArikaJS is a Node.js framework designed for extreme performance and developer happiness. It is built from the ground up to be type-safe, modular, and easy to use, drawing inspiration from industry leaders like Laravel and NestJS.</p>
+            <section id="server-requirements">
+                <h2>Server Requirements</h2>
+                <p>An ArikaJS application can be deployed to any server running Node.js. For the best performance, we recommend using a process manager like PM2.</p>
             </section>
 
-            <section id="prerequisites">
-                <h2>Prerequisites</h2>
-                <p>Before creating your first ArikaJS project, you should ensure that your local machine has Node.js and npm installed. We recommend the latest LTS version of Node.js.</p>
-                <ul>
-                    <li>Node.js 20.x or higher</li>
-                    <li>npm 10.x, Yarn, or pnpm</li>
-                </ul>
-            </section>
-
-            <section id="creating-a-project">
-                <h2>Your First ArikaJS Project</h2>
-                <p>You may create a new ArikaJS project via the ArikaJS CLI. The CLI is available via <code>npx</code>, so there is no need to install it globally:</p>
+            <section id="deployment-basics">
+                <h2>Deployment Basics</h2>
+                <p>To prepare your application for production, you must build your TypeScript code into JavaScript. You can do this using the <code>build</code> script:</p>
                 
                 <div class="code-block">
-<pre><code>npx @arikajs/cli new my-app</code></pre>
+<pre><code>npm run build</code></pre>
                 </div>
 
-                <p>After the project has been created, you should enter the project's directory and start the ArikaJS development server:</p>
+                <p>Once the build completes, your application is ready to be started. You should use the <code>start</code> command to run your server in production mode:</p>
 
                 <div class="code-block">
-<pre><code>cd my-app
-arika serve --dev</code></pre>
+<pre><code>npm start</code></pre>
                 </div>
             </section>
 
-            <section id="initial-configuration">
-                <h2>Initial Configuration</h2>
-                <p>The ArikaJS framework requires very little configuration out of the box. However, you should check your <code>.env</code> file to ensure the <code>APP_KEY</code> is generated. You can generate a new key using the CLI:</p>
-
-                <div class="code-block">
-<pre><code>arika key:generate</code></pre>
-                </div>
+            <section id="optimizing-configuration">
+                <h2>Optimization</h2>
+                <p>For high-traffic applications, ensure that your <code>APP_DEBUG</code> is set to <code>false</code> in your <code>.env</code> file. Additionally, you should ensure that your application's routes and configuration are cached to reduce overhead.</p>
             </section>
 
             <div class="docs-footer">
                 <div class="prev-next">
-                    <span class="prev"></span>
-                    <a href="routing.html" class="next">Basic Routing →</a>
+                    <a href="starter-kits.html" class="prev">← Starter Kits</a>
+                    <span class="next"></span>
                 </div>
             </div>
         </main>

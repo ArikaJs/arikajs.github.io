@@ -39,13 +39,12 @@
             <div class='sidebar-section'>
                 <h4>Getting Started</h4>
                 <ul>
-                    <li><a href='docs.html' class='active'>Installation</a></li>
-                    <li><a href='configuration.html'>Configuration</a></li>
-                    <li><a href='agentic.html'>Agentic Development</a></li>
-                    <li><a href='structure.html'>Directory Structure</a></li>
-                    <li><a href='frontend.html'>Frontend</a></li>
-                    <li><a href='starter-kits.html'>Starter Kits</a></li>
-                    <li><a href='deployment.html'>Deployment</a></li>
+                    <li><a href="docs.html">Installation</a></li>
+                    <li><a href="configuration.html">Configuration</a></li>
+                    <li><a href="structure.html">Directory Structure</a></li>
+                    <li><a href="frontend.html">Frontend</a></li>
+                    <li><a href="starter-kits.html" class="active" >Starter Kits</a></li>
+                    <li><a href="deployment.html">Deployment</a></li>
                 </ul>
             </div>
             <div class='sidebar-section'>
@@ -157,38 +156,36 @@
 
 
         <main class="docs-content">
-            <h1 class="docs-title">Agentic Development</h1>
-            <p class="docs-lead">ArikaJS is the world's first "agent-native" framework. It is designed to be easily read, modified, and maintained by both humans and AI agents.</p>
+            <h1 class="docs-title">Starter Kits</h1>
+            <p class="docs-lead">ArikaJS provides a comprehensive starter skeleton to help you jumpstart your next project without worrying about boilerplate.</p>
 
-            <section id="what-is-agentic">
-                <h2>The Agentic Vision</h2>
-                <p>Modern development is increasingly collaborative between developers and AI. ArikaJS embraces this by providing a highly structured, predictable architecture that allows AI agents to understand the intent of your code and help you build faster.</p>
+            <section id="the-standard-starter">
+                <h2>The Standard Starter</h2>
+                <p>When you create a new project using the <code>arika new</code> command, the ArikaJS CLI generates a full-stack application skeleton. This skeleton includes everything you need to start building immediately:</p>
+                <ul>
+                    <li>Pre-configured <strong>Routing</strong> for web and API.</li>
+                    <li>Clean <strong>MVC Architecture</strong> with Controllers and Models.</li>
+                    <li>Ready-to-use <strong>Ark Templates</strong> for the frontend.</li>
+                    <li>Database <strong>Migrations</strong> and environment setup.</li>
+                    <li>Standard <strong>Middleware</strong> for sessions and logging.</li>
+                </ul>
             </section>
 
-            <section id="self-healing-code">
-                <h2>Self-Healing Architecture</h2>
-                <p>Through our advanced metadata and standardized directory structures, ArikaJS allows for "self-healing" systems. Use our Agentic CLI to auto-fix broken migrations or resolve dependency injection conflicts with a single command:</p>
+            <section id="scaffolding-new-features">
+                <h2>Scaffolding Features</h2>
+                <p>Beyond the initial project, you can use the ArikaJS CLI to scaffold new modules as your application grows:</p>
                 
                 <div class="code-block">
-<pre><code>arika agent:fix</code></pre>
-                </div>
-            </section>
-
-            <section id="ai-prompts">
-                <h2>Standardized Prompts</h2>
-                <p>We provide standardized prompts and schemas for LLMs (Large Language Models) so that your favorite AI tools can generate complete ArikaJS modules with 100% accuracy every time.</p>
-                <div class="alert alert-info">
-                    <div class="alert-icon">🤖</div>
-                    <div class="alert-body">
-                        <strong>Ready to go:</strong> ArikaJS comes pre-bundled with <code>.arikarules</code> files that tell AI agents exactly how your project is structured.
-                    </div>
+<pre><code>arika make:controller UserController
+arika make:model User --migration
+arika make:middleware Authenticated</code></pre>
                 </div>
             </section>
 
             <div class="docs-footer">
                 <div class="prev-next">
-                    <a href="configuration.html" class="prev">← Configuration</a>
-                    <a href="structure.html" class="next">Directory Structure →</a>
+                    <a href="frontend.html" class="prev">← Frontend</a>
+                    <a href="deployment.html" class="next">Deployment →</a>
                 </div>
             </div>
         </main>
