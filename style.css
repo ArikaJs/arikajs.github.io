@@ -398,9 +398,32 @@ h1, h2, h3 {
     font-family: monospace;
 }
 
-.code-block pre {
-    padding: 24px;
-    overflow-x: auto;
+.copy-code-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #94a3b8;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+}
+
+.copy-code-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.copy-code-btn.copied {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
 }
 
 /* Alerts */

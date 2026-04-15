@@ -157,52 +157,40 @@
 
 
         <main class="docs-content">
-            <h1 class="docs-title">Installation</h1>
-            <p class="docs-lead">ArikaJS is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.</p>
+            <h1 class="docs-title">Frontend</h1>
+            <p class="docs-lead">ArikaJS provides a robust set of tools for building your application's frontend, including a powerful template engine and asset bundling support.</p>
 
-            <section id="meet-arikajs">
-                <h2>Meet ArikaJS</h2>
-                <p>ArikaJS is a Node.js framework designed for extreme performance and developer happiness. It is built from the ground up to be type-safe, modular, and easy to use, drawing inspiration from industry leaders like Laravel and NestJS.</p>
-            </section>
-
-            <section id="prerequisites">
-                <h2>Prerequisites</h2>
-                <p>Before creating your first ArikaJS project, you should ensure that your local machine has Node.js and npm installed. We recommend the latest LTS version of Node.js.</p>
-                <ul>
-                    <li>Node.js 20.x or higher</li>
-                    <li>npm 10.x, Yarn, or pnpm</li>
-                </ul>
-            </section>
-
-            <section id="creating-a-project">
-                <h2>Your First ArikaJS Project</h2>
-                <p>You may create a new ArikaJS project via the ArikaJS CLI. The CLI is available via <code>npx</code>, so there is no need to install it globally:</p>
+            <section id="ark-templates">
+                <h2>Ark Templates</h2>
+                <p>Ark is the powerful templating engine provided by ArikaJS. Ark templates are stored in the <code>resources/views</code> directory and use the <code>.ark.html</code> extension.</p>
                 
                 <div class="code-block">
-<pre><code>npx @arikajs/cli new my-app</code></pre>
-                </div>
-
-                <p>After the project has been created, you should enter the project's directory and start the ArikaJS development server:</p>
-
-                <div class="code-block">
-<pre><code>cd my-app
-arika serve --dev</code></pre>
+                    <div class="code-header">resources/views/welcome.ark.html</div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, {{ $name }}&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
                 </div>
             </section>
 
-            <section id="initial-configuration">
-                <h2>Initial Configuration</h2>
-                <p>The ArikaJS framework requires very little configuration out of the box. However, you should check your <code>.env</code> file to ensure the <code>APP_KEY</code> is generated. You can generate a new key using the CLI:</p>
+            <section id="asset-bundling">
+                <h2>Asset Bundling</h2>
+                <p>ArikaJS includes built-in support for bundling your CSS and JavaScript assets. You can define your entry points in the <code>arikajs.config.ts</code> file and use the <code>@asset</code> directive in your templates:</p>
 
                 <div class="code-block">
-<pre><code>arika key:generate</code></pre>
+<pre><code>&lt;head&gt;
+    &lt;!-- Load compiled assets --&gt;
+    {{ @asset('css/app.css') }}
+&lt;/head&gt;</code></pre>
                 </div>
             </section>
 
             <div class="docs-footer">
                 <div class="prev-next">
-                    <span class="prev"></span>
-                    <a href="routing.html" class="next">Basic Routing →</a>
+                    <a href="structure.html" class="prev">← Directory Structure</a>
+                    <a href="starter-kits.html" class="next">Starter Kits →</a>
                 </div>
             </div>
         </main>

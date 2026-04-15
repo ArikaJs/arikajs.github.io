@@ -157,52 +157,43 @@
 
 
         <main class="docs-content">
-            <h1 class="docs-title">Installation</h1>
-            <p class="docs-lead">ArikaJS is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.</p>
+            <h1 class="docs-title">Directory Structure</h1>
+            <p class="docs-lead">The default ArikaJS application structure is intended to provide a great starting point for both large and small applications.</p>
 
-            <section id="meet-arikajs">
-                <h2>Meet ArikaJS</h2>
-                <p>ArikaJS is a Node.js framework designed for extreme performance and developer happiness. It is built from the ground up to be type-safe, modular, and easy to use, drawing inspiration from industry leaders like Laravel and NestJS.</p>
-            </section>
-
-            <section id="prerequisites">
-                <h2>Prerequisites</h2>
-                <p>Before creating your first ArikaJS project, you should ensure that your local machine has Node.js and npm installed. We recommend the latest LTS version of Node.js.</p>
+            <section id="the-root-directory">
+                <h2>The Root Directory</h2>
                 <ul>
-                    <li>Node.js 20.x or higher</li>
-                    <li>npm 10.x, Yarn, or pnpm</li>
+                    <li><code>app</code>: Contains the core code of your application.</li>
+                    <li><code>bootstrap</code>: Contains the <code>app.ts</code> file which bootstraps the framework.</li>
+                    <li><code>config</code>: Contains all of your application's configuration files.</li>
+                    <li><code>database</code>: Contains your database migrations, model factories, and seeds.</li>
+                    <li><code>public</code>: Contains the <code>index.ts</code> file, which is the entry point for all requests.</li>
+                    <li><code>resources</code>: Contains your views as well as your raw, un-compiled assets such as CSS or JavaScript.</li>
+                    <li><code>routes</code>: Contains all of your route definitions.</li>
+                    <li><code>storage</code>: Contains your compiled templates, file caches, and logs.</li>
                 </ul>
             </section>
 
-            <section id="creating-a-project">
-                <h2>Your First ArikaJS Project</h2>
-                <p>You may create a new ArikaJS project via the ArikaJS CLI. The CLI is available via <code>npx</code>, so there is no need to install it globally:</p>
+            <section id="the-app-directory">
+                <h2>The App Directory</h2>
+                <p>The <code>app</code> directory is where your actual business logic lives. It contains the following sub-directories:</p>
                 
                 <div class="code-block">
-<pre><code>npx @arikajs/cli new my-app</code></pre>
-                </div>
-
-                <p>After the project has been created, you should enter the project's directory and start the ArikaJS development server:</p>
-
-                <div class="code-block">
-<pre><code>cd my-app
-arika serve --dev</code></pre>
-                </div>
-            </section>
-
-            <section id="initial-configuration">
-                <h2>Initial Configuration</h2>
-                <p>The ArikaJS framework requires very little configuration out of the box. However, you should check your <code>.env</code> file to ensure the <code>APP_KEY</code> is generated. You can generate a new key using the CLI:</p>
-
-                <div class="code-block">
-<pre><code>arika key:generate</code></pre>
+<pre><code>app/
+├── Http/
+│   ├── Controllers/
+│   ├── Middleware/
+│   └── Requests/
+├── Models/
+├── Providers/
+└── Services/</code></pre>
                 </div>
             </section>
 
             <div class="docs-footer">
                 <div class="prev-next">
-                    <span class="prev"></span>
-                    <a href="routing.html" class="next">Basic Routing →</a>
+                    <a href="agentic.html" class="prev">← Agentic Development</a>
+                    <a href="frontend.html" class="next">Frontend →</a>
                 </div>
             </div>
         </main>
