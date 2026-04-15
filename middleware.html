@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Routing - ArikaJS Framework</title>
+    <title>Middleware - ArikaJS Framework</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -48,8 +48,8 @@
             <div class="sidebar-section">
                 <h4>The Basics</h4>
                 <ul>
-                    <li><a href="routing.html" class="active">Routing</a></li>
-                    <li><a href="middleware.html">Middleware</a></li>
+                    <li><a href="routing.html">Routing</a></li>
+                    <li><a href="middleware.html" class="active">Middleware</a></li>
                     <li><a href="controllers.html">Controllers</a></li>
                     <li><a href="requests.html">Requests</a></li>
                     <li><a href="responses.html">Responses</a></li>
@@ -59,57 +59,43 @@
         </aside>
 
         <main class="docs-content">
-            <h1 class="docs-title">Routing</h1>
-            <p class="docs-lead">Expressive and powerful routing for your Node.js applications. ArikaJS routes provide a clean, fluent interface for mapping URIs to specific application behavior.</p>
+            <h1 class="docs-title">Middleware</h1>
+            <p class="docs-lead">Middleware provide a convenient mechanism for inspecting and filtering HTTP requests entering your application.</p>
 
-            <section id="basic-routing">
-                <h2>Basic Routing</h2>
-                <p>The most fundamental ArikaJS routes accept a URI and a closure (or controller method). By default, web-specific routes are defined in <code>routes/web.ts</code>:</p>
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>Middleware act as a series of "layers" that a request must pass through before it reaches your controller. For example, ArikaJS includes middleware that verifies whether the user of your application is authenticated. If the user is not authenticated, the middleware will redirect the user to the login screen. However, if the user is authenticated, the middleware will allow the request to proceed further into the application.</p>
+            </section>
+
+            <section id="defining-middleware">
+                <h2>Defining Middleware</h2>
+                <p>To create a new middleware, use the <code>make:middleware</code> CLI command:</p>
                 <div class="code-block">
-                    <div class="code-header">routes/web.ts</div>
-<pre><code><span class="kw">import</span> { Route } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+<pre><code>arika make:middleware EnsureTokenIsValid</code></pre>
+                </div>
+                <p>A middleware is a class that implements the <code>Middleware</code> contract. It contains a <code>handle</code> method which receives the request and a <code>next</code> callback:</p>
+                <div class="code-block">
+<pre><code><span class="kw">export class</span> <span class="fn">EnsureTokenIsValid</span> {
+    <span class="kw">async</span> <span class="fn">handle</span>(req, next) {
+        <span class="kw">if</span> (req.header(<span class="str">'token'</span>) !== <span class="str">'secret'</span>) {
+            <span class="kw">return</span> res.<span class="fn">redirect</span>(<span class="str">'login'</span>);
+        }
 
-Route.<span class="fn">get</span>(<span class="str">'/welcome'</span>, (req, res) => {
-    <span class="kw">return</span> <span class="str">'Welcome to ArikaJS!'</span>;
-});</code></pre>
+        <span class="kw">return await</span> <span class="fn">next</span>();
+    }
+}</code></pre>
                 </div>
             </section>
 
-            <section id="route-parameters">
-                <h2>Route Parameters</h2>
-                <p>Capture dynamic URI segments using the colon notation. These parameters are injected directly into the request object:</p>
-                <div class="code-block">
-<pre><code>Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, (req) => {
-    <span class="kw">return</span> <span class="str">'User ID: '</span> + req.params.id;
-});</code></pre>
-                </div>
-            </section>
-
-            <section id="route-groups">
-                <h2>Route Groups</h2>
-                <p>Route groups allow you to share path prefixes or middleware across a large number of routes without needing to define those attributes on each individual route:</p>
-                <div class="code-block">
-<pre><code>Route.<span class="fn">prefix</span>(<span class="str">'admin'</span>).<span class="fn">group</span>(() => {
-    Route.<span class="fn">get</span>(<span class="str">'/dashboard'</span>, () => { <span class="comment">/* /admin/dashboard */</span> });
-    Route.<span class="fn">get</span>(<span class="str">'/users'</span>, () => { <span class="comment">/* /admin/users */</span> });
-});</code></pre>
-                </div>
-            </section>
-
-            <section id="middleware">
-                <h2>Middleware Assignment</h2>
-                <p>You may assign middleware to a route or group to filter incoming requests before they reach your controller logic:</p>
-                <div class="code-block">
-<pre><code>Route.<span class="fn">get</span>(<span class="str">'/profile'</span>, () => {
-    <span class="comment">// ...</span>
-}).<span class="fn">middleware</span>(<span class="str">'auth'</span>);</code></pre>
-                </div>
+            <section id="registering-middleware">
+                <h2>Registering Middleware</h2>
+                <p>Global middleware are listed in your <code>app/Http/Kernel.ts</code> file. If you want a middleware to run during every HTTP request to your application, list the middleware class in the <code>$middleware</code> property of this file.</p>
             </section>
 
             <div class="docs-footer">
                 <div class="prev-next">
-                    <a href="deployment.html" class="prev">← Deployment</a>
-                    <a href="middleware.html" class="next">Middleware →</a>
+                    <a href="routing.html" class="prev">← Routing</a>
+                    <a href="controllers.html" class="next">Controllers →</a>
                 </div>
             </div>
         </main>
