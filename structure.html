@@ -56,50 +56,65 @@
                     <li><a href="views.html">Views</a></li>
                 </ul>
             </div>
-            <div class="sidebar-section">
-                <h4>Database</h4>
-                <ul>
-                    <li><a href="db-start.html">Getting Started</a></li>
-                    <li><a href="query-builder.html">Query Builder</a></li>
-                    <li><a href="orm-start.html">Arika ORM</a></li>
-                </ul>
-            </div>
         </aside>
 
         <main class="docs-content">
             <h1 class="docs-title">Directory Structure</h1>
-            <p class="docs-lead">The default ArikaJS application structure is engineered to scale. It follows strict separation of concerns, ensuring your code remains testable and maintainable.</p>
+            <p class="docs-lead">Master the ArikaJS application layout. Every folder in the skeleton has a specific architectural purpose designed to separate concerns and maximize development speed.</p>
 
-            <section id="root-directories">
-                <h2>The Root Directories</h2>
-                <div class="code-block">
-                    <div class="code-header">Project Root</div>
-<pre><code>.
-├── <span class="fn">app/</span>            # Application Source Code
-├── <span class="fn">bootstrap/</span>      # Application Bootstrapping
-├── <span class="fn">config/</span>         # Configuration Files
-├── <span class="fn">database/</span>       # Migrations & Seeds
-├── <span class="fn">public/</span>         # Entry point (index.ts)
-├── <span class="fn">resources/</span>      # Views & Assets
-├── <span class="fn">routes/</span>         # Web & API Routes
-└── <span class="fn">storage/</span>        # Cache, Logs & Session data</code></pre>
-                </div>
-            </section>
-
-            <section id="app-directory">
-                <h2>The App Directory</h2>
-                <p>The <code>app</code> directory contains the core logic of your application. Almost all of your business logic will live here:</p>
+            <section id="the-root">
+                <h2>The Root Directory</h2>
+                <p>The root directory contains the following core folders and files:</p>
                 <ul>
-                    <li><strong>Http/:</strong> Contains your Controllers, Middleware, and FormRequests. This is the entry point for your web logic.</li>
-                    <li><strong>Models/:</strong> Contains the Arika ORM model classes.</li>
-                    <li><strong>Providers/:</strong> Contains Service Providers which bootstrap the framework components.</li>
-                    <li><strong>Services/:</strong> A recommended place for complex business logic that doesn't belong in controllers.</li>
+                    <li><code>app/</code>: The house for your application's domain logic.</li>
+                    <li><code>bootstrap/</code>: Logic for framework initialization and service registration.</li>
+                    <li><code>config/</code>: Centralized settings for all framework components.</li>
+                    <li><code>database/</code>: Migrations, data seeds, and model factories.</li>
+                    <li><code>public/</code>: The document root containing <code>index.ts</code> and public assets.</li>
+                    <li><code>resources/</code>: Raw assets (CSS/JS) and Ark templates.</li>
+                    <li><code>routes/</code>: Definitions for web and API endpoints.</li>
+                    <li><code>storage/</code>: Temporary files such as logs, session data, and cache.</li>
                 </ul>
             </section>
 
-            <section id="resources-directory">
-                <h2>Resources & Views</h2>
-                <p>The <code>resources</code> directory contains your <strong>Ark Templates</strong> and raw frontend assets. When you build your application, these are processed and served from <code>public/dist</code>.</p>
+            <section id="the-app-directory">
+                <h2>The App Directory</h2>
+                <p>The heart of your application. Almost every class you write will live in a sub-folder here:</p>
+                <div class="code-block">
+                    <div class="code-header">Directory Overview</div>
+<pre><code>app/
+├── Http/
+│   ├── Controllers/    # Handles incoming HTTP requests
+│   ├── Middleware/     # Filters & guards for requests
+│   └── Requests/       # Custom form validation logic
+├── Models/             # Database entities (Fluent ORM)
+├── Providers/          # Service Providers (Bindings)
+└── Services/           # Reusable business logic services</code></pre>
+                </div>
+            </section>
+
+            <section id="the-config-directory">
+                <h2>The Config Directory</h2>
+                <p>ArikaJS provides individual configuration files for every core module. Each file allows you to switch drivers and set security parameters:</p>
+                <ul>
+                    <li><code>app.ts</code>: Core settings like URL, timezone, and locale.</li>
+                    <li><code>auth.ts</code>: Configuration for guards (drivers) and user providers.</li>
+                    <li><code>cache.ts</code>: Config for Redis, File, or Memory caching.</li>
+                    <li><code>database.ts</code>: Connection settings for MySQL, PostgreSQL, etc.</li>
+                    <li><code>filesystems.ts</code>: Disk management for local or cloud storage (S3).</li>
+                    <li><code>logging.ts</code>: Error and activity logging channels.</li>
+                    <li><code>mail.ts</code>: SMTP or API settings for sending emails.</li>
+                    <li><code>queue.ts</code>: Configuration for background job processing.</li>
+                </ul>
+            </section>
+
+            <section id="the-routes-directory">
+                <h2>The Routes Directory</h2>
+                <p>By default, ArikaJS provides two route files to keep your endpoints organized:</p>
+                <ul>
+                    <li><code>web.ts</code>: Routes for your browser-based interface (includes sessions & CSRF).</li>
+                    <li><code>api.ts</code>: Routes for your API (includes rate limiting and token auth).</li>
+                </ul>
             </section>
 
             <div class="docs-footer">
