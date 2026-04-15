@@ -380,12 +380,12 @@ h1, h2, h3 {
 }
 
 .docs-content code {
-    background: rgba(56, 189, 248, 0.1);
-    padding: 3px 7px;
+    background: rgba(139, 92, 246, 0.08); /* Light purple tint background */
+    padding: 3px 8px;
     border-radius: 6px;
     font-family: 'Monaco', 'Consolas', monospace;
     font-size: 13.5px;
-    color: #0284c7; /* Strong Professional Blue */
+    color: var(--primary);
     font-weight: 600;
 }
 
