@@ -142,7 +142,7 @@ h1, h2, h3 {
 }
 
 .gradient-text {
-    background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+    background: linear-gradient(135deg, #8b5cf6 0%, #38bdf8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -380,13 +380,13 @@ h1, h2, h3 {
 }
 
 .docs-content code {
-    background: rgba(139, 92, 246, 0.08);
-    padding: 3px 6px;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 3px 7px;
     border-radius: 6px;
     font-family: 'Monaco', 'Consolas', monospace;
-    font-size: 14px;
-    color: var(--primary);
-    font-weight: 500;
+    font-size: 13.5px;
+    color: #0284c7; /* Strong Professional Blue */
+    font-weight: 600;
 }
 
 .code-block {
@@ -413,37 +413,39 @@ h1, h2, h3 {
     line-height: 1.6;
 }
 
-.kw { color: #c678dd; } /* Soft purple keywords */
-.str { color: #98c379; } /* Clean green strings */
-.fn { color: #61afef; } /* Blue functions */
-.comment { color: #5c6370; font-style: italic; }
+.kw { color: #82aaff; } /* Professional Blue for Keywords */
+.str { color: #c3e88d; } /* Bright Green for Strings */
+.fn { color: #89ddff; } /* Cyan for Functions */
+.comment { color: #676e95; font-style: italic; }
 
 .copy-code-btn {
     position: absolute;
     top: 12px;
     right: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #94a3b8;
-    padding: 4px 10px;
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Stronger border visibility */
+    color: #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 8px;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.2s;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(8px);
     z-index: 10;
 }
 
 .copy-code-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
     color: #fff;
+    transform: scale(1.05);
 }
 
 .copy-code-btn.copied {
-    background: var(--primary);
+    background: #10b981; /* Success Green */
     color: #fff;
-    border-color: var(--primary);
+    border-color: #10b981;
 }
 
 /* Alerts */
