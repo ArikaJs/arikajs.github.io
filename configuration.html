@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - ArikaJS Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1.0.2">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/favicon.png">
+</head>
+<body class="docs-page">
+    <nav class="navbar">
+        <div class="container navbar-inner">
+            <a href="index.html" class="logo">
+                <img src="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/logo.png" alt="ArikaJS Logo">
+            </a>
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search documentation...">
+            </div>
+            <div class="nav-links">
+                <div class="version-picker">
+                    <span class="version-label">Version</span>
+                    <select id="version-select">
+                        <option value="0.10.x" selected>0.10.x</option>
+                        <option value="main">main</option>
+                    </select>
+                </div>
+                <a href="https://github.com/ArikaJs/arikajs" class="btn btn-secondary">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-wrapper container">
+        
+        <aside class='sidebar'>
+            <div class='sidebar-section'>
+                <h4>Getting Started</h4>
+                <ul>
+                    <li><a href='docs.html' class='active'>Installation</a></li>
+                    <li><a href='configuration.html'>Configuration</a></li>
+                    <li><a href='agentic.html'>Agentic Development</a></li>
+                    <li><a href='structure.html'>Directory Structure</a></li>
+                    <li><a href='frontend.html'>Frontend</a></li>
+                    <li><a href='starter-kits.html'>Starter Kits</a></li>
+                    <li><a href='deployment.html'>Deployment</a></li>
+                </ul>
+            </div>
+            <div class='sidebar-section'>
+                <h4>Architecture Concepts</h4>
+                <ul>
+                    <li><a href='lifecycle.html'>Request Lifecycle</a></li>
+                    <li><a href='container.html'>Service Container</a></li>
+                    <li><a href='providers.html'>Service Providers</a></li>
+                    <li><a href='facades.html'>Facades</a></li>
+                </ul>
+            </div>
+            <div class='sidebar-section'>
+                <h4>The Basics</h4>
+                <ul>
+                    <li><a href='routing.html'>Routing</a></li>
+                    <li><a href='middleware.html'>Middleware</a></li>
+                    <li><a href='csrf.html'>CSRF Protection</a></li>
+                    <li><a href='controllers.html'>Controllers</a></li>
+                    <li><a href='requests.html'>Requests</a></li>
+                    <li><a href='responses.html'>Responses</a></li>
+                    <li><a href='views.html'>Views</a></li>
+                    <li><a href='ark-templates.html'>Ark Templates</a></li>
+                    <li><a href='bundling.html'>Asset Bundling</a></li>
+                    <li><a href='urls.html'>URL Generation</a></li>
+                    <li><a href='session.html'>Session</a></li>
+                    <li><a href='validation.html'>Validation</a></li>
+                    <li><a href='errors.html'>Error Handling</a></li>
+                    <li><a href='logging.html'>Logging</a></li>
+                </ul>
+            </div>
+            <div class='sidebar-section'>
+                <h4>Digging Deeper</h4>
+                <ul>
+                    <li><a href='console.html'>Arika Console</a></li>
+                    <li><a href='broadcasting.html'>Broadcasting</a></li>
+                    <li><a href='cache.html'>Cache</a></li>
+                    <li><a href='collections.html'>Collections</a></li>
+                    <li><a href='concurrency.html'>Concurrency</a></li>
+                    <li><a href='context.html'>Context</a></li>
+                    <li><a href='contracts.html'>Contracts</a></li>
+                    <li><a href='events.html'>Events</a></li>
+                    <li><a href='storage.html'>File Storage</a></li>
+                    <li><a href='helpers.html'>Helpers</a></li>
+                    <li><a href='http-client.html'>HTTP Client</a></li>
+                    <li><a href='localization.html'>Localization</a></li>
+                    <li><a href='mail.html'>Mail</a></li>
+                    <li><a href='notifications.html'>Notifications</a></li>
+                    <li><a href='package-dev.html'>Package Development</a></li>
+                    <li><a href='processes.html'>Processes</a></li>
+                    <li><a href='queues.html'>Queues</a></li>
+                    <li><a href='rate-limiting.html'>Rate Limiting</a></li>
+                    <li><a href='search.html'>Search</a></li>
+                    <li><a href='strings.html'>Strings</a></li>
+                    <li><a href='scheduling.html'>Task Scheduling</a></li>
+                </ul>
+            </div>
+            <div class='sidebar-section'>
+                <h4>Security</h4>
+                <ul>
+                    <li><a href='authentication.html'>Authentication</a></li>
+                    <li><a href='authorization.html'>Authorization</a></li>
+                    <li><a href='verification.html'>Email Verification</a></li>
+                    <li><a href='encryption.html'>Encryption</a></li>
+                    <li><a href='hashing.html'>Hashing</a></li>
+                    <li><a href='passwords.html'>Password Reset</a></li>
+                </ul>
+            </div>
+            <div class='sidebar-section'>
+                <h4>Database</h4>
+                <ul>
+                    <li><a href='db-start.html'>Getting Started</a></li>
+                    <li><a href='query-builder.html'>Query Builder</a></li>
+                    <li><a href='pagination.html'>Pagination</a></li>
+                    <li><a href='migrations.html'>Migrations</a></li>
+                    <li><a href='seeding.html'>Seeding</a></li>
+                    <li><a href='redis.html'>Redis</a></li>
+                    <li><a href='mongodb.html'>MongoDB</a></li>
+                </ul>
+            </div>
+            <div class='sidebar-section'>
+                <h4>Eloquent ORM</h4>
+                <ul>
+                    <li><a href='orm-start.html'>Getting Started</a></li>
+                    <li><a href='relationships.html'>Relationships</a></li>
+                    <li><a href='orm-collections.html'>Collections</a></li>
+                    <li><a href='mutators.html'>Mutators / Casts</a></li>
+                    <li><a href='resources.html'>API Resources</a></li>
+                    <li><a href='serialization.html'>Serialization</a></li>
+                    <li><a href='factories.html'>Factories</a></li>
+                </ul>
+            </div>
+            <div class='sidebar-section'>
+                <h4>Official Packages</h4>
+                <ul>
+                    <li><a href='socialite.html'>Socialite</a></li>
+                    <li><a href='passport.html'>Passport</a></li>
+                    <li><a href='sanctum.html'>Sanctum</a></li>
+                    <li><a href='telescope.html'>Telescope</a></li>
+                    <li><a href='horizon.html'>Horizon</a></li>
+                </ul>
+            </div>
+            <div class='sidebar-section'>
+                <h4>Release Notes</h4>
+                <ul>
+                    <li><a href='changelog.html'>Changelog</a></li>
+                </ul>
+            </div>
+        </aside>
+
+
+        <main class="docs-content">
+            <h1 class="docs-title">Configuration</h1>
+            <p class="docs-lead">All of the configuration files for the ArikaJS framework are stored in the <code>config</code> directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.</p>
+
+            <section id="environment-configuration">
+                <h2>Environment Configuration</h2>
+                <p>It is often helpful to have different configuration values based on the environment where the application is running. For example, you may wish to use a different cache driver locally than you do on your production server.</p>
+                <p>ArikaJS utilizes the <code>DotEnv</code> library to achieve this. In a fresh ArikaJS installation, the root directory of your application will contain a <code>.env.example</code> file. You should rename this file to <code>.env</code> manually or using the CLI.</p>
+            </section>
+
+            <section id="retrieving-environment-configuration">
+                <h2>Retrieving Environment Configuration</h2>
+                <p>All of the variables listed in this file will be loaded into the <code>process.env</code> global when your application receives a request. However, you may use the <code>config</code> helper to retrieve values from these variables in your configuration files:</p>
+                
+                <div class="code-block">
+<pre><code><span class="kw">import</span> { config } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="kw">const</span> debug = <span class="fn">config</span>(<span class="str">'app.debug'</span>, <span class="kw">false</span>);</code></pre>
+                </div>
+            </div>
+
+            <section id="accessing-configuration-values">
+                <h2>Accessing Configuration Values</h2>
+                <p>You may easily access your configuration values using the global <code>config</code> helper from anywhere in your application. The configuration values may be accessed using "dot" syntax, which includes the name of the file and the option you wish to access.</p>
+                <div class="code-block">
+<pre><code><span class="kw">const</span> value = <span class="fn">config</span>(<span class="str">'app.timezone'</span>);
+
+<span class="comment">// Retrieve a default value if the configuration value does not exist...</span>
+<span class="kw">const</span> value = <span class="fn">config</span>(<span class="str">'app.timezone'</span>, <span class="str">'UTC'</span>);</code></pre>
+                </div>
+            </section>
+
+            <div class="docs-footer">
+                <div class="prev-next">
+                    <a href="docs.html" class="prev">← Installation</a>
+                    <a href="agentic.html" class="next">Agentic Development →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 ArikaJS Team. Released under the MIT License.</p>
+        </div>
+    </footer>
+</body>
+</html>
