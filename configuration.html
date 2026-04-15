@@ -56,66 +56,47 @@
                     <li><a href="views.html">Views</a></li>
                 </ul>
             </div>
-            <div class="sidebar-section">
-                <h4>Database</h4>
-                <ul>
-                    <li><a href="db-start.html">Getting Started</a></li>
-                    <li><a href="query-builder.html">Query Builder</a></li>
-                    <li><a href="orm-start.html">Arika ORM</a></li>
-                </ul>
-            </div>
         </aside>
 
         <main class="docs-content">
             <h1 class="docs-title">Configuration</h1>
-            <p class="docs-lead">Centralize your application's settings. ArikaJS provides a robust configuration engine that merges environment variables with static configuration files.</p>
+            <p class="docs-lead">Centralize your application logic. ArikaJS provides a robust configuration system that seamlessly merges your secret environment variables with your application's structural settings.</p>
 
             <section id="introduction">
-                <h2>Introduction</h2>
-                <p>All of the configuration for ArikaJS is stored in the <code>config</code> directory at the root of your project. This directory typically contains files for your database, sessions, mail, and other core services. Each file returns a configuration object that is automatically registered into the Service Container during bootstrap.</p>
+                <h2>The Config Architecture</h2>
+                <p>All of your application's structural settings reside within the <code>config</code> directory. By default, ArikaJS provides specialized files for every core system (Database, Auth, Cache, etc.). These files are automatically loaded into the framework's Service Container during the bootstrap process.</p>
             </section>
 
             <section id="environment-configuration">
-                <h2>Environment Variables</h2>
-                <p>Secure and flexible applications rely on environment variables. ArikaJS loads these from your <code>.env</code> file. You should never commit this file to version control.</p>
+                <h2>Environment Management</h2>
+                <p>Sensitive data like API keys and database passwords should never be hardcoded. Use the <code>.env</code> file provided at the root of your project. ArikaJS uses a sophisticated loader that automatically converts common string values into their native types:</p>
                 <div class="code-block">
                     <div class="code-header">.env</div>
-<pre><code>APP_NAME=ArikaJS
-APP_ENV=local
-APP_KEY=base64:7ca...
-APP_DEBUG=true
-APP_URL=http://localhost:3000
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306</code></pre>
+<pre><code>APP_DEBUG=true  # Converted to Boolean
+APP_PORT=3000   # Converted to Number
+DB_HOST=127.0.0.1</code></pre>
                 </div>
             </section>
 
-            <section id="retrieving-values">
-                <h2>Accessing Configuration</h2>
-                <p>You may use the <code>config()</code> helper from anywhere in your application. It supports "dot" notation to drill down into nested configuration objects:</p>
-                
+            <section id="custom-configuration">
+                <h2>Creating Custom Config Files</h2>
+                <p>You are encouraged to create your own configuration files within the <code>config</code> directory for third-party services. For instance, if you're using Stripe, create a <code>config/stripe.ts</code>:</p>
                 <div class="code-block">
-                    <div class="code-header">Example Usage</div>
-<pre><code><span class="kw">import</span> { config } <span class="kw">from</span> <span class="str">'arikajs'</span>;
-
-<span class="comment">// Retrieve app name</span>
-<span class="kw">const</span> name = <span class="fn">config</span>(<span class="str">'app.name'</span>);
-
-<span class="comment">// Retrieve with default value fallback</span>
-<span class="kw">const</span> timezone = <span class="fn">config</span>(<span class="str">'app.timezone'</span>, <span class="str">'UTC'</span>);</code></pre>
+                    <div class="code-header">config/stripe.ts</div>
+<pre><code><span class="kw">export default</span> {
+    api_key: <span class="fn">env</span>(<span class="str">'STRIPE_KEY'</span>),
+    webhook_secret: <span class="fn">env</span>(<span class="str">'STRIPE_WEBHOOK'</span>)
+};</code></pre>
                 </div>
             </section>
 
-            <section id="app-key">
-                <h2>The Application Key</h2>
-                <p>The <code>APP_KEY</code> is critical for securing user sessions and encrypted data. If this key is missing or incorrect, ArikaJS will throw a fatal error during startup for security reasons. Generate a unique key using the CLI:</p>
-
-                <div class="code-block">
-                    <div class="code-header">Terminal</div>
-<pre><code>arika key:generate</code></pre>
-                </div>
+            <section id="helpers">
+                <h2>Configuration Helpers</h2>
+                <p>ArikaJS provides two primary helpers for interacting with your settings:</p>
+                <ul>
+                    <li><strong>config()</strong>: Used to retrieve nested values using dot notation (e.g., <code>config('database.connections.mysql.host')</code>).</li>
+                    <li><strong>env()</strong>: Used to retrieve raw values from your <code>.env</code> file with an optional fallback.</li>
+                </ul>
             </section>
 
             <div class="docs-footer">
@@ -127,7 +108,6 @@ DB_PORT=3306</code></pre>
         </main>
     </div>
 
-    
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">

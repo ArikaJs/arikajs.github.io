@@ -56,57 +56,56 @@
                     <li><a href="views.html">Views</a></li>
                 </ul>
             </div>
-            <div class="sidebar-section">
-                <h4>Database</h4>
-                <ul>
-                    <li><a href="db-start.html">Getting Started</a></li>
-                    <li><a href="query-builder.html">Query Builder</a></li>
-                    <li><a href="orm-start.html">Arika ORM</a></li>
-                </ul>
-            </div>
         </aside>
 
         <main class="docs-content">
             <h1 class="docs-title">Installation</h1>
-            <p class="docs-lead">ArikaJS is a high-performance web application framework for Node.js, engineered for stability, type-safety, and developer productivity.</p>
+            <p class="docs-lead">ArikaJS is a high-performance web application framework for Node.js, engineered for stability, type-safety, and developer productivity. It combines the expressive power of Laravel with the massive scalability of the Node ecosystem.</p>
 
-            <section id="why-arikajs">
-                <h2>Why ArikaJS?</h2>
-                <p>ArikaJS bridges the gap between the simplicity of Express and the structured power of Laravel. Built entirely in TypeScript, it provides a driver-based architecture for Database, Cache, and Session management, ensuring your application can scale from a prototype to an enterprise system without refactoring.</p>
+            <section id="philosophy">
+                <h2>Our Philosophy</h2>
+                <p>Modern Node.js development often feels fragmented. ArikaJS was built to provide a <strong>Batteries-Included</strong> experience. We believe that developers shouldn't have to piece together their routing, validation, and database layers for every project. By providing a structured, driver-based architecture, ArikaJS allows you to focus solely on your business logic.</p>
             </section>
 
-            <section id="system-requirements">
-                <h2>System Requirements</h2>
-                <p>Before deploying or developing with ArikaJS, verify that your environment meets the following baseline requirements:</p>
+            <section id="prerequisites">
+                <h2>Prerequisites</h2>
+                <p>ArikaJS leverages the latest features of the Node.js runtime. Ensure your environment meets these requirements:</p>
                 <ul>
-                    <li><strong>Node.js:</strong> v20.11.0 or higher.</li>
-                    <li><strong>Package Manager:</strong> npm v10+, Yarn v3+, or pnpm v8+.</li>
-                    <li><strong>Operating System:</strong> Linux, macOS, or Windows (WSL2 recommended).</li>
+                    <li><strong>Node.js:</strong> v20.11.0 (LTS Iron) or newer.</li>
+                    <li><strong>TypeScript:</strong> v5.0 or newer (included in starter kits).</li>
+                    <li><strong>Package Manager:</strong> npm, Yarn (Berry), or pnpm.</li>
                 </ul>
             </section>
 
-            <section id="scaffolding">
-                <h2>Scaffolding Your Application</h2>
-                <p>The ArikaJS CLI is the primary tool for managing your application lifecycle. You can initialize a new project using the <code>@arikajs/cli</code> via <code>npx</code>:</p>
+            <section id="creating-a-project">
+                <h2>Creating Your First Project</h2>
+                <p>The easiest way to start is via our CLI tool. Use <code>npx</code> to initiate the scaffolding process without a global installation:</p>
                 
                 <div class="code-block">
                     <div class="code-header">Terminal</div>
-<pre><code>npx @arikajs/cli new my-awesome-app</code></pre>
+<pre><code>npx @arikajs/cli new my-app</code></pre>
                 </div>
 
-                <p>This command prepares a fully structured monorepo or standalone application with all essential dependencies, TypeScript configuration, and a sample routing engine.</p>
+                <p>During the installation, the CLI will:</p>
+                <ol>
+                    <li>Create your application directory.</li>
+                    <li>Scaffold the standard MVC directory structure.</li>
+                    <li>Initialize your <code>package.json</code> with core framework dependencies.</li>
+                    <li>Configure the <code>tsconfig.json</code> for optimal ArikaJS performance.</li>
+                    <li>Create a default <code>.env</code> file with a freshly generated application key.</li>
+                </ol>
             </section>
 
-            <section id="development-server">
-                <h2>The Development Server</h2>
-                <p>Once the project is created, enter the directory and launch the development server. ArikaJS includes a sophisticated watcher that handles hot-reloading for both your TypeScript logic and Ark Templates:</p>
+            <section id="running-the-server">
+                <h2>The Development Workflow</h2>
+                <p>ArikaJS includes a built-in development server powered by <code>arikajs serve</code>. This server monitors your <code>app</code> and <code>routes</code> directories for changes and performs hot-restarts automatically:</p>
 
                 <div class="code-block">
                     <div class="code-header">Terminal</div>
-<pre><code>cd my-awesome-app
+<pre><code>cd my-app
 npm run dev</code></pre>
                 </div>
-                <p>Your application will be available at <code>http://localhost:3000</code> by default.</p>
+                <p>By default, your application will be served at <code>http://localhost:3000</code>. You can change this port in your <code>.env</code> file.</p>
             </section>
 
             <div class="docs-footer">
@@ -118,7 +117,6 @@ npm run dev</code></pre>
         </main>
     </div>
 
-    
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">

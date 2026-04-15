@@ -56,62 +56,41 @@
                     <li><a href="views.html">Views</a></li>
                 </ul>
             </div>
-            <div class="sidebar-section">
-                <h4>Database</h4>
-                <ul>
-                    <li><a href="db-start.html">Getting Started</a></li>
-                    <li><a href="query-builder.html">Query Builder</a></li>
-                    <li><a href="orm-start.html">Arika ORM</a></li>
-                </ul>
-            </div>
         </aside>
 
         <main class="docs-content">
             <h1 class="docs-title">Frontend & Ark Templates</h1>
-            <p class="docs-lead">Build dynamic UIs with the powerful Ark engine. Designed for speed and developer convenience, Ark templates are fully compiled and cached for production.</p>
+            <p class="docs-lead">Ark is the native template engine for ArikaJS. It is designed to be expressive, ultra-fast, and familiar to developers coming from Laravel or Django.</p>
 
-            <section id="rendering-data">
-                <h2>Rendering Data</h2>
-                <p>Data passed from your controllers can be rendered using the "Mustache" syntax. ArikaJS automatically escapes all output to prevent XSS attacks:</p>
+            <section id="the-ark-compilation">
+                <h2>The Compilation Lifecycle</h2>
+                <p>Unlike simple template engines that perform string replacement at runtime, <strong>Ark</strong> compiles your <code>.ark.html</code> files into optimized JavaScript functions. During development, this happens on-the-fly. In production, templates are pre-compiled and cached in the <code>storage/framework/views</code> directory, resulting in near-zero rendering overhead.</p>
+            </section>
+
+            <section id="template-inheritance">
+                <h2>Layouts & Inheritance</h2>
+                <p>Ark follows a powerful inheritance model. You can define a base layout with "slots" for content using the <code>@layout</code> and <code>@section</code> directives:</p>
                 <div class="code-block">
-<pre><code>&lt;h1&gt;Hello, {{ $user->name }}&lt;/h1&gt;</code></pre>
+                    <div class="code-header">resources/views/layouts/main.ark.html</div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;nav&gt;...&lt;/nav&gt;
+    @yield('content')
+    &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
                 </div>
             </section>
 
             <section id="directives">
-                <h2>Directives</h2>
-                <p>Ark provides a set of directives that allow you to add logic to your templates without complex JavaScript blocks.</p>
-                
-                <h3>Conditionals</h3>
-                <div class="code-block">
-<pre><code>@if($user->isAdmin)
-    &lt;div&gt;Welcome, Administrator&lt;/div&gt;
-@else
-    &lt;div&gt;Welcome, User&lt;/div&gt;
-@endif</code></pre>
-                </div>
-
-                <h3>Loops</h3>
-                <div class="code-block">
-<pre><code>&lt;ul&gt;
-@foreach($users as $user)
-    &lt;li&gt;{{ $user->name }}&lt;/li&gt;
-@endforeach
-&lt;/ul&gt;</code></pre>
-                </div>
-            </section>
-
-            <section id="layouts">
-                <h2>Layouts & Sections</h2>
-                <p>Maintain consistent headers and footers using the <code>@layout</code> directive. Sub-views can then "inject" content into specific sections:</p>
-                <div class="code-block">
-                    <div class="code-header">profile.ark.html</div>
-<pre><code>@layout('layouts.app')
-
-@section('content')
-    &lt;h1&gt;User Profile&lt;/h1&gt;
-@endsection</code></pre>
-                </div>
+                <h2>Advanced Directives</h2>
+                <p>Ark supports a wide range of directives to handle logic cleanly inside your views:</p>
+                <ul>
+                    <li><strong>@include('partial')</strong>: Renders a sub-view and passes existing data.</li>
+                    <li><strong>@asset('path')</strong>: Generates a versioned URL for your CSS and JS files to handle cache-busting.</li>
+                    <li><strong>@auth</strong>: Conditionals based on the user's authentication state.</li>
+                </ul>
             </section>
 
             <div class="docs-footer">
@@ -123,7 +102,6 @@
         </main>
     </div>
 
-    
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
