@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArikaJS | A Modern, Elegant Web Framework for Node.js</title>
+    <title>ArikaJS | The Next Generation Node.js Framework</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/favicon.png">
 </head>
 <body>
     <nav class="navbar">
         <div class="container navbar-inner">
-            <div class="logo">
+            <a href="#" class="logo">
                 <img src="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/logo.png" alt="ArikaJS Logo">
-            </div>
+            </a>
             <div class="nav-links">
-                <a href="https://github.com/ArikaJs/arikajs#readme">Documentation</a>
+                <a href="https://github.com/ArikaJs/arikajs#readme">Docs</a>
+                <a href="#performance">Performance</a>
                 <a href="#features">Features</a>
-                <a href="https://github.com/ArikaJs/arikajs">GitHub</a>
+                <a href="https://github.com/ArikaJs/arikajs" class="btn btn-secondary">GitHub</a>
                 <a href="https://discord.gg/XUTjzwjrHK" class="btn btn-primary">Join Discord</a>
             </div>
         </div>
@@ -28,73 +29,114 @@
     <header class="hero">
         <div class="container hero-inner">
             <div class="hero-content">
-                <span class="badge">Version 0.10.12 Now Live</span>
-                <h1>Expressive. Fast. <br><span class="gradient-text">Elegant.</span></h1>
-                <p>The modern Node.js framework architected for extreme performance and developer happiness. Built from the ground up with TypeScript.</p>
+                <span class="badge">Version 0.10.12 Released</span>
+                <h1>The Most <span class="gradient-text">Elegant</span> Framework for Node.js</h1>
+                <p>ArikaJS is architected for extreme efficiency and developer happiness. Build enterprise-scale applications with a syntax you'll love.</p>
                 <div class="hero-actions">
-                    <pre class="command-box"><code>npx @arikajs/cli new my-app</code><button id="copy-btn" title="Copy">📋</button></pre>
-                    <div class="stats-row">
-                        <div class="stat">
-                            <span class="stat-value">2.6x</span>
-                            <span class="stat-label">Faster than Express</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value">TypeScript</span>
-                            <span class="stat-label">First-Class Support</span>
-                        </div>
-                    </div>
+                    <pre class="command-box"><code>npx @arikajs/cli new my-app</code><button id="copy-btn">📋</button></pre>
+                    <a href="https://github.com/ArikaJs/arikajs#readme" class="btn btn-large btn-primary">Get Started →</a>
                 </div>
             </div>
-            <div class="hero-image">
+            <div class="hero-graphic">
+                <div class="browser-shadow"></div>
                 <div class="code-window">
                     <div class="window-header">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
-                        <span class="window-title">routes/web.ts</span>
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
                     </div>
                     <div class="window-body">
-<pre><code><span class="keyword">import</span> { Route } <span class="keyword">from</span> <span class="string">'arikajs'</span>;
+<pre><code><span class="kw">import</span> { Route } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
-<span class="comment">// Simple, expressive routing</span>
-Route.<span class="function">get</span>(<span class="string">'/'</span>, () => <span class="string">'Hello World'</span>);
+<span class="comment">// Clean, intuitive routing</span>
+Route.<span class="fn">get</span>(<span class="str">'/'</span>, () => <span class="str">'Welcome to ArikaJS'</span>);
 
-<span class="comment">// Grouping & Middleware</span>
-Route.<span class="function">group</span>({ prefix: <span class="string">'api'</span>, middleware: <span class="string">'auth'</span> }, () => {
-    Route.<span class="function">get</span>(<span class="string">'/profile'</span>, [ProfileController, <span class="string">'show'</span>]);
-});</code></pre>
+<span class="comment">// Type-safe controllers</span>
+Route.<span class="fn">post</span>(<span class="str">'/users'</span>, [UserController, <span class="str">'store'</span>]);</code></pre>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
+    <section id="performance" class="performance">
+        <div class="container">
+            <div class="section-header">
+                <h2>Performance without compromise</h2>
+                <p>Benchmark results for a standard JSON hello-world response.</p>
+            </div>
+            
+            <div class="perf-stats">
+                <div class="stat-item arika-best">
+                    <div class="stat-label">
+                        <span class="name">ArikaJS</span>
+                        <span class="value">42,800 <small>req/s</small></span>
+                    </div>
+                    <div class="progress-bg"><div class="progress-bar" style="width: 100%"></div></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">
+                        <span class="name">Fastify</span>
+                        <span class="value">40,400 <small>req/s</small></span>
+                    </div>
+                    <div class="progress-bg"><div class="progress-bar" style="width: 94%"></div></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">
+                        <span class="name">Express</span>
+                        <span class="value">16,500 <small>req/s</small></span>
+                    </div>
+                    <div class="progress-bg"><div class="progress-bar" style="width: 38%"></div></div>
+                </div>
+            </div>
+            <p class="benchmark-footer">Tested on Node.js 20+ | Results may vary based on environment.</p>
+        </div>
+    </section>
+
     <section id="features" class="features">
         <div class="container">
             <div class="section-header">
                 <h2>Batteries Included</h2>
-                <p>Everything you need to build enterprise-grade applications.</p>
+                <p>Everything you need to build scalable backend systems.</p>
             </div>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Extreme Performance</h3>
-                    <p>Optimized request pipeline consistently outperforming Fastify and Express.</p>
+                    <div class="icon">🛡️</div>
+                    <h3>Type-Safe from Core</h3>
+                    <p>Leverage the full power of TypeScript with deep type safety throughout the entire pipeline.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🏗️</div>
+                    <div class="icon">🧩</div>
                     <h3>Modular Architecture</h3>
-                    <p>29+ decoupled packages. Use only what you need, or use the full framework.</p>
+                    <p>Driver-based system for Cache, Database, and Storage. Built for massive scalability.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔐</div>
-                    <h3>Secure by Default</h3>
-                    <p>Built-in CSRF, encryption, and multi-guard authentication system.</p>
+                    <div class="icon">🚀</div>
+                    <h3>Developer Experience</h3>
+                    <p>Powerful CLI, intuitive Routing, and Dependency Injection to keep your code clean.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📦</div>
-                    <h3>Active Record ORM</h3>
-                    <p>A fluent, expressive interface to your database that doesn't get in your way.</p>
+                    <div class="icon">🔑</div>
+                    <h3>Authentication Ready</h3>
+                    <p>Secure your app with multi-guard support, providers, and session management.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🗄️</div>
+                    <h3>Modern ORM</h3>
+                    <p>Fluent and intuitive database interactions with built-in relationship handling.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">⚡</div>
+                    <h3>Blazing Performance</h3>
+                    <p>Optimized for minimal overhead and lightning-fast response times.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🧅</div>
+                    <h3>Middleware Pipeline</h3>
+                    <p>Highly customizable onion-style execution model for robust request processing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💾</div>
+                    <h3>Global Caching</h3>
+                    <p>Boost performance with built-in drivers for Redis, Filesystem, and Memcached.</p>
                 </div>
             </div>
         </div>
@@ -102,11 +144,11 @@ Route.<span class="function">group</span>({ prefix: <span class="string">'api'</
 
     <footer class="footer">
         <div class="container footer-inner">
-            <p>&copy; 2026 Prakash Tank and the ArikaJS Team. Released under the MIT License.</p>
+            <p>© 2026 ArikaJS Team. Built by <a href="https://github.com/prakashtank">Prakash Tank</a>.</p>
             <div class="footer-links">
                 <a href="https://github.com/ArikaJs/arikajs">GitHub</a>
-                <a href="https://www.npmjs.com/package/arikajs">NPM</a>
                 <a href="https://discord.gg/XUTjzwjrHK">Discord</a>
+                <a href="https://www.npmjs.com/package/arikajs">NPM</a>
             </div>
         </div>
     </footer>
@@ -114,9 +156,9 @@ Route.<span class="function">group</span>({ prefix: <span class="string">'api'</
     <script>
         document.getElementById('copy-btn').addEventListener('click', () => {
             navigator.clipboard.writeText('npx @arikajs/cli new my-app');
-            const btn = document.getElementById('copy-btn');
-            btn.innerText = '✅';
-            setTimeout(() => btn.innerText = '📋', 2000);
+            const bt = document.getElementById('copy-btn');
+            bt.innerText = '✅';
+            setTimeout(() => bt.innerText = '📋', 2000);
         });
     </script>
 </body>
