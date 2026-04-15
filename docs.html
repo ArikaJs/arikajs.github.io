@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - ArikaJS Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1.0.2">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/favicon.png">
+</head>
+<body class="docs-page">
+    <nav class="navbar">
+        <div class="container navbar-inner">
+            <a href="index.html" class="logo">
+                <img src="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/logo.png" alt="ArikaJS Logo">
+            </a>
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search documentation...">
+            </div>
+            <div class="nav-links">
+                <div class="version-picker">
+                    <span class="version-label">Version</span>
+                    <select id="version-select">
+                        <option value="0.10.x" selected>0.10.x</option>
+                        <option value="main">main</option>
+                    </select>
+                </div>
+                <a href="https://github.com/ArikaJs/arikajs" class="btn btn-secondary">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-wrapper container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h4>Getting Started</h4>
+                <ul>
+                    <li><a href="#">Installation</a></li>
+                    <li><a href="#">Configuration</a></li>
+                    <li><a href="#">Directory Structure</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h4>The Basics</h4>
+                <ul>
+                    <li><a href="#" class="active">Routing</a></li>
+                    <li><a href="#">Middleware</a></li>
+                    <li><a href="#">Controllers</a></li>
+                    <li><a href="#">Requests</a></li>
+                    <li><a href="#">Responses</a></li>
+                    <li><a href="#">Views</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h4>Architecture Concepts</h4>
+                <ul>
+                    <li><a href="#">Request Lifecycle</a></li>
+                    <li><a href="#">Service Container</a></li>
+                    <li><a href="#">Service Providers</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h4>Database</h4>
+                <ul>
+                    <li><a href="#">Getting Started</a></li>
+                    <li><a href="#">Query Builder</a></li>
+                    <li><a href="#">Migrations</a></li>
+                    <li><a href="#">ORM</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="docs-content">
+            <h1 class="docs-title">Basic Routing</h1>
+            <p class="docs-lead">The most basic ArikaJS routes accept a URI and a closure, providing a very simple and expressive method of defining routes and behavior without complicated routing configuration files.</p>
+
+            <section id="basic-routing">
+                <h2>Basic Routing</h2>
+                <p>The default ArikaJS routes are defined in your <code>routes/web.ts</code> and <code>routes/api.ts</code> files. The <code>web.ts</code> file defines routes that are for your web interface. These routes are assigned the web middleware group, which provides features like session state and CSRF protection.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">routes/web.ts</div>
+<pre><code><span class="kw">import</span> { Route } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+Route.<span class="fn">get</span>(<span class="str">'/greeting'</span>, () => {
+    <span class="kw">return</span> <span class="str">'Hello World'</span>;
+});</code></pre>
+                </div>
+
+                <div class="alert alert-info">
+                    <div class="alert-icon">💡</div>
+                    <div class="alert-body">
+                        <strong>Pro Tip:</strong> Most of your application's routes will be defined in the <code>web.ts</code> file, as this handles standard browser requests.
+                    </div>
+                </div>
+            </section>
+
+            <section id="available-methods">
+                <h2>Available Router Methods</h2>
+                <p>The router allows you to register routes that respond to any HTTP verb:</p>
+                <div class="code-block">
+<pre><code>Route.<span class="fn">get</span>(uri, callback);
+Route.<span class="fn">post</span>(uri, callback);
+Route.<span class="fn">put</span>(uri, callback);
+Route.<span class="fn">patch</span>(uri, callback);
+Route.<span class="fn">delete</span>(uri, callback);
+Route.<span class="fn">options</span>(uri, callback);</code></pre>
+                </div>
+            </section>
+
+            <section id="redirect-routes">
+                <h2>Redirect Routes</h2>
+                <p>If you are defining a route that redirects to another URI, you may use the <code>Route.redirect</code> method. This method provides a convenient shortcut so that you do not have to define a full route or controller for a simple redirect:</p>
+                <div class="code-block">
+<pre><code>Route.<span class="fn">redirect</span>(<span class="str">'/here'</span>, <span class="str">'/there'</span>);</code></pre>
+                </div>
+            </section>
+
+            <div class="docs-footer">
+                <div class="prev-next">
+                    <a href="#" class="prev">← Installation</a>
+                    <a href="#" class="next">Middleware →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 ArikaJS Team. Released under the MIT License.</p>
+        </div>
+    </footer>
+</body>
+</html>
