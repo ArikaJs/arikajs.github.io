@@ -423,29 +423,41 @@ h1, h2, h3 {
     top: 12px;
     right: 12px;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Stronger border visibility */
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: #e2e8f0;
     padding: 6px 12px;
     border-radius: 8px;
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
     backdrop-filter: blur(8px);
     z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.copy-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.8;
 }
 
 .copy-code-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
     color: #fff;
-    transform: scale(1.05);
 }
 
 .copy-code-btn.copied {
-    background: #10b981; /* Success Green */
+    background: #10b981;
     color: #fff;
     border-color: #10b981;
+}
+
+.copy-code-btn.copied .copy-icon {
+    display: none;
 }
 
 /* Alerts */
