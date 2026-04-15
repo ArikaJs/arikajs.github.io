@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation - ArikaJS Framework</title>
+    <title>Installation - ArikaJS Framework</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.0.2">
+    <link rel="stylesheet" href="style.css?v=1.1.0">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/favicon.png">
 </head>
 <body class="docs-page">
@@ -25,7 +25,6 @@
                     <span class="version-label">Version</span>
                     <select id="version-select">
                         <option value="0.10.x" selected>0.10.x</option>
-                        <option value="main">main</option>
                     </select>
                 </div>
                 <a href="https://github.com/ArikaJs/arikajs" class="btn btn-secondary">GitHub</a>
@@ -34,175 +33,86 @@
     </nav>
 
     <div class="docs-wrapper container">
-        
-        <aside class='sidebar'>
-            <div class='sidebar-section'>
+        <aside class="sidebar">
+            <div class="sidebar-section">
                 <h4>Getting Started</h4>
                 <ul>
-                    <li><a href='docs.html' >Installation</a></li>
-                    <li><a href='configuration.html'>Configuration</a></li>
-                    <li><a href='agentic.html'>Agentic Development</a></li>
-                    <li><a href='structure.html'>Directory Structure</a></li>
-                    <li><a href='frontend.html'>Frontend</a></li>
-                    <li><a href='starter-kits.html'>Starter Kits</a></li>
-                    <li><a href='deployment.html'>Deployment</a></li>
+                    <li><a href="docs.html" class="active">Installation</a></li>
+                    <li><a href="configuration.html">Configuration</a></li>
+                    <li><a href="structure.html">Directory Structure</a></li>
+                    <li><a href="frontend.html">Frontend</a></li>
+                    <li><a href="starter-kits.html">Starter Kits</a></li>
+                    <li><a href="deployment.html">Deployment</a></li>
                 </ul>
             </div>
-            <div class='sidebar-section'>
-                <h4>Architecture Concepts</h4>
-                <ul>
-                    <li><a href='lifecycle.html'>Request Lifecycle</a></li>
-                    <li><a href='container.html'>Service Container</a></li>
-                    <li><a href='providers.html'>Service Providers</a></li>
-                    <li><a href='facades.html'>Facades</a></li>
-                </ul>
-            </div>
-            <div class='sidebar-section'>
+            <div class="sidebar-section">
                 <h4>The Basics</h4>
                 <ul>
-                    <li><a href='routing.html'>Routing</a></li>
-                    <li><a href='middleware.html'>Middleware</a></li>
-                    <li><a href='csrf.html'>CSRF Protection</a></li>
-                    <li><a href='controllers.html'>Controllers</a></li>
-                    <li><a href='requests.html'>Requests</a></li>
-                    <li><a href='responses.html'>Responses</a></li>
-                    <li><a href='views.html'>Views</a></li>
-                    <li><a href='ark-templates.html'>Ark Templates</a></li>
-                    <li><a href='bundling.html'>Asset Bundling</a></li>
-                    <li><a href='urls.html'>URL Generation</a></li>
-                    <li><a href='session.html'>Session</a></li>
-                    <li><a href='validation.html'>Validation</a></li>
-                    <li><a href='errors.html'>Error Handling</a></li>
-                    <li><a href='logging.html'>Logging</a></li>
+                    <li><a href="routing.html">Routing</a></li>
+                    <li><a href="middleware.html">Middleware</a></li>
+                    <li><a href="controllers.html">Controllers</a></li>
+                    <li><a href="requests.html">Requests</a></li>
+                    <li><a href="responses.html">Responses</a></li>
+                    <li><a href="views.html">Views</a></li>
                 </ul>
             </div>
-            <div class='sidebar-section'>
-                <h4>Digging Deeper</h4>
-                <ul>
-                    <li><a href='console.html'>Arika Console</a></li>
-                    <li><a href='broadcasting.html'>Broadcasting</a></li>
-                    <li><a href='cache.html'>Cache</a></li>
-                    <li><a href='collections.html'>Collections</a></li>
-                    <li><a href='concurrency.html'>Concurrency</a></li>
-                    <li><a href='context.html'>Context</a></li>
-                    <li><a href='contracts.html'>Contracts</a></li>
-                    <li><a href='events.html'>Events</a></li>
-                    <li><a href='storage.html'>File Storage</a></li>
-                    <li><a href='helpers.html'>Helpers</a></li>
-                    <li><a href='http-client.html'>HTTP Client</a></li>
-                    <li><a href='localization.html'>Localization</a></li>
-                    <li><a href='mail.html'>Mail</a></li>
-                    <li><a href='notifications.html'>Notifications</a></li>
-                    <li><a href='package-dev.html'>Package Development</a></li>
-                    <li><a href='processes.html'>Processes</a></li>
-                    <li><a href='queues.html'>Queues</a></li>
-                    <li><a href='rate-limiting.html'>Rate Limiting</a></li>
-                    <li><a href='search.html'>Search</a></li>
-                    <li><a href='strings.html'>Strings</a></li>
-                    <li><a href='scheduling.html'>Task Scheduling</a></li>
-                </ul>
-            </div>
-            <div class='sidebar-section'>
-                <h4>Security</h4>
-                <ul>
-                    <li><a href='authentication.html'>Authentication</a></li>
-                    <li><a href='authorization.html'>Authorization</a></li>
-                    <li><a href='verification.html'>Email Verification</a></li>
-                    <li><a href='encryption.html'>Encryption</a></li>
-                    <li><a href='hashing.html'>Hashing</a></li>
-                    <li><a href='passwords.html'>Password Reset</a></li>
-                </ul>
-            </div>
-            <div class='sidebar-section'>
+            <div class="sidebar-section">
                 <h4>Database</h4>
                 <ul>
-                    <li><a href='db-start.html'>Getting Started</a></li>
-                    <li><a href='query-builder.html'>Query Builder</a></li>
-                    <li><a href='pagination.html'>Pagination</a></li>
-                    <li><a href='migrations.html'>Migrations</a></li>
-                    <li><a href='seeding.html'>Seeding</a></li>
-                    <li><a href='redis.html'>Redis</a></li>
-                    <li><a href='mongodb.html'>MongoDB</a></li>
-                </ul>
-            </div>
-            <div class='sidebar-section'>
-                <h4>Eloquent ORM</h4>
-                <ul>
-                    <li><a href='orm-start.html'>Getting Started</a></li>
-                    <li><a href='relationships.html'>Relationships</a></li>
-                    <li><a href='orm-collections.html'>Collections</a></li>
-                    <li><a href='mutators.html'>Mutators / Casts</a></li>
-                    <li><a href='resources.html'>API Resources</a></li>
-                    <li><a href='serialization.html'>Serialization</a></li>
-                    <li><a href='factories.html'>Factories</a></li>
-                </ul>
-            </div>
-            <div class='sidebar-section'>
-                <h4>Official Packages</h4>
-                <ul>
-                    <li><a href='socialite.html'>Socialite</a></li>
-                    <li><a href='passport.html'>Passport</a></li>
-                    <li><a href='sanctum.html'>Sanctum</a></li>
-                    <li><a href='telescope.html'>Telescope</a></li>
-                    <li><a href='horizon.html'>Horizon</a></li>
-                </ul>
-            </div>
-            <div class='sidebar-section'>
-                <h4>Release Notes</h4>
-                <ul>
-                    <li><a href='changelog.html'>Changelog</a></li>
+                    <li><a href="db-start.html">Getting Started</a></li>
+                    <li><a href="query-builder.html">Query Builder</a></li>
+                    <li><a href="orm-start.html">Arika ORM</a></li>
                 </ul>
             </div>
         </aside>
 
-
         <main class="docs-content">
             <h1 class="docs-title">Installation</h1>
-            <p class="docs-lead">ArikaJS is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.</p>
+            <p class="docs-lead">ArikaJS is a high-performance web application framework for Node.js, engineered for stability, type-safety, and developer productivity.</p>
 
-            <section id="meet-arikajs">
-                <h2>Meet ArikaJS</h2>
-                <p>ArikaJS is a Node.js framework designed for extreme performance and developer happiness. It is built from the ground up to be type-safe, modular, and easy to use, drawing inspiration from industry leaders like Laravel and NestJS.</p>
+            <section id="why-arikajs">
+                <h2>Why ArikaJS?</h2>
+                <p>ArikaJS bridges the gap between the simplicity of Express and the structured power of Laravel. Built entirely in TypeScript, it provides a driver-based architecture for Database, Cache, and Session management, ensuring your application can scale from a prototype to an enterprise system without refactoring.</p>
             </section>
 
-            <section id="prerequisites">
-                <h2>Prerequisites</h2>
-                <p>Before creating your first ArikaJS project, you should ensure that your local machine has Node.js and npm installed. We recommend the latest LTS version of Node.js.</p>
+            <section id="system-requirements">
+                <h2>System Requirements</h2>
+                <p>Before deploying or developing with ArikaJS, verify that your environment meets the following baseline requirements:</p>
                 <ul>
-                    <li>Node.js 20.x or higher</li>
-                    <li>npm 10.x, Yarn, or pnpm</li>
+                    <li><strong>Node.js:</strong> v20.11.0 or higher.</li>
+                    <li><strong>Package Manager:</strong> npm v10+, Yarn v3+, or pnpm v8+.</li>
+                    <li><strong>Operating System:</strong> Linux, macOS, or Windows (WSL2 recommended).</li>
                 </ul>
             </section>
 
-            <section id="creating-a-project">
-                <h2>Your First ArikaJS Project</h2>
-                <p>You may create a new ArikaJS project via the ArikaJS CLI. The CLI is available via <code>npx</code>, so there is no need to install it globally:</p>
+            <section id="scaffolding">
+                <h2>Scaffolding Your Application</h2>
+                <p>The ArikaJS CLI is the primary tool for managing your application lifecycle. You can initialize a new project using the <code>@arikajs/cli</code> via <code>npx</code>:</p>
                 
                 <div class="code-block">
-<pre><code>npx @arikajs/cli new my-app</code></pre>
+                    <div class="code-header">Terminal</div>
+<pre><code>npx @arikajs/cli new my-awesome-app</code></pre>
                 </div>
 
-                <p>After the project has been created, you should enter the project's directory and start the ArikaJS development server:</p>
-
-                <div class="code-block">
-<pre><code>cd my-app
-arika serve --dev</code></pre>
-                </div>
+                <p>This command prepares a fully structured monorepo or standalone application with all essential dependencies, TypeScript configuration, and a sample routing engine.</p>
             </section>
 
-            <section id="initial-configuration">
-                <h2>Initial Configuration</h2>
-                <p>The ArikaJS framework requires very little configuration out of the box. However, you should check your <code>.env</code> file to ensure the <code>APP_KEY</code> is generated. You can generate a new key using the CLI:</p>
+            <section id="development-server">
+                <h2>The Development Server</h2>
+                <p>Once the project is created, enter the directory and launch the development server. ArikaJS includes a sophisticated watcher that handles hot-reloading for both your TypeScript logic and Ark Templates:</p>
 
                 <div class="code-block">
-<pre><code>arika key:generate</code></pre>
+                    <div class="code-header">Terminal</div>
+<pre><code>cd my-awesome-app
+npm run dev</code></pre>
                 </div>
+                <p>Your application will be available at <code>http://localhost:3000</code> by default.</p>
             </section>
 
             <div class="docs-footer">
                 <div class="prev-next">
                     <span class="prev"></span>
-                    <a href="routing.html" class="next">Basic Routing →</a>
+                    <a href="configuration.html" class="next">Configuration →</a>
                 </div>
             </div>
         </main>
@@ -213,5 +123,6 @@ arika serve --dev</code></pre>
             <p>© 2026 ArikaJS Team. Released under the MIT License.</p>
         </div>
     </footer>
-<script src="script.js"></script></body>
+    <script src="script.js"></script>
+</body>
 </html>

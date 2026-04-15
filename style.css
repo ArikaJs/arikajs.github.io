@@ -339,7 +339,7 @@ h1, h2, h3 {
 
 .sidebar-section a:hover, .sidebar-section a.active {
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .docs-content {
@@ -353,50 +353,70 @@ h1, h2, h3 {
     font-weight: 800;
     margin-bottom: 24px;
     letter-spacing: -1.5px;
+    color: var(--secondary);
 }
 
 .docs-lead {
-    font-size: 20px;
+    font-size: 21px;
     color: var(--text-muted);
     margin-bottom: 48px;
+    line-height: 1.5;
 }
 
 .docs-content h2 {
-    font-size: 28px;
-    margin: 48px 0 24px 0;
-    padding-top: 24px;
+    font-size: 32px;
+    margin: 56px 0 24px 0;
+    padding-top: 32px;
     border-top: 1px solid var(--border);
+    color: var(--secondary);
+    font-weight: 800;
 }
 
 .docs-content p {
     margin-bottom: 24px;
-    color: var(--text-main);
+    color: #334155;
     font-size: 16px;
+    line-height: 1.7;
 }
 
 .docs-content code {
-    background: rgba(15, 23, 42, 0.05);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: 'Monaco', monospace;
+    background: rgba(139, 92, 246, 0.08);
+    padding: 3px 6px;
+    border-radius: 6px;
+    font-family: 'Monaco', 'Consolas', monospace;
     font-size: 14px;
-    color: #e83e8c;
+    color: var(--primary);
+    font-weight: 500;
 }
 
 .code-block {
-    margin: 24px 0;
+    margin: 32px 0;
     background: #0f172a;
     border-radius: 12px;
     overflow: hidden;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
 }
 
 .code-header {
     background: #1e293b;
-    padding: 8px 16px;
-    font-size: 12px;
+    padding: 10px 20px;
+    font-size: 13px;
     color: #94a3b8;
-    font-family: monospace;
+    font-family: var(--font-body);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+.code-block pre {
+    padding: 28px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.kw { color: #c678dd; } /* Soft purple keywords */
+.str { color: #98c379; } /* Clean green strings */
+.fn { color: #61afef; } /* Blue functions */
+.comment { color: #5c6370; font-style: italic; }
 
 .copy-code-btn {
     position: absolute;
