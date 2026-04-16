@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArikaJS | The Next Generation Node.js Framework</title>
+    <title>ArikaJS | The High-Performance Node.js Framework</title>
+    <meta name="description" content="ArikaJS is a high-performance, modular web framework for Node.js. Built for speed, developer happiness, and enterprise-scale reliability.">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.0.1">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css?v=2.2.0">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/favicon.png">
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" id="main-nav">
         <div class="container navbar-inner">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <img src="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/logo.png" alt="ArikaJS Logo">
             </a>
             <div class="nav-links">
-                <a href="docs.html">Docs</a>
-                <a href="#performance">Performance</a>
+                <a href="docs.html">Documentation</a>
+                <a href="#performance">Benchmarks</a>
                 <a href="#features">Features</a>
-                <a href="https://github.com/ArikaJs/arikajs" class="btn btn-secondary">GitHub</a>
-                <a href="https://discord.gg/XUTjzwjrHK" class="btn btn-primary">Join Discord</a>
+                <a href="https://github.com/ArikaJs/arikajs" class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                    GitHub
+                </a>
             </div>
         </div>
     </nav>
@@ -29,19 +36,33 @@
     <header class="hero">
         <div class="container hero-inner">
             <div class="hero-content">
-                <span class="badge">Version 0.10.12 Released</span>
-                <h1>The Most <span class="gradient-text">Elegant</span> Framework for Node.js</h1>
-                <p>ArikaJS is architected for extreme efficiency and developer happiness. Build enterprise-scale applications with a syntax you'll love.</p>
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    Version 0.10.12 - Stable Release
+                </div>
+                <h1>The <span class="gradient-text">High-Performance</span> Framework for Modern Node.js</h1>
+                <p>ArikaJS is a next-generation Node.js framework designed for extreme efficiency, developer happiness, and professional-grade performance.</p>
                 <div class="hero-actions">
-                    <pre class="command-box"><code>npx @arikajs/cli new my-app</code><button id="copy-btn">📋</button></pre>
-                    <a href="docs.html" class="btn btn-large btn-primary">Get Started →</a>
+                    <div class="command-box">
+                        <span class="prefix">$</span>
+                        <code id="install-cmd">npx @arikajs/cli new my-app</code>
+                        <button id="copy-btn" title="Copy to clipboard">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4v8H4V4h4zm12 0v16H10V4h10zM8 2H2v12h6V2zm14 0h-14v20h14V2z"></path></svg>
+                        </button>
+                    </div>
+                    <div style="display:flex; gap:16px;">
+                        <a href="docs.html" class="btn btn-large btn-primary">Start Building →</a>
+                        <a href="#features" class="btn btn-large btn-secondary">Explore Features</a>
+                    </div>
                 </div>
             </div>
             <div class="hero-graphic">
-                <div class="browser-shadow"></div>
+                <div class="glow-sphere"></div>
                 <div class="code-window">
                     <div class="window-header">
-                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
                     </div>
                     <div class="window-body">
 <pre><code><span class="kw">import</span> { Route } <span class="kw">from</span> <span class="str">'arikajs'</span>;
@@ -60,110 +81,91 @@ Route.<span class="fn">post</span>(<span class="str">'/users'</span>, [UserContr
     <section id="performance" class="performance">
         <div class="container">
             <div class="section-header">
-                <h2>Performance without compromise</h2>
-                <p>Benchmark results for a standard JSON hello-world response.</p>
+                <h2>Engineered for Speed</h2>
+                <p>Outperforming the industry standards in high-concurrency environments.</p>
             </div>
             
             <div class="perf-stats">
-                <div class="stat-item arika-best">
+                <div class="stat-item arika-best" data-target="100">
                     <div class="stat-label">
                         <span class="name">ArikaJS</span>
                         <span class="value">42,800 <small>req/s</small></span>
                     </div>
-                    <div class="progress-bg"><div class="progress-bar" style="width: 100%"></div></div>
+                    <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" data-target="94">
                     <div class="stat-label">
                         <span class="name">Fastify</span>
                         <span class="value">40,400 <small>req/s</small></span>
                     </div>
-                    <div class="progress-bg"><div class="progress-bar" style="width: 94%"></div></div>
+                    <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" data-target="38">
                     <div class="stat-label">
                         <span class="name">Express</span>
                         <span class="value">16,500 <small>req/s</small></span>
                     </div>
-                    <div class="progress-bg"><div class="progress-bar" style="width: 38%"></div></div>
+                    <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
                 </div>
             </div>
-            <p class="benchmark-footer">Tested on Node.js 20+ | Results may vary based on environment.</p>
+            <p class="benchmark-footer">Benchmarks performed on Node.js 20, 100 concurrent connections.</p>
         </div>
     </section>
 
     <section id="features" class="features">
         <div class="container">
             <div class="section-header">
-                <h2>Batteries Included</h2>
-                <p>Everything you need to build scalable backend systems.</p>
+                <h2>Everything you need</h2>
+                <p>Built-in tools to help you focus on creating, not configuring.</p>
             </div>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <div class="icon">🛡️</div>
-                    <h3>Type-Safe from Core</h3>
-                    <p>Leverage the full power of TypeScript with deep type safety throughout the entire pipeline.</p>
+                    <span class="feature-icon">🛡️</span>
+                    <h3>Native TypeScript</h3>
+                    <p>Designed from the ground up to provide the best possible TypeScript experience.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon">🧩</div>
-                    <h3>Modular Architecture</h3>
-                    <p>Driver-based system for Cache, Database, and Storage. Built for massive scalability.</p>
+                    <span class="feature-icon">🚀</span>
+                    <h3>Extreme DX</h3>
+                    <p>Powerful CLI and intuitive APIs that make development feel like magic.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon">🚀</div>
-                    <h3>Developer Experience</h3>
-                    <p>Powerful CLI, intuitive Routing, and Dependency Injection to keep your code clean.</p>
+                    <span class="feature-icon">🗄️</span>
+                    <h3>Eloquent ORM</h3>
+                    <p>Active Record pattern for database interactions. Fluent, reliable, and fast.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon">🔑</div>
-                    <h3>Authentication Ready</h3>
-                    <p>Secure your app with multi-guard support, providers, and session management.</p>
+                    <span class="feature-icon">🔑</span>
+                    <h3>Unified Auth</h3>
+                    <p>Secure authentication with guard support. JWT, Sessions, and OAuth built-in.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon">🗄️</div>
-                    <h3>Modern ORM</h3>
-                    <p>Fluent and intuitive database interactions with built-in relationship handling.</p>
+                    <span class="feature-icon">⚡</span>
+                    <h3>Real-time Logic</h3>
+                    <p>Built-in event system and dispatcher for high-performance reactive logic.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon">⚡</div>
-                    <h3>Blazing Performance</h3>
-                    <p>Optimized for minimal overhead and lightning-fast response times.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">🧅</div>
-                    <h3>Middleware Pipeline</h3>
-                    <p>Highly customizable onion-style execution model for robust request processing.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">💾</div>
-                    <h3>Global Caching</h3>
-                    <p>Boost performance with built-in drivers for Redis, Filesystem, and Memcached.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">🌍</div>
-                    <h3>Localization</h3>
-                    <p>Powerful translation and localization system for building global applications.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">📅</div>
-                    <h3>Task Scheduling</h3>
-                    <p>Fluently schedule background tasks and jobs directly within your application.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">📧</div>
-                    <h3>Mail System</h3>
-                    <p>A unified API for sending emails via SMTP, SES, and Mailgun with ease.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">🤝</div>
-                    <h3>Socialite (OAuth)</h3>
-                    <p>Effortlessly integrate Social Login from GitHub, Google, LinkedIn, and more.</p>
+                    <span class="feature-icon">📅</span>
+                    <h3>Task Scheduler</h3>
+                    <p>Manage background jobs and cron-like tasks with a fluent provider API.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    
-    
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Ready to build something great?</h2>
+                <p>Join the community of developers building modern web applications with ArikaJS.</p>
+                <div class="hero-actions">
+                    <a href="docs.html" class="btn btn-large btn-primary">Read the Docs</a>
+                    <a href="https://github.com/ArikaJs/arikajs" class="btn btn-large btn-secondary">Star on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -171,37 +173,35 @@ Route.<span class="fn">post</span>(<span class="str">'/users'</span>, [UserContr
                     <a href="index.html" class="logo">
                         <img src="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/logo.png" alt="ArikaJS Logo">
                     </a>
-                    <p>The ArikaJS Framework is a high-performance web application engine designed for extreme stability and developer productivity.</p>
+                    <p>ArikaJS is an open-source framework dedicated to bringing elegance and stability to the Node.js ecosystem.</p>
                 </div>
                 <div class="footer-column">
                     <h4>Resources</h4>
                     <ul>
                         <li><a href="docs.html">Documentation</a></li>
-                        <li><a href="starter-kits.html">Starter Kits</a></li>
-                        <li><a href="https://github.com/ArikaJs/arikajs">GitHub Repository</a></li>
-                        <li><a href="changelog.html">Changelog</a></li>
+                        <li><a href="#">Starter Kits</a></li>
+                        <li><a href="https://github.com/ArikaJs/arikajs">Sources</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h4>Ecosystem</h4>
                     <ul>
-                        <li><a href="docs.html">Arika Docs</a></li>
                         <li><a href="#">Arika Socialite</a></li>
                         <li><a href="#">Arika CLI</a></li>
-                        <li><a href="#">Arika Sweet</a></li>
+                        <li><a href="#">Arika Carbon</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h4>Community</h4>
                     <ul>
-                        <li><a href="https://github.com/ArikaJs/arikajs/discussions">Discussions</a></li>
                         <li><a href="https://discord.gg/XUTjzwjrHK">Discord</a></li>
-                        <li><a href="#">Contributing</a></li>
+                        <li><a href="https://github.com/ArikaJs/arikajs/discussions">Discussions</a></li>
+                        <li><a href="#">Twitter</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 ArikaJS Team. Released under the MIT License.</p>
+                <p>&copy; 2026 ArikaJS Project. Released under the MIT License.</p>
                 <div class="footer-socials">
                     <a href="https://github.com/ArikaJs/arikajs">GitHub</a>
                     <a href="https://discord.gg/XUTjzwjrHK">Discord</a>
@@ -210,15 +210,41 @@ Route.<span class="fn">post</span>(<span class="str">'/users'</span>, [UserContr
         </div>
     </footer>
 
-
-
     <script>
+        // Copy to clipboard
         document.getElementById('copy-btn').addEventListener('click', () => {
-            navigator.clipboard.writeText('npx @arikajs/cli new my-app');
-            const bt = document.getElementById('copy-btn');
-            bt.innerText = '✅';
-            setTimeout(() => bt.innerText = '📋', 2000);
+            const cmd = document.getElementById('install-cmd').innerText;
+            navigator.clipboard.writeText(cmd);
+            const btn = document.getElementById('copy-btn');
+            btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>';
+            setTimeout(() => {
+                btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4v8H4V4h4zm12 0v16H10V4h10zM8 2H2v12h6V2zm14 0h-14v20h14V2z"></path></svg>';
+            }, 2000);
         });
+
+        // Sticky Nav & Scroll Animations
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Animate progress bars on scroll
+        const observerOptions = { threshold: 0.5 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target.querySelector('.progress-bar');
+                    const target = entry.target.getAttribute('data-target');
+                    bar.style.width = target + '%';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-item').forEach(item => observer.observe(item));
     </script>
 </body>
 </html>
