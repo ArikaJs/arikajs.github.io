@@ -1,37 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArikaJS | The High-Performance Node.js Framework</title>
-    <meta name="description" content="ArikaJS is a high-performance, modular web framework for Node.js. Built for speed, developer happiness, and enterprise-scale reliability.">
-    
+    <meta name="description"
+        content="ArikaJS is a high-performance, modular web framework for Node.js. Built for speed, developer happiness, and enterprise-scale reliability.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <!-- Styles -->
     <link rel="stylesheet" href="style.css?v=2.3.0">
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/favicon.png">
+    <link rel="icon" type="image/png"
+        href="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/favicon.png">
 </head>
+
 <body>
     <nav class="navbar" id="main-nav">
         <div class="container navbar-inner">
             <a href="index.html" class="logo">
-                <img src="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/logo.png" alt="ArikaJS Logo">
+                <img src="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/logo.png"
+                    alt="ArikaJS Logo">
             </a>
             <div class="nav-links">
                 <a href="docs.html">Documentation</a>
                 <a href="#performance">Benchmarks</a>
                 <a href="#features">Features</a>
                 <a href="https://github.com/ArikaJs/arikajs" class="btn btn-secondary">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                        </path>
+                    </svg>
                     GitHub
                 </a>
                 <button class="theme-toggle" id="theme-btn" aria-label="Toggle Theme">
-                    <svg class="sun" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
-                    <svg class="moon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    <svg class="sun" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z">
+                        </path>
+                    </svg>
+                    <svg class="moon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
+                    </svg>
                 </button>
             </div>
         </div>
@@ -45,13 +64,16 @@
                     Version 0.10.12 - Stable Release
                 </div>
                 <h1>The <span class="gradient-text">High-Performance</span> Framework for Modern Node.js</h1>
-                <p>ArikaJS is a next-generation Node.js framework designed for extreme efficiency, developer happiness, and professional-grade performance.</p>
+                <p>ArikaJS is a next-generation Node.js framework designed for extreme efficiency, developer happiness,
+                    and professional-grade performance.</p>
                 <div class="hero-actions">
                     <div class="command-box">
-                        <span class="prefix">$</span>
                         <code id="install-cmd">npx @arikajs/cli new my-app</code>
                         <button id="copy-btn" title="Copy to clipboard">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4v8H4V4h4zm12 0v16H10V4h10zM8 2H2v12h6V2zm14 0h-14v20h14V2z"></path></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M8 4v8H4V4h4zm12 0v16H10V4h10zM8 2H2v12h6V2zm14 0h-14v20h14V2z"></path>
+                            </svg>
                         </button>
                     </div>
                     <a href="docs.html" class="btn btn-large btn-primary">Start Building →</a>
@@ -67,7 +89,7 @@
                         <span class="dot dot-green"></span>
                     </div>
                     <div class="window-body">
-<pre><code><span class="kw">import</span> { Route } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+                        <pre><code><span class="kw">import</span> { Route } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
 <span class="comment">// Clean, intuitive routing</span>
 Route.<span class="fn">get</span>(<span class="str">'/'</span>, () => <span class="str">'Welcome to ArikaJS'</span>);
@@ -86,28 +108,34 @@ Route.<span class="fn">post</span>(<span class="str">'/users'</span>, [UserContr
                 <h2>Engineered for Speed</h2>
                 <p>Outperforming the industry standards in high-concurrency environments.</p>
             </div>
-            
+
             <div class="perf-stats">
                 <div class="stat-item arika-best" data-target="100">
                     <div class="stat-label">
                         <span class="name">ArikaJS</span>
                         <span class="value">42,800 <small>req/s</small></span>
                     </div>
-                    <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
+                    <div class="progress-bg">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
                 </div>
                 <div class="stat-item" data-target="94">
                     <div class="stat-label">
                         <span class="name">Fastify</span>
                         <span class="value">40,400 <small>req/s</small></span>
                     </div>
-                    <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
+                    <div class="progress-bg">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
                 </div>
                 <div class="stat-item" data-target="38">
                     <div class="stat-label">
                         <span class="name">Express</span>
                         <span class="value">16,500 <small>req/s</small></span>
                     </div>
-                    <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
+                    <div class="progress-bg">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
                 </div>
             </div>
             <p class="benchmark-footer">Benchmarks performed on Node.js 20, 100 concurrent connections.</p>
@@ -123,42 +151,77 @@ Route.<span class="fn">post</span>(<span class="str">'/users'</span>, [UserContr
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
                     </div>
                     <h3>Native TypeScript</h3>
                     <p>Designed from the ground up to provide the best possible TypeScript experience.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.5-1 1-4c2 0 3 .5 3 2.5Z"/><path d="M15 15v5c0 2.5 1 3 4 3 0-3-1-4-1-4s-1-.5-3-4Z"/><line x1="11.5" y1="12.5" x2="15.5" y2="16.5"/></svg>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                            <path
+                                d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                            <path d="M9 12H4s.5-1 1-4c2 0 3 .5 3 2.5Z" />
+                            <path d="M15 15v5c0 2.5 1 3 4 3 0-3-1-4-1-4s-1-.5-3-4Z" />
+                            <line x1="11.5" y1="12.5" x2="15.5" y2="16.5" />
+                        </svg>
                     </div>
                     <h3>Extreme DX</h3>
                     <p>Powerful CLI and intuitive APIs that make development feel like magic.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <ellipse cx="12" cy="5" rx="9" ry="3" />
+                            <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+                            <path d="M3 12A9 3 0 0 0 21 12" />
+                        </svg>
                     </div>
                     <h3>Modern ORM</h3>
                     <p>Active Record pattern for database interactions. Fluent, reliable, and fast.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
                     </div>
                     <h3>Unified Auth</h3>
                     <p>Secure authentication with guard support. JWT, Sessions, and OAuth built-in.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path x1="3" y1="5" x2="7" y2="5"/><path x1="17" y1="19" x2="21" y2="19"/></svg>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                            <path d="M5 3v4" />
+                            <path d="M19 17v4" />
+                            <path x1="3" y1="5" x2="7" y2="5" />
+                            <path x1="17" y1="19" x2="21" y2="19" />
+                        </svg>
                     </div>
                     <h3>Real-time Logic</h3>
                     <p>Built-in event system and dispatcher for high-performance reactive logic.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
                     </div>
                     <h3>Task Scheduler</h3>
                     <p>Manage background jobs and cron-like tasks with a fluent provider API.</p>
@@ -186,9 +249,11 @@ Route.<span class="fn">post</span>(<span class="str">'/users'</span>, [UserContr
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">
-                        <img src="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/logo.png" alt="ArikaJS Logo">
+                        <img src="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/logo.png"
+                            alt="ArikaJS Logo">
                     </a>
-                    <p>ArikaJS is an open-source framework dedicated to bringing elegance and stability to the Node.js ecosystem.</p>
+                    <p>ArikaJS is an open-source framework dedicated to bringing elegance and stability to the Node.js
+                        ecosystem.</p>
                 </div>
                 <div class="footer-column">
                     <h4>Resources</h4>
@@ -230,7 +295,7 @@ Route.<span class="fn">post</span>(<span class="str">'/users'</span>, [UserContr
         const html = document.documentElement;
         const themeBtn = document.getElementById('theme-btn');
         const savedTheme = localStorage.getItem('theme') || 'light'; // Light is now default
-        
+
         html.setAttribute('data-theme', savedTheme);
 
         themeBtn.addEventListener('click', () => {
@@ -276,4 +341,5 @@ Route.<span class="fn">post</span>(<span class="str">'/users'</span>, [UserContr
         document.querySelectorAll('.stat-item').forEach(item => observer.observe(item));
     </script>
 </body>
+
 </html>
