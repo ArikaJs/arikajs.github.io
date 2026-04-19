@@ -4028,7 +4028,7 @@ AWS_BUCKET=my-app-assets
         });
     }
 
-    <span class="kw">async</span> <span class="fn">down</span>() {
+                                    <span class="kw">async</span> <span class="fn">down</span>() {
         <span class="kw">await</span> Schema.<span class="fn">dropIfExists</span>(<span class="str">'posts'</span>);
     }
 }</code></pre>
@@ -4037,40 +4037,100 @@ AWS_BUCKET=my-app-assets
 
                                     <h2>Column Blueprints</h2>
                                     <p>The <code>Blueprint</code> class provides a wide variety of methods for defining
-                                        your table columns:</p>
+                                        your table columns across all supported database systems:</p>
                                     <div class="docs-property-grid">
                                         <div class="property-card">
                                             <div class="property-name">table.id()</div>
                                             <p class="property-desc">Alias for an auto-incrementing
-                                                <code>BIGINT UNSIGNED</code> primary key.
-                                            </p>
+                                                <code>BIGINT UNSIGNED</code> primary key.</p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">table.string(name, length)</div>
-                                            <p class="property-desc">Equivalent to a <code>VARCHAR</code> column at the
-                                                specified length.</p>
+                                            <p class="property-desc">Equivalent to a <code>VARCHAR</code> column. Length
+                                                defaults to 255 if not specified.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">table.text(name)</div>
+                                            <p class="property-desc">Equivalent to a <code>TEXT</code> column for long
+                                                string content.</p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">table.integer(name)</div>
                                             <p class="property-desc">Equivalent to an <code>INTEGER</code> column.</p>
                                         </div>
                                         <div class="property-card">
-                                            <div class="property-name">table.timestamp(name)</div>
-                                            <p class="property-desc">Equivalent to a <code>TIMESTAMP</code> column.</p>
+                                            <div class="property-name">table.boolean(name)</div>
+                                            <p class="property-desc">Equivalent to a <code>BOOLEAN</code> (or tinyint)
+                                                column.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">table.decimal(name, p, s)</div>
+                                            <p class="property-desc">Equivalent to a <code>DECIMAL</code> column with
+                                                precision and scale.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">table.json(name)</div>
+                                            <p class="property-desc">Equivalent to a <code>JSON</code> column for
+                                                structured data.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">table.uuid(name)</div>
+                                            <p class="property-desc">Equivalent to a <code>UUID</code> column.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">table.dateTime(name)</div>
+                                            <p class="property-desc">Equivalent to a <code>DATETIME</code> column.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">table.timestamps()</div>
+                                            <p class="property-desc">Adds nullable <code>created_at</code> and
+                                                <code>updated_at</code> columns.</p>
+                                        </div>
+                                    </div>
+
+                                    <h2>Column Modifiers</h2>
+                                    <p>Arika provides fluent "modifier" methods that you may append to columns to further
+                                        specialize them:</p>
+                                    <div class="docs-property-grid">
+                                        <div class="property-card">
+                                            <div class="property-name">.nullable()</div>
+                                            <p class="property-desc">Allows the column to contain NULL values.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">.default(value)</div>
+                                            <p class="property-desc">Assigns a "default" value to the column.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">.unsigned()</div>
+                                            <p class="property-desc">Sets <code>INTEGER</code> columns as UNSIGNED
+                                                (MySQL/PGSQL only).</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">.after('column')</div>
+                                            <p class="property-desc">Places the column "after" another column (MySQL
+                                                only).</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">.comment('text')</div>
+                                            <p class="property-desc">Adds a database-level comment to the column.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">.unique()</div>
+                                            <p class="property-desc">Enforces a unique constraint on the column.</p>
                                         </div>
                                     </div>
 
                                     <div style="margin-top: 20px;"></div>
 
-                                    <h2>Index Management</h2>
-                                    <p>Arika supports creating indexes fluently during table creation or alteration. You
-                                        can also define compound indexes by passing an array of columns.</p>
+                                    <h2>Index & Foreign Keys</h2>
+                                    <p>Define indexes and foreign key constraints fluently. For foreign keys, Arika supports
+                                        automatic detection of parent tables using the <code>constrained()</code> method.</p>
                                     <div class="docs-code-window">
                                         <div class="window-header">
                                             <div class="dot dot-red"></div>
                                             <div class="dot dot-yellow"></div>
                                             <div class="dot dot-green"></div>
-                                            <div class="window-filename">Indexing</div>
+                                            <div class="window-filename">Constraints</div>
                                             <button class="copy-btn" aria-label="Copy code">
                                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -4086,51 +4146,48 @@ AWS_BUCKET=my-app-assets
     <span class="comment">// Single column index</span>
     table.<span class="fn">index</span>(<span class="str">'email'</span>);
 
-    <span class="comment">// Compound index</span>
-    table.<span class="fn">index</span>([<span class="str">'first_name'</span>, <span class="str">'last_name'</span>], <span class="str">'idx_full_name'</span>);
+    <span class="comment">// Unique index with custom name</span>
+    table.<span class="fn">unique</span>(<span class="str">'username'</span>, <span class="str">'idx_unique_user'</span>);
 
-    <span class="comment">// Unique constraint</span>
-    table.<span class="fn">string</span>(<span class="str">'username'</span>).<span class="fn">unique</span>();
+    <span class="comment">// Advanced Foreign Key</span>
+    table.<span class="fn">foreignId</span>(<span class="str">'category_id'</span>)
+         .<span class="fn">constrained</span>(<span class="str">'categories'</span>)
+         .<span class="fn">onDelete</span>(<span class="str">'cascade'</span>)
+         .<span class="fn">onUpdate</span>(<span class="str">'restrict'</span>);
+
+    <span class="comment">// Compound Index</span>
+    table.<span class="fn">index</span>([<span class="str">'first_name'</span>, <span class="str">'last_name'</span>]);
 });</code></pre>
                                         </div>
                                     </div>
 
-                                    <h2>CLI Management</h2>
-                                    <p>The Arika CLI includes a full suite of commands for operating your migrations. In
-                                        production,
-                                        <code>arika migrate --force</code> is typically part of your deployment script.
-                                    </p>
-                                    <div class="docs-code-window" style="margin-bottom: 40px;">
-                                        <div class="window-header">
-                                            <div class="dot dot-red"></div>
-                                            <div class="dot dot-yellow"></div>
-                                            <div class="dot dot-green"></div>
-                                            <div class="window-filename">Terminal</div>
-                                            <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                    </path>
-                                                </svg>
-                                            </button>
+                                    <h2>CLI Commands</h2>
+                                    <p>The Arika CLI provides powerful tools for managing your database migrations throughout
+                                        the development lifecycle.</p>
+                                    <div class="docs-property-grid">
+                                        <div class="property-card">
+                                            <div class="property-name">make:migration</div>
+                                            <p class="property-desc">Creates a new migration file with a timestamped prefix in <code>database/migrations</code>.</p>
                                         </div>
-                                        <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># 1. Create a migration file</span>
-arika make:migration create_posts_table
-
-<span class="comment"># 2. Run all pending migrations</span>
-arika migrate
-
-<span class="comment"># 3. Rollback the last operation</span>
-arika migrate:rollback
-
-<span class="comment"># 4. Wipe database and re-run all migrations</span>
-arika migrate:fresh
-
-<span class="comment"># 5. Review migration history</span>
-arika migrate:status</code></pre>
+                                        <div class="property-card">
+                                            <div class="property-name">migrate</div>
+                                            <p class="property-desc">Runs all pending migrations that haven't been executed yet.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">migrate:rollback</div>
+                                            <p class="property-desc">Rolls back the last "batch" of migrations. Use <code>--step=N</code> to rollback multiple batches.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">migrate:refresh</div>
+                                            <p class="property-desc">Rolls back all of your migrations and then runs the <code>migrate</code> command.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">migrate:fresh</div>
+                                            <p class="property-desc">Drops all tables from the database and then executes the <code>migrate</code> command.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">migrate:status</div>
+                                            <p class="property-desc">Displays a table showing which migrations have run and when.</p>
                                         </div>
                                     </div>
                                 </section>
