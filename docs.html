@@ -4748,123 +4748,145 @@ console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_cou
                                         </div>
                                     </div>
                                 </section>
-                                        <section id="database-advanced" style="margin-top: 100px;">
+                                                 <section id="transactions-seeding" style="margin-top: 100px;">
                                             <h1>Transactions & Seeding</h1>
-                                            <p class="lead">For enterprise-grade applications, data integrity and
-                                                testability are paramount. ArikaJS
-                                                provides robust tools for handling complex database transactions and
-                                                populating your environment
-                                                with meaningful test data.</p>
+                                            <p class="lead">For enterprise-grade applications, data integrity and testability are paramount. Arika provides robust tools for handling complex database transactions and populating your environment with meaningful test data.</p>
 
                                             <div class="docs-property-grid">
                                                 <div class="property-card">
                                                     <div class="property-name">Atomicity</div>
-                                                    <p class="property-desc">Ensure "all or nothing" execution for
-                                                        complex operations using database
-                                                        transactions with automatic rollback on failure.</p>
+                                                    <p class="property-desc">Ensure "all or nothing" execution for complex operations using database transactions with automatic rollback on failure.</p>
                                                 </div>
                                                 <div class="property-card">
                                                     <div class="property-name">Model Factories</div>
-                                                    <p class="property-desc">Generate thousands of realistic test
-                                                        records in seconds using
-                                                        blueprint-based factories integrated with Faker.</p>
+                                                    <p class="property-desc">Generate thousands of realistic test records in seconds using blueprint-based factories integrated with Faker.</p>
                                                 </div>
                                                 <div class="property-card">
                                                     <div class="property-name">Modular Seeders</div>
-                                                    <p class="property-desc">Keep your initial data setup clean and
-                                                        organized by splitting logic
-                                                        into separate, reusable seeder classes.</p>
+                                                    <p class="property-desc">Keep your initial data setup clean and organized by splitting logic into separate, reusable seeder classes.</p>
                                                 </div>
                                                 <div class="property-card">
-                                                    <div class="property-name">Safety First</div>
-                                                    <p class="property-desc">Transaction deadlocks are handled
-                                                        gracefully with built-in retry logic
-                                                        for high-concurrency environments.</p>
+                                                    <div class="property-name">Isolation</div>
+                                                    <p class="property-desc">Arika handles transaction isolation levels and deadlocks gracefully for high-concurrency environments.</p>
                                                 </div>
                                             </div>
 
                                             <h2>Database Transactions</h2>
-                                            <p>Transactions allow you to run multiple database operations inside a
-                                                single "unit of work". If any
-                                                operation fails, the entire transaction is rolled back, leaving your
-                                                database in its original state.
-                                            </p>
+                                            <p>Transactions allow you to run multiple database operations inside a single "unit of work". If any operation fails, the entire transaction is rolled back.</p>
                                             <div class="docs-code-window">
                                                 <div class="window-header">
                                                     <div class="dot dot-red"></div>
                                                     <div class="dot dot-yellow"></div>
                                                     <div class="dot dot-green"></div>
-                                                    <div class="window-filename">Ensuring Integrity</div>
+                                                    <div class="window-filename">Transaction Pattern</div>
                                                     <button class="copy-btn" aria-label="Copy code">
-                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                            stroke="currentColor" stroke-width="2"
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                             stroke-linecap="round" stroke-linejoin="round">
-                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
-                                                            </rect>
-                                                            <path
-                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                            </path>
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                                                         </svg>
                                                     </button>
                                                 </div>
                                                 <div class="window-body">
-                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Closure Based (Automatic Rollback)</span>
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { DB } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
+
+<span class="comment">// 1. Basic Transaction (Auto-Commit/Rollback)</span>
 <span class="kw">await</span> DB.<span class="fn">transaction</span>(<span class="kw">async</span> (trx) => {
-    <span class="kw">await</span> trx.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">update</span>({ balance: DB.<span class="fn">raw</span>(<span class="str">'balance - 100'</span>) });
-    <span class="kw">await</span> trx.<span class="fn">table</span>(<span class="str">'orders'</span>).<span class="fn">insert</span>({ user_id: <span class="nm">1</span>, total: <span class="nm">100</span> });
+    <span class="kw">await</span> trx.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">decrement</span>(<span class="str">'balance'</span>, <span class="nm">100</span>);
+    <span class="kw">await</span> trx.<span class="fn">table</span>(<span class="str">'ledger'</span>).<span class="fn">insert</span>({ amount: <span class="nm">100</span>, type: <span class="str">'debit'</span> });
 });
 
-<span class="comment">// 2. Manual Control</span>
-<span class="kw">const</span> trx = <span class="kw">await</span> DB.<span class="fn">beginTransaction</span>();
-<span class="kw">try</span> {
-    <span class="comment">// logic...</span>
-    <span class="kw">await</span> trx.<span class="fn">commit</span>();
-} <span class="kw">catch</span> (e) {
-    <span class="kw">await</span> trx.<span class="fn">rollback</span>();
+<span class="comment">// 2. Dynamic Connection Choice</span>
+<span class="kw">await</span> DB.<span class="fn">connection</span>(<span class="str">'mysql'</span>).<span class="fn">transaction</span>(<span class="kw">async</span> (trx) => {
+    <span class="comment">// Business logic...</span>
+});</code></pre>
+                                                </div>
+                                            </div>
+
+                                            <h2>Model Factories</h2>
+                                            <p>Factories allow you to define a blueprint for your models so you can quickly generate fake data for testing or development.</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">database/factories/UserFactory.ts</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Factory } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
+<span class="kw">import</span> { User } <span class="kw">from</span> <span class="str">'app/Models/User'</span>;
+
+<span class="kw">export default class</span> UserFactory <span class="kw">extends</span> Factory {
+    <span class="kw">protected</span> model = User;
+
+    <span class="fn">definition</span>() {
+        <span class="kw">return</span> {
+            name: <span class="kw">this</span>.faker.<span class="fn">name</span>(),
+            email: <span class="kw">this</span>.faker.<span class="fn">email</span>(),
+            password: <span class="str">'password'</span>,
+            is_active: <span class="kw">true</span>
+        };
+    }
 }</code></pre>
                                                 </div>
                                             </div>
 
-                                            <h2>Seeding & Factories</h2>
-                                            <p>Seeders are used to populate your database with initial data (like roles
-                                                or categories) or mass dummy
-                                                data for development. Factories define the "shape" of your fake data.
-                                            </p>
+                                            <h2>Database Seeders</h2>
+                                            <p>Seeders populate your database with initial data. You can run one specific seeder or a "main" seeder that calls others.</p>
                                             <div class="docs-code-window">
                                                 <div class="window-header">
                                                     <div class="dot dot-red"></div>
                                                     <div class="dot dot-yellow"></div>
                                                     <div class="dot dot-green"></div>
-                                                    <div class="window-filename">database/seeders/UserSeeder.ts</div>
+                                                    <div class="window-filename">database/seeders/DatabaseSeeder.ts</div>
                                                     <button class="copy-btn" aria-label="Copy code">
-                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                            stroke="currentColor" stroke-width="2"
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                             stroke-linecap="round" stroke-linejoin="round">
-                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
-                                                            </rect>
-                                                            <path
-                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                            </path>
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                                                         </svg>
                                                     </button>
                                                 </div>
                                                 <div class="window-body">
-                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Seeder } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Seeder } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
 <span class="kw">import</span> { User } <span class="kw">from</span> <span class="str">'app/Models/User'</span>;
 
-<span class="kw">export default class</span> UserSeeder <span class="kw">extends</span> Seeder {
+<span class="kw">export default class</span> DatabaseSeeder <span class="kw">extends</span> Seeder {
     <span class="kw">async</span> <span class="fn">run</span>() {
-        <span class="comment">// Use factories to create 50 users</span>
-        <span class="kw">await</span> User.<span class="fn">factory</span>().<span class="fn">count</span>(<span class="nm">50</span>).<span class="fn">create</span>();
+        <span class="comment">// 1. Run another seeder</span>
+        <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">call</span>([RoleSeeder]);
 
-        <span class="comment">// Or insert manual record</span>
-        <span class="kw">await</span> User.<span class="fn">create</span>({
-            name: <span class="str">'Admin'</span>,
-            email: <span class="str">'admin@arikajs.com'</span>,
-            is_admin: <span class="nm">true</span>
+        <span class="comment">// 2. Use Factory to create 50 users</span>
+        <span class="kw">await</span> User.<span class="fn">factory</span>().<span class="fn">count</span>(<span class="nm">50</span>).<span class="fn">create</span>();
         });
     }
 }</code></pre>
+                                                </div>
+                                            <h2>CLI Commands</h2>
+                                            <p>Manage your factory and seeding workflow efficiently using the Arika CLI.</p>
+                                            <div class="docs-property-grid">
+                                                <div class="property-card">
+                                                    <div class="property-name">make:factory [Model]</div>
+                                                    <p class="property-desc">Scaffold a new model factory blueprint in your <code>database/factories</code> directory.</p>
+                                                </div>
+                                                <div class="property-card">
+                                                    <div class="property-name">make:seeder [Name]</div>
+                                                    <p class="property-desc">Generate a new seeder class. Ideal for setting up roles, admins, or initial settings.</p>
+                                                </div>
+                                                <div class="property-card">
+                                                    <div class="property-name">db:seed</div>
+                                                    <p class="property-desc">Execute the <code>run</code> method of the main <code>DatabaseSeeder</code> class.</p>
+                                                </div>
+                                                <div class="property-card">
+                                                    <div class="property-name">db:seed --class=N</div>
+                                                    <p class="property-desc">Run a specific seeder class individually without running the entire suite.</p>
                                                 </div>
                                             </div>
                                         </section>
