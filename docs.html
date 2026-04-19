@@ -29,13 +29,14 @@
                     <img src="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/logo.png"
                         alt="ArikaJS Logo">
                 </a>
-                <div class="nav-search">
+                <div class="nav-search" id="nav-search-trigger" style="cursor: pointer;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="text" placeholder="Search documentation..." aria-label="Search">
+                    <input type="text" placeholder="Search documentation..." aria-label="Search" readonly
+                        style="cursor: pointer;">
                     <div class="search-shortcut">⌘K</div>
                 </div>
             </div>
@@ -125,7 +126,7 @@
                         <li><a href="#cli">Arika CLI</a></li>
                         <li><a href="#cache">Cache</a></li>
                         <li><a href="#events">Events</a></li>
-                        <li><a href="#file-storage">File Storage</a></li>
+                        <li><a href="#storage">File Storage</a></li>
                         <li><a href="#localization">Localization</a></li>
                         <li><a href="#mail">Mail</a></li>
                         <li><a href="#queues">Queues</a></li>
@@ -168,8 +169,8 @@
                     <ul>
                         <li><a href="#socialite">Arika Socialite</a></li>
                         <li><a href="#carbon">Arika Carbon</a></li>
-                        <li><a href="#sweet">Arika Sweet (Utilities)</a></li>
-                        <li><a href="#docs-generator">Arika Docs (OpenAPI/Swagger)</a></li>
+                        <li><a href="#sweet">Arika Sweet</a></li>
+                        <li><a href="#docs-generator">Arika Docs</a></li>
                     </ul>
                 </div>
             </nav>
@@ -4984,45 +4985,275 @@ console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_cou
                                             </div>
                                         </div>
 
-                                            <h2>CLI Commands</h2>
-                                            <p>Manage your factory and seeding workflow efficiently using the Arika CLI.
-                                            </p>
-                                            <div class="docs-property-grid">
-                                                <div class="property-card">
-                                                    <div class="property-name">make:factory [Model]</div>
-                                                    <p class="property-desc">Scaffold a new model factory blueprint in
-                                                        your <code>database/factories</code> directory.</p>
+                                        <h2>CLI Commands</h2>
+                                        <p>Manage your factory and seeding workflow efficiently using the Arika CLI.
+                                        </p>
+                                        <div class="docs-property-grid">
+                                            <div class="property-card">
+                                                <div class="property-name">make:factory [Model]</div>
+                                                <p class="property-desc">Scaffold a new model factory blueprint in
+                                                    your <code>database/factories</code> directory.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">make:seeder [Name]</div>
+                                                <p class="property-desc">Generate a new seeder class. Ideal for
+                                                    setting up roles, admins, or initial settings.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">db:seed</div>
+                                                <p class="property-desc">Execute the <code>run</code> method of the
+                                                    main <code>DatabaseSeeder</code> class.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">db:seed --class=N</div>
+                                                <p class="property-desc">Run a specific seeder class individually
+                                                    without running the entire suite.</p>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <section id="testing-profiling" style="margin-top: 100px;">
+                                        <h1>Testing & Profiling</h1>
+                                        <p class="lead">ArikaJS treats testing as a first-class citizen, leveraging native
+                                            Node.js performance to ensure your application remains reliable and blazing
+                                            fast. By avoiding heavy runner abstractions, Arika provides one of the
+                                            fastest feedback loops in the ecosystem.</p>
+
+                                        <div id="testing-basics">
+                                            <h2>Testing Basics</h2>
+                                            <p>ArikaJS utilizes the <strong>native Node.js test runner</strong>
+                                                (<code>node:test</code>) and <code>node:assert</code>. This eliminates
+                                                the overhead of heavy libraries like Jest or Mocha, allowing your tests
+                                                to start instantly with zero configuration.</p>
+
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">tests/Unit/MathService.test.ts</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
                                                 </div>
-                                                <div class="property-card">
-                                                    <div class="property-name">make:seeder [Name]</div>
-                                                    <p class="property-desc">Generate a new seeder class. Ideal for
-                                                        setting up roles, admins, or initial settings.</p>
-                                                </div>
-                                                <div class="property-card">
-                                                    <div class="property-name">db:seed</div>
-                                                    <p class="property-desc">Execute the <code>run</code> method of the
-                                                        main <code>DatabaseSeeder</code> class.</p>
-                                                </div>
-                                                <div class="property-card">
-                                                    <div class="property-name">db:seed --class=N</div>
-                                                    <p class="property-desc">Run a specific seeder class individually
-                                                        without running the entire suite.</p>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { describe, it } <span class="kw">from</span> <span class="str">'node:test'</span>;
+<span class="kw">import</span> assert <span class="kw">from</span> <span class="str">'node:assert'</span>;
+<span class="kw">import</span> { MathService } <span class="kw">from</span> <span class="str">'app/Services/MathService'</span>;
+
+<span class="fn">describe</span>(<span class="str">'MathService'</span>, () => {
+    <span class="fn">it</span>(<span class="str">'can add two numbers correctly'</span>, () => {
+        <span class="kw">const</span> service = <span class="kw">new</span> <span class="fn">MathService</span>();
+        <span class="kw">const</span> result = service.<span class="fn">add</span>(<span class="nm">10</span>, <span class="nm">20</span>);
+        
+        assert.<span class="fn">strictEqual</span>(result, <span class="nm">30</span>);
+    });
+});</code></pre>
                                                 </div>
                                             </div>
+
+                                            <p>To run your tests, simply use the built-in Node.js runner with
+                                                <code>tsx</code> for TypeScript support:
+                                            </p>
+                                            <div class="docs-code-window">
+                                                <div class="window-body">
+                                                    <pre
+                                                        style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Run all tests in the tests directory</span>
+npx tsx --test tests/**/*.test.ts</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="http-tests" style="margin-top: 80px;">
+                                            <h2>HTTP Tests</h2>
+                                            <p>Testing your HTTP layer is straightforward. Arika allows you to boot the
+                                                application and handle requests through the Kernel without making actual
+                                                network calls, making integration tests extremely fast and reliable.</p>
+
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">tests/Feature/UserApi.test.ts</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { describe, it, before } <span class="kw">from</span> <span class="str">'node:test'</span>;
+<span class="kw">import</span> assert <span class="kw">from</span> <span class="str">'node:assert'</span>;
+<span class="kw">import</span> { createApp, Kernel, Request, Response } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="fn">describe</span>(<span class="str">'User API'</span>, () => {
+    <span class="kw">let</span> app;
+
+    <span class="fn">before</span>(<span class="kw">async</span> () => {
+        app = <span class="fn">createApp</span>();
+        <span class="kw">await</span> app.<span class="fn">boot</span>();
+    });
+
+    <span class="fn">it</span>(<span class="str">'returns user profile data'</span>, <span class="kw">async</span> () => {
+        <span class="kw">const</span> kernel = app.<span class="fn">make</span>(Kernel);
+        
+        <span class="comment">// Mock a request to GET /api/users/1</span>
+        <span class="kw">const</span> request = <span class="kw">new</span> <span class="fn">Request</span>(app, { 
+            method: <span class="str">'GET'</span>, 
+            url: <span class="str">'/api/users/1'</span>, 
+            headers: {} 
+        } <span class="kw">as any</span>);
+        
+        <span class="kw">const</span> response = <span class="kw">new</span> <span class="fn">Response</span>({} <span class="kw">as any</span>);
+
+        <span class="kw">const</span> result = <span class="kw">await</span> kernel.<span class="fn">handle</span>(request, response);
+        
+        assert.<span class="fn">strictEqual</span>(result.<span class="fn">status</span>(), <span class="nm">200</span>);
+        assert.<span class="fn">ok</span>(result.<span class="fn">getContent</span>().<span class="fn">includes</span>(<span class="str">'John Doe'</span>));
+    });
+});</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="benchmarking" style="margin-top: 80px;">
+                                            <h2>Benchmarking</h2>
+                                            <p>ArikaJS includes a dedicated performance suite to compare its throughput
+                                                and latency against other popular frameworks like Express and Fastify.
+                                                This ensures your application remains at peak performance during
+                                                development.</p>
+
+                                            <p>To run the benchmark suite, use the Arika CLI:</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-body">
+                                                    <pre
+                                                        style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Run the default benchmark (GET /hello)</span>
+arika benchmark --duration=15 --connections=500</code></pre>
+                                                </div>
+                                            </div>
+
+                                            <div class="docs-property-grid">
+                                                <div class="property-card">
+                                                    <div class="property-name">--duration=N</div>
+                                                    <p class="property-desc">Total seconds to run the benchmark.
+                                                        Recommended 10-30s for stability.</p>
+                                                </div>
+                                                <div class="property-card">
+                                                    <div class="property-name">--connections=N</div>
+                                                    <p class="property-desc">Simultaneous concurrent connections
+                                                        (C10k testing simulations).</p>
+                                                </div>
+                                                <div class="property-card">
+                                                    <div class="property-name">--warmup=N</div>
+                                                    <p class="property-desc">Seconds of traffic to send before
+                                                        recording results to account for V8 JIT optimization.</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </section>
+
+                                    <hr style="margin: 100px 0; border: none; border-top: 1px solid var(--border);">
+
+                                    <section id="socialite">
+                                        <h1>Arika Socialite</h1>
+                                        <p class="lead">Arika Socialite provides an expressive, fluent interface to
+                                            OAuth authentication with Slack, GitHub, X (Twitter), and more.</p>
+                                        <p>Socialite handles almost all of the boilerplate social authentication code
+                                            you are dreading writing. Integration is as simple as defining your
+                                            credentials and calling the provider.</p>
+
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">auth.ts</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre
+                                                    style="margin:0;"><code style="color:#e5e7eb;"><span style="color:#34d399;">import</span> { Socialite } <span style="color:#34d399;">from</span> <span style="color:#fbbf24;">'@arikajs/socialite'</span>;
+
+<span style="color:#9ca3af;">// Use GitHub provider</span>
+<span style="color:#34d399;">const</span> user = <span style="color:#34d399;">await</span> Socialite.<span style="color:#60a5fa;">driver</span>(<span style="color:#fbbf24;">'github'</span>).<span style="color:#60a5fa;">user</span>();</code></pre>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <section id="carbon" style="margin-top: 100px;">
+                                        <h1>Arika Carbon</h1>
+                                        <p class="lead">A specialized, high-performance date and time manipulation
+                                            library for Node.js, built on top of native temporal concepts.</p>
+                                        <p>Carbon extends the capabilities of standard Date objects with a more
+                                            intuitive API for formatting, comparison, and calculations, optimized for
+                                            server-side performance.</p>
+                                    </section>
+
+                                    <section id="sweet" style="margin-top: 100px;">
+                                        <h1>Arika Sweet</h1>
+                                        <p class="lead">A collection of "sweet" utility functions and helper classes
+                                            used across the ArikaJS ecosystem.</p>
+                                        <p>Includes optimized string manipulation, object traversal, array helpers, and
+                                            functional programming utilities that are faster than alternative generic
+                                            libraries.</p>
+                                    </section>
+
+                                    <section id="docs-generator" style="margin-top: 100px;">
+                                        <h1>Arika Docs</h1>
+                                        <p class="lead">Automatic OpenAPI and Swagger documentation generation for your
+                                            ArikaJS APIs.</p>
+                                        <p>Arika Docs scans your routes and controller annotations to produce a fully
+                                            interactive Swagger UI without requiring manual YAML maintenance.</p>
+                                    </section>
+        </main>
+    </div>
     </div>
 
-    <footer class="footer" style="padding-top: 60px;">
-        <div class="container">
+    <footer class="footer">
+        <div class="footer-background-text">ARIKAJS</div>
+        <div class="container footer-container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">
                         <img src="https://raw.githubusercontent.com/ArikaJs/arikajs/main/packages/cli/templates/app/public/assets/img/logo.png"
                             alt="ArikaJS Logo">
                     </a>
-                    <p>ArikaJS is an open-source framework dedicated to bringing elegance and stability to the
-                        Node.js
-                        ecosystem.</p>
+                    <p>ArikaJS is a high-performance Node.js framework designed for extreme efficiency and developer
+                        happiness. Built for the modern web.</p>
+                    <div class="footer-social-links">
+                        <a href="https://github.com/ArikaJs/arikajs" class="social-link" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="https://discord.gg/XUTjzwjrHK" class="social-link" aria-label="Discord">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="9" cy="12" r="1"></circle>
+                                <circle cx="15" cy="12" r="1"></circle>
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-column">
                     <h4>Resources</h4>
@@ -5030,14 +5261,16 @@ console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_cou
                         <li><a href="docs.html">Documentation</a></li>
                         <li><a href="#">Starter Kits</a></li>
                         <li><a href="https://github.com/ArikaJs/arikajs">Sources</a></li>
+                        <li><a href="#">Releases</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h4>Ecosystem</h4>
                     <ul>
-                        <li><a href="#">Arika Socialite</a></li>
-                        <li><a href="#">Arika CLI</a></li>
-                        <li><a href="#">Arika Carbon</a></li>
+                        <li><a href="#socialite">Arika Socialite</a></li>
+                        <li><a href="#carbon">Arika Carbon</a></li>
+                        <li><a href="#sweet">Arika Sweet</a></li>
+                        <li><a href="#docs-generator">Arika Docs</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -5045,116 +5278,53 @@ console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_cou
                     <ul>
                         <li><a href="https://discord.gg/XUTjzwjrHK">Discord</a></li>
                         <li><a href="https://github.com/ArikaJs/arikajs/discussions">Discussions</a></li>
-                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Showcase</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 ArikaJS Project. Released under the MIT License.</p>
-                <div class="footer-socials">
-                    <a href="https://github.com/ArikaJs/arikajs">GitHub</a>
-                    <a href="https://discord.gg/XUTjzwjrHK">Discord</a>
+                <div class="footer-legal-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="trademark.html">Trademark Policy</a>
                 </div>
             </div>
         </div>
-        <div class="footer-big-text">Arika</div>
     </footer>
 
-    <script>
-        // Theme Management
-        const html = document.documentElement;
-        const themeBtn = document.getElementById('theme-btn');
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        html.setAttribute('data-theme', savedTheme);
 
-        themeBtn.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-modal">
+            <div class="search-modal-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="search-modal-input" placeholder="Search documentation..." autocomplete="off">
+                <div class="search-modal-close" id="search-modal-close">ESC</div>
+            </div>
+            <div class="search-results" id="search-results">
+                <div class="search-empty">
+                    <p>No recent searches</p>
+                </div>
+            </div>
+            <div class="search-modal-footer">
+                <div class="footer-item">
+                    <span class="key">↵</span> to select
+                </div>
+                <div class="footer-item">
+                    <span class="key">↑↓</span> to navigate
+                </div>
+                <div class="footer-item">
+                    <span class="key">esc</span> to close
+                </div>
+            </div>
+        </div>
+    </div>
 
-        // Sidebar Navigation & ScrollSpy
-        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
-        const sections = document.querySelectorAll('section[id]');
-
-        function highlightLink() {
-            const hash = window.location.hash;
-            if (hash) {
-                sidebarLinks.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href') === hash);
-                });
-            }
-        }
-
-        // 1. Initial Highlight on Load
-        window.addEventListener('load', highlightLink);
-        window.addEventListener('hashchange', highlightLink);
-
-        // 2. ScrollSpy (Highlight as you scroll)
-        const observerOptions = {
-            root: null,
-            rootMargin: '-10% 0px -80% 0px',
-            threshold: 0
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    sidebarLinks.forEach(link => {
-                        const href = link.getAttribute('href');
-                        if (href === `#${id}`) {
-                            sidebarLinks.forEach(l => l.classList.remove('active'));
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => observer.observe(section));
-
-        // 3. Manual Click highlight
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                sidebarLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-            });
-        });
-
-        // Sticky Nav logic
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('main-nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // Copy Code to Clipboard
-        const copyButtons = document.querySelectorAll('.copy-btn');
-        copyButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const codeWindow = button.closest('.docs-code-window');
-                const codeBlock = codeWindow.querySelector('code');
-                const textToCopy = codeBlock.innerText;
-
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    // Visual feedback
-                    button.classList.add('copied');
-                    const originalSvg = button.innerHTML;
-                    button.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-
-                    setTimeout(() => {
-                        button.classList.remove('copied');
-                        button.innerHTML = originalSvg;
-                    }, 2000);
-                });
-            });
-        });
-    </script>
+    <script src="script.js?v=2.4.0"></script>
 </body>
 
 </html>
