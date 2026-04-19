@@ -4407,163 +4407,198 @@ AWS_BUCKET=my-app-assets
 });</code></pre>
                                         </div>
                                     </div>
-                                </section>
+                                          <section id="models" style="margin-top: 100px;">
+                                    <h1>Active Record Models</h1>
+                                    <p class="lead">Arika's Active Record implementation provides a beautiful, object-oriented way to interact with your database. Each database table has a corresponding "Model" that allows you to query, insert, and update records as native JavaScript objects.</p>
 
-                                <section id="models" style="margin-top: 100px;">
-                                        <h1>Active Record Models</h1>
-                                        <p class="lead">Arika's Active Record implementation provides a beautiful,
-                                            object-oriented way to interact
-                                            with your database tables. Each database table has a corresponding "Model"
-                                            that is used to interact with
-                                            that table.</p>
-
-                                        <div class="docs-property-grid">
-                                            <div class="property-card">
-                                                <div class="property-name">Mass Assignment</div>
-                                                <p class="property-desc">Protect your data by defining which attributes
-                                                    are <code>fillable</code>,
-                                                    preventing malicious users from overposting sensitive fields.</p>
-                                            </div>
-                                            <div class="property-card">
-                                                <div class="property-name">Attribute Casting</div>
-                                                <p class="property-desc">Automatically convert database types (like JSON
-                                                    or Boolean) into native
-                                                    JavaScript types when retrieving them.</p>
-                                            </div>
-                                            <div class="property-card">
-                                                <div class="property-name">Lifecycle Hooks</div>
-                                                <p class="property-desc">Tap into model events like
-                                                    <code>creating</code> or <code>deleted</code> to
-                                                    run custom logic globally across your app.
-                                                </p>
-                                            </div>
-                                            <div class="property-card">
-                                                <div class="property-name">Magic Mutators</div>
-                                                <p class="property-desc">Format data on the fly using accessors and
-                                                    mutators (e.g., hash passwords
-                                                    or format names automatically).</p>
-                                            </div>
+                                    <div class="docs-property-grid">
+                                        <div class="property-card">
+                                            <div class="property-name">Mass Assignment</div>
+                                            <p class="property-desc">Protect your data by defining <code>fillable</code> attributes, preventing malicious users from overposting sensitive fields.</p>
                                         </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Attribute Casting</div>
+                                            <p class="property-desc">Automatically convert database types (JSON, Boolean, Date) into native JavaScript types when retrieving records.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Lifecycle Hooks</div>
+                                            <p class="property-desc">Tap into model events like <code>creating</code> or <code>deleted</code> to run custom logic globally across your application.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Magic Mutators</div>
+                                            <p class="property-desc">Format data on the fly using accessors and mutators (e.g., auto-hashing passwords or formatting names).</p>
+                                        </div>
+                                    </div>
 
-                                        <h2>Defining Models</h2>
-                                        <p>Models typically live in the <code>app/Models</code> directory and extend the
-                                            base <code>Model</code>
-                                            class. By convention, the table name is the plural form of the model name.
-                                        </p>
-                                        <div class="docs-code-window">
-                                            <div class="window-header">
-                                                <div class="dot dot-red"></div>
-                                                <div class="dot dot-yellow"></div>
-                                                <div class="dot dot-green"></div>
-                                                <div class="window-filename">app/Models/User.ts</div>
-                                                <button class="copy-btn" aria-label="Copy code">
-                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                        <path
-                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Model } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+                                    <h2>Defining Models</h2>
+                                    <p>Models typically extend the base <code>Model</code> class and reside in <code>app/Models</code>. By default, Arika assumes the table name is the plural form of the class name.</p>
+                                    <div class="docs-code-window">
+                                        <div class="window-header">
+                                            <div class="dot dot-red"></div>
+                                            <div class="dot dot-yellow"></div>
+                                            <div class="dot dot-green"></div>
+                                            <div class="window-filename">app/Models/User.ts</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="window-body">
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Model } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
 
 <span class="kw">export class</span> User <span class="kw">extends</span> Model {
+    <span class="comment">// Explicit table name</span>
     <span class="kw">static</span> table = <span class="str">'users'</span>;
 
-    <span class="kw">protected</span> fillable = [<span class="str">'name'</span>, <span class="str">'email'</span>, <span class="str">'password'</span>];
+    <span class="comment">// Attributes allowed for mass-assignment</span>
+    <span class="kw">protected</span> fillable = [<span class="str">'name'</span>, <span class="str">'email'</span>, <span class="str">'password'</span>, <span class="str">'is_active'</span>];
 
+    <span class="comment">// Automatic type casting</span>
     <span class="kw">protected</span> casts = {
-        is_admin: <span class="str">'boolean'</span>,
-        metadata: <span class="str">'json'</span>
+        is_active: <span class="str">'boolean'</span>,
+        settings: <span class="str">'json'</span>,
+        last_login: <span class="str">'datetime'</span>
     };
-
-    <span class="comment">// Mutator: Auto-hash password</span>
-    <span class="fn">setPasswordAttribute</span>(value: string) {
-        this.attributes[<span class="str">'password'</span>] = <span class="fn">hash</span>(value);
-    }
 }</code></pre>
-                                            </div>
                                         </div>
+                                    </div>
 
-                                        <h2>CRUD Operations</h2>
-                                        <p>Interacting with models is simple and intuitive. You can use static methods
-                                            to query data or instance
-                                            methods to modify existing records.</p>
-                                        <div class="docs-code-window">
-                                            <div class="window-header">
-                                                <div class="dot dot-red"></div>
-                                                <div class="dot dot-yellow"></div>
-                                                <div class="dot dot-green"></div>
-                                                <div class="window-filename">Model Usage</div>
-                                                <button class="copy-btn" aria-label="Copy code">
-                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                        <path
-                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="window-body">
-                                                <pre
-                                                    style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Retrieve by ID</span>
+                                    <h2>Accessors & Mutators</h2>
+                                    <p>Accessors and mutators allow you to format model attribute values when you retrieve or set them on a model instance.</p>
+                                    <div class="docs-code-window">
+                                        <div class="window-header">
+                                            <div class="dot dot-red"></div>
+                                            <div class="dot dot-yellow"></div>
+                                            <div class="dot dot-green"></div>
+                                            <div class="window-filename">Custom Logic</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="window-body">
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Mutator: Logic executed when setting the attribute</span>
+<span class="fn">setPasswordAttribute</span>(value: string) {
+    this.attributes[<span class="str">'password'</span>] = <span class="fn">hash</span>(value);
+}
+
+<span class="comment">// Accessor: Logic executed when retrieving the attribute</span>
+<span class="fn">getFullNameAttribute</span>() {
+    <span class="kw">return</span> <span class="str">`${this.first_name} ${this.last_name}`</span>;
+}
+
+<span class="comment">// Usage</span>
 <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">find</span>(<span class="nm">1</span>);
+console.<span class="fn">log</span>(user.full_name); <span class="comment">// Prakash Tank</span></code></pre>
+                                        </div>
+                                    </div>
 
-<span class="comment">// 2. Create and Save</span>
-<span class="kw">const</span> newUser = <span class="kw">new</span> <span class="fn">User</span>();
-newUser.name = <span class="str">'Alice'</span>;
-<span class="kw">await</span> newUser.<span class="fn">save</span>();
+                                    <h2>CRUD Operations</h2>
+                                    <p>Interaction with models is designed to be fluent and readable, supporting both static and instance-based operations.</p>
+                                    <div class="docs-code-window">
+                                        <div class="window-header">
+                                            <div class="dot dot-red"></div>
+                                            <div class="dot dot-yellow"></div>
+                                            <div class="dot dot-green"></div>
+                                            <div class="window-filename">Operations</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="window-body">
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Creating a record</span>
+<span class="kw">const</span> user = <span class="kw">new</span> <span class="fn">User</span>();
+user.name = <span class="str">'John Doe'</span>;
+<span class="kw">await</span> user.<span class="fn">save</span>();
 
-<span class="comment">// 3. Update existing</span>
+<span class="comment">// 2. Finding and Updating</span>
+<span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">find</span>(<span class="nm">1</span>);
 user.email = <span class="str">'new@example.com'</span>;
 <span class="kw">await</span> user.<span class="fn">save</span>();
 
-<span class="comment">// 4. Mass Deletion</span>
-<span class="kw">await</span> User.<span class="fn">where</span>(<span class="str">'active'</span>, <span class="nm">false</span>).<span class="fn">delete</span>();</code></pre>
-                                            </div>
+<span class="comment">// 3. Mass Updates</span>
+<span class="kw">await</span> User.<span class="fn">where</span>(<span class="str">'id'</span>, <span class="nm">1</span>).<span class="fn">update</span>({ name: <span class="str">'Updated'</span> });
+
+<span class="comment">// 4. Deleting</span>
+<span class="kw">await</span> user.<span class="fn">deleteInstance</span>();
+<span class="kw">await</span> User.<span class="fn">delete</span>(<span class="nm">1</span>); <span class="comment">// Static delete by ID</span></code></pre>
                                         </div>
+                                    </div>
 
-                                        <h2>Soft Deletes</h2>
-                                        <p>Instead of actually removing records from your database, soft deletes set a
-                                            <code>deleted_at</code>
-                                            timestamp. This allows you to "trash" items and restore them later.
-                                        </p>
-                                        <div class="docs-code-window">
-                                            <div class="window-header">
-                                                <div class="dot dot-red"></div>
-                                                <div class="dot dot-yellow"></div>
-                                                <div class="dot dot-green"></div>
-                                                <div class="window-filename">app/Models/Post.ts</div>
-                                                <button class="copy-btn" aria-label="Copy code">
-                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                        <path
-                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Model, withSoftDeletes } <span class="kw">from</span> <span class="str">'arikajs'</span>;
-
-<span class="kw">export class</span> Post <span class="kw">extends</span> <span class="fn">withSoftDeletes</span>(Model) {
-    <span class="comment">// This model now supports:</span>
-    <span class="comment">// await Post.withTrashed().get();</span>
-    <span class="comment">// await Post.onlyTrashed().get();</span>
-    <span class="comment">// await post.restore();</span>
-}</code></pre>
-                                            </div>
+                                    <h2>Query Scopes</h2>
+                                    <p>Scopes allow you to define common sets of constraints that you may easily re-use throughout your application.</p>
+                                    <div class="docs-code-window">
+                                        <div class="window-header">
+                                            <div class="dot dot-red"></div>
+                                            <div class="dot dot-yellow"></div>
+                                            <div class="dot dot-green"></div>
+                                            <div class="window-filename">Reusable Logic</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            </button>
                                         </div>
-                                    </section>
+                                        <div class="window-body">
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">class</span> User <span class="kw">extends</span> Model {
+    <span class="kw">static</span> <span class="fn">active</span><span class="nm">&lt;T extends Model&gt;</span>(<span class="kw">this</span>: <span class="kw">typeof</span> Model) {
+        <span class="kw">return</span> <span class="kw">this</span>.<span class="fn">query</span><span class="nm">&lt;T&gt;</span>().<span class="fn">where</span>(<span class="str">'is_active'</span>, <span class="kw">true</span>);
+    }
+}
 
-                                    <section id="relationships" style="margin-top: 100px;">
+<span class="comment">// Usage</span>
+<span class="kw">const</span> activeUsers = <span class="kw">await</span> User.<span class="fn">active</span>().<span class="fn">get</span>();</code></pre>
+                                        </div>
+                                    </div>
+
+                                    <h2>Events & Observers</h2>
+                                    <p>Models fire several events, allowing you to hook into the following points in a model's lifecycle: 
+                                        <code>creating</code>, <code>created</code>, <code>updating</code>, <code>updated</code>, 
+                                        <code>saving</code>, <code>saved</code>, <code>deleting</code>, <code>deleted</code>.</p>
+                                    <div class="docs-code-window">
+                                        <div class="window-header">
+                                            <div class="dot dot-red"></div>
+                                            <div class="dot dot-yellow"></div>
+                                            <div class="dot dot-green"></div>
+                                            <div class="window-filename">Observers</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="window-body">
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">class</span> UserObserver {
+    <span class="kw">async</span> <span class="fn">creating</span>(user: User) {
+        user.role = <span class="str">'member'</span>;
+    }
+
+    <span class="kw">async</span> <span class="fn">created</span>(user: User) {
+        <span class="kw">await</span> EmailService.<span class="fn">sendWelcome</span>(user.email);
+    }
+}
+
+<span class="comment">// Registering the observer</span>
+User.<span class="fn">observe</span>(<span class="kw">new</span> <span class="fn">UserObserver</span>());</code></pre>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="relationships" style="margin-top: 100px;">
                                         <h1>Relationships</h1>
                                         <p class="lead">Database tables are often related to one another. ArikaJS makes
                                             managing and working with
