@@ -4042,7 +4042,8 @@ AWS_BUCKET=my-app-assets
                                         <div class="property-card">
                                             <div class="property-name">table.id()</div>
                                             <p class="property-desc">Alias for an auto-incrementing
-                                                <code>BIGINT UNSIGNED</code> primary key.</p>
+                                                <code>BIGINT UNSIGNED</code> primary key.
+                                            </p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">table.string(name, length)</div>
@@ -4084,12 +4085,14 @@ AWS_BUCKET=my-app-assets
                                         <div class="property-card">
                                             <div class="property-name">table.timestamps()</div>
                                             <p class="property-desc">Adds nullable <code>created_at</code> and
-                                                <code>updated_at</code> columns.</p>
+                                                <code>updated_at</code> columns.
+                                            </p>
                                         </div>
                                     </div>
 
                                     <h2>Column Modifiers</h2>
-                                    <p>Arika provides fluent "modifier" methods that you may append to columns to further
+                                    <p>Arika provides fluent "modifier" methods that you may append to columns to
+                                        further
                                         specialize them:</p>
                                     <div class="docs-property-grid">
                                         <div class="property-card">
@@ -4123,8 +4126,10 @@ AWS_BUCKET=my-app-assets
                                     <div style="margin-top: 20px;"></div>
 
                                     <h2>Index & Foreign Keys</h2>
-                                    <p>Define indexes and foreign key constraints fluently. For foreign keys, Arika supports
-                                        automatic detection of parent tables using the <code>constrained()</code> method.</p>
+                                    <p>Define indexes and foreign key constraints fluently. For foreign keys, Arika
+                                        supports
+                                        automatic detection of parent tables using the <code>constrained()</code>
+                                        method.</p>
                                     <div class="docs-code-window">
                                         <div class="window-header">
                                             <div class="dot dot-red"></div>
@@ -4162,185 +4167,249 @@ AWS_BUCKET=my-app-assets
                                     </div>
 
                                     <h2>CLI Commands</h2>
-                                    <p>The Arika CLI provides powerful tools for managing your database migrations throughout
+                                    <p>The Arika CLI provides powerful tools for managing your database migrations
+                                        throughout
                                         the development lifecycle.</p>
                                     <div class="docs-property-grid">
                                         <div class="property-card">
                                             <div class="property-name">make:migration</div>
-                                            <p class="property-desc">Creates a new migration file with a timestamped prefix in <code>database/migrations</code>.</p>
+                                            <p class="property-desc">Creates a new migration file with a timestamped
+                                                prefix in <code>database/migrations</code>.</p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">migrate</div>
-                                            <p class="property-desc">Runs all pending migrations that haven't been executed yet.</p>
+                                            <p class="property-desc">Runs all pending migrations that haven't been
+                                                executed yet.</p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">migrate:rollback</div>
-                                            <p class="property-desc">Rolls back the last "batch" of migrations. Use <code>--step=N</code> to rollback multiple batches.</p>
+                                            <p class="property-desc">Rolls back the last "batch" of migrations. Use
+                                                <code>--step=N</code> to rollback multiple batches.
+                                            </p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">migrate:refresh</div>
-                                            <p class="property-desc">Rolls back all of your migrations and then runs the <code>migrate</code> command.</p>
+                                            <p class="property-desc">Rolls back all of your migrations and then runs the
+                                                <code>migrate</code> command.
+                                            </p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">migrate:fresh</div>
-                                            <p class="property-desc">Drops all tables from the database and then executes the <code>migrate</code> command.</p>
+                                            <p class="property-desc">Drops all tables from the database and then
+                                                executes the <code>migrate</code> command.</p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">migrate:status</div>
-                                            <p class="property-desc">Displays a table showing which migrations have run and when.</p>
+                                            <p class="property-desc">Displays a table showing which migrations have run
+                                                and when.</p>
                                         </div>
                                     </div>
                                 </section>
 
                                 <section id="query-builder" style="margin-top: 100px;">
-
                                     <h1>Query Builder</h1>
-                                    <p class="lead">Arika's database query builder provides a convenient, fluent
-                                        interface to creating and running
-                                        database queries. It can be used to perform most database operations in your
-                                        application and works perfectly
-                                        with all supported database systems.</p>
+                                    <p class="lead">Arika's database query builder provides a convenient, fluent interface to creating and running
+                                        database queries. It can be used to perform most database operations in your application and works perfectly
+                                        with MySQL, PostgreSQL, SQLite, and MongoDB.</p>
 
                                     <div class="docs-property-grid">
                                         <div class="property-card">
                                             <div class="property-name">SQL Injection Protection</div>
-                                            <p class="property-desc">Uses PDO parameter binding (or equivalent) to
-                                                protect your application against
-                                                SQL injection attacks automatically.</p>
+                                            <p class="property-desc">Uses automatic parameter binding to protect your application against SQL injection attacks without any extra code.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Memory Efficiency</div>
+                                            <p class="property-desc">Process millions of records safely using <code>chunk()</code> or streaming methods which keep RAM usage flat.</p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">Unified Syntax</div>
-                                            <p class="property-desc">Write queries once and run them on MySQL, PGSQL, or
-                                                SQLite without changing a
-                                                single line of logic.</p>
+                                            <p class="property-desc">Write queries once and run them on different database engines without changing a single line of logic.</p>
                                         </div>
                                         <div class="property-card">
-                                            <div class="property-name">Memory Safe</div>
-                                            <p class="property-desc">Process millions of records safely using
-                                                <code>chunk()</code> or streaming
-                                                methods which keep RAM usage flat.</p>
-                                        </div>
-                                        <div class="property-card">
-                                            <div class="property-name">Lazy Collections</div>
-                                            <p class="property-desc">Retrieve massive datasets as Generators (Lazy
-                                                Collections) to minimize memory
-                                                overhead during iteration.</p>
+                                            <div class="property-name">Type Safe</div>
+                                            <p class="property-desc">Built-in TypeScript support ensures your query results match your expected data structures perfectly.</p>
                                         </div>
                                     </div>
 
-                                    <h2>Selects & Wheres</h2>
-                                    <p>The <code>DB</code> facade allows you to start a query on any table. You can
-                                        chain as many constraints as
-                                        needed before executing the query with <code>get()</code> or
-                                        <code>first()</code>.</p>
+                                    <h2>Retrieving Results</h2>
+                                    <p>The <code>DB</code> facade allows you to start a query on any table. You can chain various constraints as needed before executing the query.</p>
                                     <div class="docs-code-window">
                                         <div class="window-header">
                                             <div class="dot dot-red"></div>
                                             <div class="dot dot-yellow"></div>
                                             <div class="dot dot-green"></div>
-                                            <div class="window-filename">Retrieving Data</div>
+                                            <div class="window-filename">Retrieval Methods</div>
                                             <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
                                                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                    </path>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                                                 </svg>
                                             </button>
                                         </div>
                                         <div class="window-body">
-                                            <pre
-                                                style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { DB } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { DB } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
 
-<span class="comment">// 1. Basic Fetch</span>
-<span class="kw">const</span> users = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">where</span>(<span class="str">'active'</span>, <span class="nm">true</span>).<span class="fn">get</span>();
+<span class="comment">// 1. Retrieve all records</span>
+<span class="kw">const</span> users = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">get</span>();
 
-<span class="comment">// 2. Advanced Wheres</span>
-<span class="kw">const</span> results = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>)
-    .<span class="fn">where</span>(<span class="str">'votes'</span>, <span class="str">'&gt;'</span>, <span class="nm">100</span>)
-    .<span class="fn">orWhere</span>(<span class="str">'name'</span>, <span class="str">'John'</span>)
-    .<span class="fn">whereIn</span>(<span class="str">'id'</span>, [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>])
+<span class="comment">// 2. Retrieve a single record</span>
+<span class="kw">const</span> user = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">where</span>(<span class="str">'id'</span>, <span class="nm">1</span>).<span class="fn">first</span>();
+
+<span class="comment">// 3. Retrieve a single column value</span>
+<span class="kw">const</span> email = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">where</span>(<span class="str">'id'</span>, <span class="nm">1</span>).<span class="fn">value</span>(<span class="str">'email'</span>);
+
+<span class="comment">// 4. Chunking for large data</span>
+<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">chunk</span>(<span class="nm">1000</span>, <span class="kw">async</span> (users) => {
+    <span class="kw">for</span> (const user of users) {
+        <span class="comment">// Process 1000 users at a time...</span>
+    }
+});</code></pre>
+                                        </div>
+                                    </div>
+
+                                    <h2>Where Clauses</h2>
+                                    <p>Arika provides a rich set of where clauses to filter your data fluently. You can use operators, arrays, and even subqueries.</p>
+                                    <div class="docs-code-window">
+                                        <div class="window-header">
+                                            <div class="dot dot-red"></div>
+                                            <div class="dot dot-yellow"></div>
+                                            <div class="dot dot-green"></div>
+                                            <div class="window-filename">Filtering Data</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="window-body">
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Basic comparison</span>
+<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">where</span>(<span class="str">'votes'</span>, <span class="str">'&gt;'</span>, <span class="nm">100</span>).<span class="fn">get</span>();
+
+<span class="comment">// Logical AND (Implicit)</span>
+<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>)
+    .<span class="fn">where</span>(<span class="str">'active'</span>, <span class="kw">true</span>)
+    .<span class="fn">where</span>(<span class="str">'role'</span>, <span class="str">'admin'</span>)
     .<span class="fn">get</span>();
 
-<span class="comment">// 3. Fetch single value</span>
-<span class="kw">const</span> email = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">where</span>(<span class="str">'id'</span>, <span class="nm">1</span>).<span class="fn">value</span>(<span class="str">'email'</span>);</code></pre>
+<span class="comment">// Logical OR</span>
+<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>)
+    .<span class="fn">where</span>(<span class="str">'votes'</span>, <span class="str">'&gt;'</span>, <span class="nm">100</span>)
+    .<span class="fn">orWhere</span>(<span class="str">'name'</span>, <span class="str">'John'</span>)
+    .<span class="fn">get</span>();
+
+<span class="comment">// Range & Sets</span>
+<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">whereBetween</span>(<span class="str">'age'</span>, [<span class="nm">18</span>, <span class="nm">30</span>]).<span class="fn">get</span>();
+<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">whereIn</span>(<span class="str">'id'</span>, [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>]).<span class="fn">get</span>();
+<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">whereNull</span>(<span class="str">'deleted_at'</span>).<span class="fn">get</span>();</code></pre>
+                                        </div>
+                                    </div>
+
+                                    <h2>Joins</h2>
+                                    <p>Easily association data across multiple tables using standard SQL joins.</p>
+                                    <div class="docs-code-window">
+                                        <div class="window-header">
+                                            <div class="dot dot-red"></div>
+                                            <div class="dot dot-yellow"></div>
+                                            <div class="dot dot-green"></div>
+                                            <div class="window-filename">Table Joins</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="window-body">
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Basic Inner Join</span>
+<span class="kw">const</span> posts = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>)
+    .<span class="fn">join</span>(<span class="str">'posts'</span>, <span class="str">'users.id'</span>, <span class="str">'='</span>, <span class="str">'posts.user_id'</span>)
+    .<span class="fn">select</span>(<span class="str">'users.*'</span>, <span class="str">'posts.title'</span>)
+    .<span class="fn">get</span>();
+
+<span class="comment">// Left Join</span>
+<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>)
+    .<span class="fn">leftJoin</span>(<span class="str">'posts'</span>, <span class="str">'users.id'</span>, <span class="str">'='</span>, <span class="str">'posts.user_id'</span>)
+    .<span class="fn">get</span>();</code></pre>
                                         </div>
                                     </div>
 
                                     <h2>Inserts, Updates & Deletes</h2>
-                                    <p>Beyond selecting data, the query builder also provides convenient methods for
-                                        modifying your table records.
-                                        These methods return the number of affected rows (or the inserted ID).</p>
+                                    <p>Modify your data with simple methods that handle SQL generation automatically.</p>
                                     <div class="docs-code-window">
                                         <div class="window-header">
                                             <div class="dot dot-red"></div>
                                             <div class="dot dot-yellow"></div>
                                             <div class="dot dot-green"></div>
-                                            <div class="window-filename">Mutating Data</div>
+                                            <div class="window-filename">CRUD Operations</div>
                                             <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
                                                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                    </path>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                                                 </svg>
                                             </button>
                                         </div>
                                         <div class="window-body">
-                                            <pre
-                                                style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Insert</span>
-<span class="kw">const</span> id = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">insert</span>({
-    name: <span class="str">'Jane Doe'</span>,
-    email: <span class="str">'jane@example.com'</span>
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Insert a single record</span>
+<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">insert</span>({
+    name: <span class="str">'John'</span>,
+    email: <span class="str">'john@example.com'</span>
 });
 
-<span class="comment">// 2. Update</span>
+<span class="comment">// Update multiple records</span>
 <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>)
     .<span class="fn">where</span>(<span class="str">'id'</span>, <span class="nm">1</span>)
-    .<span class="fn">update</span>({ active: <span class="nm">false</span> });
+    .<span class="fn">update</span>({ active: <span class="kw">false</span> });
 
-<span class="comment">// 3. Delete</span>
-<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">where</span>(<span class="str">'votes'</span>, <span class="str">'&lt;'</span>, <span class="nm">50</span>).<span class="fn">delete</span>();</code></pre>
+<span class="comment">// Increment/Decrement values</span>
+<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'posts'</span>).<span class="fn">increment</span>(<span class="str">'views'</span>, <span class="nm">1</span>);
+
+<span class="comment">// Delete records</span>
+<span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">where</span>(<span class="str">'active'</span>, <span class="kw">false</span>).<span class="fn">delete</span>();</code></pre>
                                         </div>
                                     </div>
 
                                     <h2>Aggregates & Raw SQL</h2>
-                                    <p>For more complex logic, the query builder supports common aggregates and raw SQL
-                                        fragments via
-                                        <code>DB.raw()</code>. Raw expressions are injected into the query as-is, so be
-                                        careful with user input!
-                                    </p>
+                                    <p>Arika provides high-level methods for common aggregates and supports raw SQL expressions for edge cases.</p>
                                     <div class="docs-code-window">
                                         <div class="window-header">
                                             <div class="dot dot-red"></div>
                                             <div class="dot dot-yellow"></div>
                                             <div class="dot dot-green"></div>
-                                            <div class="window-filename">Advanced SQL</div>
+                                            <div class="window-filename">Advanced Operations</div>
                                             <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
                                                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                    </path>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                                                 </svg>
                                             </button>
                                         </div>
                                         <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Aggregates</span>
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Aggregate Helpers</span>
 <span class="kw">const</span> count = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">count</span>();
-<span class="kw">const</span> average = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'orders'</span>).<span class="fn">avg</span>(<span class="str">'price'</span>);
+<span class="kw">const</span> maxPrice = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'orders'</span>).<span class="fn">max</span>(<span class="str">'total'</span>);
 
 <span class="comment">// Raw SQL Fragments</span>
-<span class="kw">const</span> users = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>)
+<span class="kw">const</span> results = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>)
     .<span class="fn">select</span>(DB.<span class="fn">raw</span>(<span class="str">'count(*) as user_count, status'</span>))
     .<span class="fn">groupBy</span>(<span class="str">'status'</span>)
-    .<span class="fn">get</span>();</code></pre>
+    .<span class="fn">get</span>();
+
+<span class="comment">// Transactions</span>
+<span class="kw">await</span> DB.<span class="fn">transaction</span>(<span class="kw">async</span> (trx) => {
+    <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'accounts'</span>).<span class="fn">decrement</span>(<span class="str">'balance'</span>, <span class="nm">100</span>);
+    <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'transactions'</span>).<span class="fn">insert</span>({ amount: <span class="nm">100</span> });
+});</code></pre>
                                         </div>
                                     </div>
-                                    <section id="models" style="margin-top: 100px;">
+                                </section>
+
+                                <section id="models" style="margin-top: 100px;">
                                         <h1>Active Record Models</h1>
                                         <p class="lead">Arika's Active Record implementation provides a beautiful,
                                             object-oriented way to interact
@@ -4365,7 +4434,8 @@ AWS_BUCKET=my-app-assets
                                                 <div class="property-name">Lifecycle Hooks</div>
                                                 <p class="property-desc">Tap into model events like
                                                     <code>creating</code> or <code>deleted</code> to
-                                                    run custom logic globally across your app.</p>
+                                                    run custom logic globally across your app.
+                                                </p>
                                             </div>
                                             <div class="property-card">
                                                 <div class="property-name">Magic Mutators</div>
@@ -4461,7 +4531,8 @@ user.email = <span class="str">'new@example.com'</span>;
                                         <h2>Soft Deletes</h2>
                                         <p>Instead of actually removing records from your database, soft deletes set a
                                             <code>deleted_at</code>
-                                            timestamp. This allows you to "trash" items and restore them later.</p>
+                                            timestamp. This allows you to "trash" items and restore them later.
+                                        </p>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
@@ -4524,7 +4595,8 @@ user.email = <span class="str">'new@example.com'</span>;
                                                 <div class="property-name">Dynamic Counting</div>
                                                 <p class="property-desc">Retrieve related record counts (like
                                                     <code>comments_count</code>) without
-                                                    loading the actual records into memory.</p>
+                                                    loading the actual records into memory.
+                                                </p>
                                             </div>
                                         </div>
 
