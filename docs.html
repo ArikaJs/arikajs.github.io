@@ -5341,11 +5341,207 @@ arika socialite:install</code></pre>
 
                                     <section id="carbon" style="margin-top: 100px;">
                                         <h1>Arika Carbon</h1>
-                                        <p class="lead">A specialized, high-performance date and time manipulation
-                                            library for Node.js, built on top of native temporal concepts.</p>
-                                        <p>Carbon extends the capabilities of standard Date objects with a more
-                                            intuitive API for formatting, comparison, and calculations, optimized for
-                                            server-side performance.</p>
+                                        <p class="lead">A fluent, expressive Date & Time library for ArikaJS —
+                                            inspired by PHP's Carbon. It provides an immutable, chainable, and
+                                            timezone-aware API that makes date manipulation a joy.</p>
+                                        <p>Carbon is bundled with the core framework, meaning you can use it anywhere
+                                            in your application—from controllers and models to your frontend templates—with
+                                            zero configuration.</p>
+
+                                        <div id="carbon-creating">
+                                            <h2>Creating Instances</h2>
+                                            <p>Carbon provides several static methods to create instances from various
+                                                formats, including strings, native Date objects, and Unix timestamps.</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">Carbon Creation</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Carbon } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="kw">const</span> now = Carbon.<span class="fn">now</span>();                 <span class="comment">// Current time</span>
+<span class="kw">const</span> today = Carbon.<span class="fn">today</span>();             <span class="comment">// Today at 00:00:00</span>
+<span class="kw">const</span> dt = Carbon.<span class="fn">parse</span>(<span class="str">'2025-03-22'</span>);     <span class="comment">// From ISO string</span>
+<span class="kw">const</span> fromDate = Carbon.<span class="fn">parse</span>(<span class="kw">new</span> <span class="fn">Date</span>()); <span class="comment">// From native Date</span>
+<span class="kw">const</span> custom = Carbon.<span class="fn">create</span>(<span class="nm">2025</span>, <span class="nm">6</span>, <span class="nm">15</span>); <span class="comment">// Y, M, D</span></code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="carbon-formatting" style="margin-top: 60px;">
+                                            <h2>Formatting</h2>
+                                            <p>Formatting in Carbon is extremely powerful and uses tokens compatible
+                                                with PHP's <code>date()</code> function.</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">Date Formatting</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">const</span> dt = Carbon.<span class="fn">parse</span>(<span class="str">'2025-03-22 14:30:00'</span>);
+
+dt.<span class="fn">format</span>(<span class="str">'Y-m-d'</span>);          <span class="comment">// 2025-03-22</span>
+dt.<span class="fn">format</span>(<span class="str">'l, F j, Y'</span>);    <span class="comment">// Saturday, March 22, 2025</span>
+dt.<span class="fn">toDateTimeString</span>();      <span class="comment">// 2025-03-22 14:30:00</span>
+dt.<span class="fn">toHumanString</span>();         <span class="comment">// March 22, 2025</span>
+dt.<span class="fn">diffForHumans</span>();          <span class="comment">// "2 hours ago" (relative to now)</span></code></pre>
+                                                </div>
+                                            </div>
+
+                                            <div class="docs-property-grid">
+                                                <div class="property-card">
+                                                    <div class="property-name">Y / y</div>
+                                                    <p class="property-desc">Full 4-digit year / 2-digit year.</p>
+                                                </div>
+                                                <div class="property-card">
+                                                    <div class="property-name">F / M / m</div>
+                                                    <p class="property-desc">Full month name / Short month / Month
+                                                        number.</p>
+                                                </div>
+                                                <div class="property-card">
+                                                    <div class="property-name">l / D / d</div>
+                                                    <p class="property-desc">Full day name / Short day / Day with
+                                                        zeros.</p>
+                                                </div>
+                                                <div class="property-card">
+                                                    <div class="property-name">H / i / s</div>
+                                                    <p class="property-desc">Hours (24h) / Minutes / Seconds.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="carbon-manipulation" style="margin-top: 60px;">
+                                            <h2>Manipulation</h2>
+                                            <p>Every Carbon instance is <strong>immutable</strong>. Manipulation methods
+                                                return a new instance, allowing for safe and expressive chaining.</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">Chaining Scenarios</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">const</span> dt = Carbon.<span class="fn">now</span>()
+    .<span class="fn">addWeeks</span>(<span class="nm">2</span>)
+    .<span class="fn">subDays</span>(<span class="nm">1</span>)
+    .<span class="fn">startOfDay</span>()
+    .<span class="fn">addHours</span>(<span class="nm">9</span>);
+
+<span class="comment">// Check common boundaries</span>
+dt.<span class="fn">startOfMonth</span>();
+dt.<span class="fn">endOfYear</span>();
+dt.<span class="fn">nextSunday</span>();</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="carbon-comparison" style="margin-top: 60px;">
+                                            <h2>Comparison</h2>
+                                            <p>Carbon provides a rich set of boolean helpers for comparing dates quickly
+                                                in your business logic.</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">Date Logic</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">const</span> a = Carbon.<span class="fn">parse</span>(<span class="str">'2025-01-01'</span>);
+<span class="kw">const</span> b = Carbon.<span class="fn">parse</span>(<span class="str">'2025-12-31'</span>);
+
+a.<span class="fn">isBefore</span>(b);       <span class="comment">// true</span>
+a.<span class="fn">isToday</span>();        <span class="comment">// false</span>
+a.<span class="fn">isWeekend</span>();      <span class="comment">// depends on the actual day</span>
+a.<span class="fn">isLeapYear</span>();     <span class="comment">// false</span>
+a.<span class="fn">isBetween</span>(start, end); <span class="comment">// boolean</span></code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="carbon-views" style="margin-top: 60px;">
+                                            <h2>View Integration</h2>
+                                            <p>The <code>carbon()</code> helper is available globally in every Arika
+                                                View template, making it incredibly simple to format dynamic data
+                                                without manual imports.</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">resources/views/profile.ark.html</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;">&lt;p&gt;Joined: {{ <span class="fn">carbon</span>(user.created_at).<span class="fn">diffForHumans</span>() }}&lt;/p&gt;
+&lt;p&gt;Last Update: {{ <span class="fn">carbon</span>(user.updated_at).<span class="fn">format</span>(<span class="str">'d M Y'</span>) }}&lt;/p&gt;
+
+@if(<span class="fn">carbon</span>(post.published_at).<span class="fn">isFuture</span>())
+    &lt;span class="badge"&gt;Scheduled&lt;/span&gt;
+@endif</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </section>
 
                                     <section id="sweet" style="margin-top: 100px;">
