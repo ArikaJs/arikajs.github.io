@@ -150,7 +150,7 @@
                         <li><a href="#query-builder">Query Builder</a></li>
                         <li><a href="#models">Active Record Models</a></li>
                         <li><a href="#relationships">Relationships</a></li>
-                        <li><a href="#database-advanced">Seeding & Transactions</a></li>
+                        <li><a href="#transactions-seeding">Seeding & Transactions</a></li>
                     </ul>
                 </div>
 
@@ -4208,31 +4208,38 @@ AWS_BUCKET=my-app-assets
 
                                 <section id="query-builder" style="margin-top: 100px;">
                                     <h1>Query Builder</h1>
-                                    <p class="lead">Arika's database query builder provides a convenient, fluent interface to creating and running
-                                        database queries. It can be used to perform most database operations in your application and works perfectly
+                                    <p class="lead">Arika's database query builder provides a convenient, fluent
+                                        interface to creating and running
+                                        database queries. It can be used to perform most database operations in your
+                                        application and works perfectly
                                         with MySQL, PostgreSQL, SQLite, and MongoDB.</p>
 
                                     <div class="docs-property-grid">
                                         <div class="property-card">
                                             <div class="property-name">SQL Injection Protection</div>
-                                            <p class="property-desc">Uses automatic parameter binding to protect your application against SQL injection attacks without any extra code.</p>
+                                            <p class="property-desc">Uses automatic parameter binding to protect your
+                                                application against SQL injection attacks without any extra code.</p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">Memory Efficiency</div>
-                                            <p class="property-desc">Process millions of records safely using <code>chunk()</code> or streaming methods which keep RAM usage flat.</p>
+                                            <p class="property-desc">Process millions of records safely using
+                                                <code>chunk()</code> or streaming methods which keep RAM usage flat.</p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">Unified Syntax</div>
-                                            <p class="property-desc">Write queries once and run them on different database engines without changing a single line of logic.</p>
+                                            <p class="property-desc">Write queries once and run them on different
+                                                database engines without changing a single line of logic.</p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">Type Safe</div>
-                                            <p class="property-desc">Built-in TypeScript support ensures your query results match your expected data structures perfectly.</p>
+                                            <p class="property-desc">Built-in TypeScript support ensures your query
+                                                results match your expected data structures perfectly.</p>
                                         </div>
                                     </div>
 
                                     <h2>Retrieving Results</h2>
-                                    <p>The <code>DB</code> facade allows you to start a query on any table. You can chain various constraints as needed before executing the query.</p>
+                                    <p>The <code>DB</code> facade allows you to start a query on any table. You can
+                                        chain various constraints as needed before executing the query.</p>
                                     <div class="docs-code-window">
                                         <div class="window-header">
                                             <div class="dot dot-red"></div>
@@ -4240,10 +4247,12 @@ AWS_BUCKET=my-app-assets
                                             <div class="dot dot-green"></div>
                                             <div class="window-filename">Retrieval Methods</div>
                                             <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
                                                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                    </path>
                                                 </svg>
                                             </button>
                                         </div>
@@ -4269,7 +4278,8 @@ AWS_BUCKET=my-app-assets
                                     </div>
 
                                     <h2>Where Clauses</h2>
-                                    <p>Arika provides a rich set of where clauses to filter your data fluently. You can use operators, arrays, and even subqueries.</p>
+                                    <p>Arika provides a rich set of where clauses to filter your data fluently. You can
+                                        use operators, arrays, and even subqueries.</p>
                                     <div class="docs-code-window">
                                         <div class="window-header">
                                             <div class="dot dot-red"></div>
@@ -4277,15 +4287,18 @@ AWS_BUCKET=my-app-assets
                                             <div class="dot dot-green"></div>
                                             <div class="window-filename">Filtering Data</div>
                                             <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
                                                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                    </path>
                                                 </svg>
                                             </button>
                                         </div>
                                         <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Basic comparison</span>
+                                            <pre
+                                                style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Basic comparison</span>
 <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">where</span>(<span class="str">'votes'</span>, <span class="str">'&gt;'</span>, <span class="nm">100</span>).<span class="fn">get</span>();
 
 <span class="comment">// Logical AND (Implicit)</span>
@@ -4316,10 +4329,12 @@ AWS_BUCKET=my-app-assets
                                             <div class="dot dot-green"></div>
                                             <div class="window-filename">Table Joins</div>
                                             <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
                                                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                    </path>
                                                 </svg>
                                             </button>
                                         </div>
@@ -4338,7 +4353,8 @@ AWS_BUCKET=my-app-assets
                                     </div>
 
                                     <h2>Inserts, Updates & Deletes</h2>
-                                    <p>Modify your data with simple methods that handle SQL generation automatically.</p>
+                                    <p>Modify your data with simple methods that handle SQL generation automatically.
+                                    </p>
                                     <div class="docs-code-window">
                                         <div class="window-header">
                                             <div class="dot dot-red"></div>
@@ -4346,15 +4362,18 @@ AWS_BUCKET=my-app-assets
                                             <div class="dot dot-green"></div>
                                             <div class="window-filename">CRUD Operations</div>
                                             <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
                                                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                    </path>
                                                 </svg>
                                             </button>
                                         </div>
                                         <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Insert a single record</span>
+                                            <pre
+                                                style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Insert a single record</span>
 <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">insert</span>({
     name: <span class="str">'John'</span>,
     email: <span class="str">'john@example.com'</span>
@@ -4374,7 +4393,8 @@ AWS_BUCKET=my-app-assets
                                     </div>
 
                                     <h2>Aggregates & Raw SQL</h2>
-                                    <p>Arika provides high-level methods for common aggregates and supports raw SQL expressions for edge cases.</p>
+                                    <p>Arika provides high-level methods for common aggregates and supports raw SQL
+                                        expressions for edge cases.</p>
                                     <div class="docs-code-window">
                                         <div class="window-header">
                                             <div class="dot dot-red"></div>
@@ -4382,10 +4402,12 @@ AWS_BUCKET=my-app-assets
                                             <div class="dot dot-green"></div>
                                             <div class="window-filename">Advanced Operations</div>
                                             <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
                                                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                    </path>
                                                 </svg>
                                             </button>
                                         </div>
@@ -4407,47 +4429,62 @@ AWS_BUCKET=my-app-assets
 });</code></pre>
                                         </div>
                                     </div>
-                                          <section id="models" style="margin-top: 100px;">
-                                    <h1>Active Record Models</h1>
-                                    <p class="lead">Arika's Active Record implementation provides a beautiful, object-oriented way to interact with your database. Each database table has a corresponding "Model" that allows you to query, insert, and update records as native JavaScript objects.</p>
+                                    <section id="models" style="margin-top: 100px;">
+                                        <h1>Active Record Models</h1>
+                                        <p class="lead">Arika's Active Record implementation provides a beautiful,
+                                            object-oriented way to interact with your database. Each database table has
+                                            a corresponding "Model" that allows you to query, insert, and update records
+                                            as native JavaScript objects.</p>
 
-                                    <div class="docs-property-grid">
-                                        <div class="property-card">
-                                            <div class="property-name">Mass Assignment</div>
-                                            <p class="property-desc">Protect your data by defining <code>fillable</code> attributes, preventing malicious users from overposting sensitive fields.</p>
+                                        <div class="docs-property-grid">
+                                            <div class="property-card">
+                                                <div class="property-name">Mass Assignment</div>
+                                                <p class="property-desc">Protect your data by defining
+                                                    <code>fillable</code> attributes, preventing malicious users from
+                                                    overposting sensitive fields.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">Attribute Casting</div>
+                                                <p class="property-desc">Automatically convert database types (JSON,
+                                                    Boolean, Date) into native JavaScript types when retrieving records.
+                                                </p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">Lifecycle Hooks</div>
+                                                <p class="property-desc">Tap into model events like
+                                                    <code>creating</code> or <code>deleted</code> to run custom logic
+                                                    globally across your application.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">Magic Mutators</div>
+                                                <p class="property-desc">Format data on the fly using accessors and
+                                                    mutators (e.g., auto-hashing passwords or formatting names).</p>
+                                            </div>
                                         </div>
-                                        <div class="property-card">
-                                            <div class="property-name">Attribute Casting</div>
-                                            <p class="property-desc">Automatically convert database types (JSON, Boolean, Date) into native JavaScript types when retrieving records.</p>
-                                        </div>
-                                        <div class="property-card">
-                                            <div class="property-name">Lifecycle Hooks</div>
-                                            <p class="property-desc">Tap into model events like <code>creating</code> or <code>deleted</code> to run custom logic globally across your application.</p>
-                                        </div>
-                                        <div class="property-card">
-                                            <div class="property-name">Magic Mutators</div>
-                                            <p class="property-desc">Format data on the fly using accessors and mutators (e.g., auto-hashing passwords or formatting names).</p>
-                                        </div>
-                                    </div>
 
-                                    <h2>Defining Models</h2>
-                                    <p>Models typically extend the base <code>Model</code> class and reside in <code>app/Models</code>. By default, Arika assumes the table name is the plural form of the class name.</p>
-                                    <div class="docs-code-window">
-                                        <div class="window-header">
-                                            <div class="dot dot-red"></div>
-                                            <div class="dot dot-yellow"></div>
-                                            <div class="dot dot-green"></div>
-                                            <div class="window-filename">app/Models/User.ts</div>
-                                            <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Model } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
+                                        <h2>Defining Models</h2>
+                                        <p>Models typically extend the base <code>Model</code> class and reside in
+                                            <code>app/Models</code>. By default, Arika assumes the table name is the
+                                            plural form of the class name.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">app/Models/User.ts</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Model } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
 
 <span class="kw">export class</span> User <span class="kw">extends</span> Model {
     <span class="comment">// Explicit table name</span>
@@ -4463,27 +4500,31 @@ AWS_BUCKET=my-app-assets
         last_login: <span class="str">'datetime'</span>
     };
 }</code></pre>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <h2>Accessors & Mutators</h2>
-                                    <p>Accessors and mutators allow you to format model attribute values when you retrieve or set them on a model instance.</p>
-                                    <div class="docs-code-window">
-                                        <div class="window-header">
-                                            <div class="dot dot-red"></div>
-                                            <div class="dot dot-yellow"></div>
-                                            <div class="dot dot-green"></div>
-                                            <div class="window-filename">Custom Logic</div>
-                                            <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Mutator: Logic executed when setting the attribute</span>
+                                        <h2>Accessors & Mutators</h2>
+                                        <p>Accessors and mutators allow you to format model attribute values when you
+                                            retrieve or set them on a model instance.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Custom Logic</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Mutator: Logic executed when setting the attribute</span>
 <span class="fn">setPasswordAttribute</span>(value: string) {
     this.attributes[<span class="str">'password'</span>] = <span class="fn">hash</span>(value);
 }
@@ -4496,27 +4537,32 @@ AWS_BUCKET=my-app-assets
 <span class="comment">// Usage</span>
 <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">find</span>(<span class="nm">1</span>);
 console.<span class="fn">log</span>(user.full_name); <span class="comment">// Prakash Tank</span></code></pre>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <h2>CRUD Operations</h2>
-                                    <p>Interaction with models is designed to be fluent and readable, supporting both static and instance-based operations.</p>
-                                    <div class="docs-code-window">
-                                        <div class="window-header">
-                                            <div class="dot dot-red"></div>
-                                            <div class="dot dot-yellow"></div>
-                                            <div class="dot dot-green"></div>
-                                            <div class="window-filename">Operations</div>
-                                            <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Creating a record</span>
+                                        <h2>CRUD Operations</h2>
+                                        <p>Interaction with models is designed to be fluent and readable, supporting
+                                            both static and instance-based operations.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Operations</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre
+                                                    style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Creating a record</span>
 <span class="kw">const</span> user = <span class="kw">new</span> <span class="fn">User</span>();
 user.name = <span class="str">'John Doe'</span>;
 <span class="kw">await</span> user.<span class="fn">save</span>();
@@ -4532,27 +4578,32 @@ user.email = <span class="str">'new@example.com'</span>;
 <span class="comment">// 4. Deleting</span>
 <span class="kw">await</span> user.<span class="fn">deleteInstance</span>();
 <span class="kw">await</span> User.<span class="fn">delete</span>(<span class="nm">1</span>); <span class="comment">// Static delete by ID</span></code></pre>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <h2>Query Scopes</h2>
-                                    <p>Scopes allow you to define common sets of constraints that you may easily re-use throughout your application.</p>
-                                    <div class="docs-code-window">
-                                        <div class="window-header">
-                                            <div class="dot dot-red"></div>
-                                            <div class="dot dot-yellow"></div>
-                                            <div class="dot dot-green"></div>
-                                            <div class="window-filename">Reusable Logic</div>
-                                            <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">class</span> User <span class="kw">extends</span> Model {
+                                        <h2>Query Scopes</h2>
+                                        <p>Scopes allow you to define common sets of constraints that you may easily
+                                            re-use throughout your application.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Reusable Logic</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre
+                                                    style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">class</span> User <span class="kw">extends</span> Model {
     <span class="kw">static</span> <span class="fn">active</span><span class="nm">&lt;T extends Model&gt;</span>(<span class="kw">this</span>: <span class="kw">typeof</span> Model) {
         <span class="kw">return</span> <span class="kw">this</span>.<span class="fn">query</span><span class="nm">&lt;T&gt;</span>().<span class="fn">where</span>(<span class="str">'is_active'</span>, <span class="kw">true</span>);
     }
@@ -4560,29 +4611,36 @@ user.email = <span class="str">'new@example.com'</span>;
 
 <span class="comment">// Usage</span>
 <span class="kw">const</span> activeUsers = <span class="kw">await</span> User.<span class="fn">active</span>().<span class="fn">get</span>();</code></pre>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <h2>Events & Observers</h2>
-                                    <p>Models fire several events, allowing you to hook into the following points in a model's lifecycle: 
-                                        <code>creating</code>, <code>created</code>, <code>updating</code>, <code>updated</code>, 
-                                        <code>saving</code>, <code>saved</code>, <code>deleting</code>, <code>deleted</code>.</p>
-                                    <div class="docs-code-window">
-                                        <div class="window-header">
-                                            <div class="dot dot-red"></div>
-                                            <div class="dot dot-yellow"></div>
-                                            <div class="dot dot-green"></div>
-                                            <div class="window-filename">Observers</div>
-                                            <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">class</span> UserObserver {
+                                        <h2>Events & Observers</h2>
+                                        <p>Models fire several events, allowing you to hook into the following points in
+                                            a model's lifecycle:
+                                            <code>creating</code>, <code>created</code>, <code>updating</code>,
+                                            <code>updated</code>,
+                                            <code>saving</code>, <code>saved</code>, <code>deleting</code>,
+                                            <code>deleted</code>.
+                                        </p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Observers</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">class</span> UserObserver {
     <span class="kw">async</span> <span class="fn">creating</span>(user: User) {
         user.role = <span class="str">'member'</span>;
     }
@@ -4594,51 +4652,66 @@ user.email = <span class="str">'new@example.com'</span>;
 
 <span class="comment">// Registering the observer</span>
 User.<span class="fn">observe</span>(<span class="kw">new</span> <span class="fn">UserObserver</span>());</code></pre>
+                                            </div>
                                         </div>
-                                    </div>
-                                </section>
+                                    </section>
 
-                                <section id="relationships" style="margin-top: 100px;">
-                                    <h1>Relationships</h1>
-                                    <p class="lead">Database tables are often related to one another. Arika makes managing and working with these relationships easy, supporting every major relationship type including Polymorphic and Through associations.</p>
+                                    <section id="relationships" style="margin-top: 100px;">
+                                        <h1>Relationships</h1>
+                                        <p class="lead">Database tables are often related to one another. Arika makes
+                                            managing and working with these relationships easy, supporting every major
+                                            relationship type including Polymorphic and Through associations.</p>
 
-                                    <div class="docs-property-grid">
-                                        <div class="property-card">
-                                            <div class="property-name">N+1 Prevention</div>
-                                            <p class="property-desc">Eliminate performance bottlenecks using Eager Loading (<code>with()</code>) to fetch all related data in a single optimized query.</p>
+                                        <div class="docs-property-grid">
+                                            <div class="property-card">
+                                                <div class="property-name">N+1 Prevention</div>
+                                                <p class="property-desc">Eliminate performance bottlenecks using Eager
+                                                    Loading (<code>with()</code>) to fetch all related data in a single
+                                                    optimized query.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">Pivot Power</div>
+                                                <p class="property-desc">Work with many-to-many tables effortlessly
+                                                    using <code>sync()</code>, <code>attach()</code>, and
+                                                    <code>detach()</code> helpers.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">Polymorphic Links</div>
+                                                <p class="property-desc">A single model can belong to multiple other
+                                                    models on a single association (e.g., Comments for both Posts and
+                                                    Videos).</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">Dynamic Counting</div>
+                                                <p class="property-desc">Retrieve related record counts (like
+                                                    <code>comments_count</code>) without loading real records into
+                                                    memory via <code>withCount()</code>.</p>
+                                            </div>
                                         </div>
-                                        <div class="property-card">
-                                            <div class="property-name">Pivot Power</div>
-                                            <p class="property-desc">Work with many-to-many tables effortlessly using <code>sync()</code>, <code>attach()</code>, and <code>detach()</code> helpers.</p>
-                                        </div>
-                                        <div class="property-card">
-                                            <div class="property-name">Polymorphic Links</div>
-                                            <p class="property-desc">A single model can belong to multiple other models on a single association (e.g., Comments for both Posts and Videos).</p>
-                                        </div>
-                                        <div class="property-card">
-                                            <div class="property-name">Dynamic Counting</div>
-                                            <p class="property-desc">Retrieve related record counts (like <code>comments_count</code>) without loading real records into memory via <code>withCount()</code>.</p>
-                                        </div>
-                                    </div>
 
-                                    <h2>One To One / Many</h2>
-                                    <p>The most basic relationships are One-to-One and One-to-Many. These are defined as methods on your model classes.</p>
-                                    <div class="docs-code-window">
-                                        <div class="window-header">
-                                            <div class="dot dot-red"></div>
-                                            <div class="dot dot-yellow"></div>
-                                            <div class="dot dot-green"></div>
-                                            <div class="window-filename">Basic Associations</div>
-                                            <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// app/Models/User.ts</span>
+                                        <h2>One To One / Many</h2>
+                                        <p>The most basic relationships are One-to-One and One-to-Many. These are
+                                            defined as methods on your model classes.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Basic Associations</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre
+                                                    style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// app/Models/User.ts</span>
 <span class="kw">class</span> User <span class="kw">extends</span> Model {
     <span class="comment">// One-to-One: A user has one profile</span>
     <span class="fn">profile</span>() {
@@ -4654,27 +4727,32 @@ User.<span class="fn">observe</span>(<span class="kw">new</span> <span class="fn
 <span class="comment">// Usage</span>
 <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">find</span>(<span class="nm">1</span>);
 <span class="kw">const</span> posts = <span class="kw">await</span> user.<span class="fn">posts</span>().<span class="fn">get</span>();</code></pre>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <h2>Many To Many</h2>
-                                    <p>Many-to-many relationships require a "pivot" table. For example, a user may have many roles, and those roles are also shared by other users.</p>
-                                    <div class="docs-code-window">
-                                        <div class="window-header">
-                                            <div class="dot dot-red"></div>
-                                            <div class="dot dot-yellow"></div>
-                                            <div class="dot dot-green"></div>
-                                            <div class="window-filename">Roles & Pivot Tables</div>
-                                            <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// app/Models/User.ts</span>
+                                        <h2>Many To Many</h2>
+                                        <p>Many-to-many relationships require a "pivot" table. For example, a user may
+                                            have many roles, and those roles are also shared by other users.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Roles & Pivot Tables</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre
+                                                    style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// app/Models/User.ts</span>
 <span class="fn">roles</span>() {
     <span class="kw">return</span> <span class="kw">this</span>.<span class="fn">belongsToMany</span>(Role, <span class="str">'role_user'</span>);
 }
@@ -4687,27 +4765,31 @@ User.<span class="fn">observe</span>(<span class="kw">new</span> <span class="fn
 
 <span class="comment">// Toggling</span>
 <span class="kw">await</span> user.<span class="fn">roles</span>().<span class="fn">toggle</span>(editorRoleId);</code></pre>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <h2>Polymorphic Relationships</h2>
-                                    <p>Polymorphic relationships allow a model to belong to more than one other model on a single association.</p>
-                                    <div class="docs-code-window">
-                                        <div class="window-header">
-                                            <div class="dot dot-red"></div>
-                                            <div class="dot dot-yellow"></div>
-                                            <div class="dot dot-green"></div>
-                                            <div class="window-filename">Morph Logic</div>
-                                            <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// app/Models/Post.ts</span>
+                                        <h2>Polymorphic Relationships</h2>
+                                        <p>Polymorphic relationships allow a model to belong to more than one other
+                                            model on a single association.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Morph Logic</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// app/Models/Post.ts</span>
 <span class="fn">comments</span>() {
     <span class="kw">return</span> <span class="kw">this</span>.<span class="fn">morphMany</span>(Comment, <span class="str">'commentable'</span>);
 }
@@ -4716,27 +4798,31 @@ User.<span class="fn">observe</span>(<span class="kw">new</span> <span class="fn
 <span class="fn">commentable</span>() {
     <span class="kw">return</span> <span class="kw">this</span>.<span class="fn">morphTo</span>();
 }</code></pre>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <h2>Eager Loading & Performance</h2>
-                                    <p>To avoid the N+1 query problem, use the <code>with()</code> method to fetch related data upfront.</p>
-                                    <div class="docs-code-window">
-                                        <div class="window-header">
-                                            <div class="dot dot-red"></div>
-                                            <div class="dot dot-yellow"></div>
-                                            <div class="dot dot-green"></div>
-                                            <div class="window-filename">Optimization</div>
-                                            <button class="copy-btn" aria-label="Copy code">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="window-body">
-                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Execute only 2 queries for any number of users</span>
+                                        <h2>Eager Loading & Performance</h2>
+                                        <p>To avoid the N+1 query problem, use the <code>with()</code> method to fetch
+                                            related data upfront.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Optimization</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Execute only 2 queries for any number of users</span>
 <span class="kw">const</span> users = <span class="kw">await</span> User.<span class="fn">with</span>(<span class="str">'posts'</span>).<span class="fn">get</span>();
 
 <span class="comment">// Nested Eager Loading</span>
@@ -4745,50 +4831,64 @@ User.<span class="fn">observe</span>(<span class="kw">new</span> <span class="fn
 <span class="comment">// Eager load counts only</span>
 <span class="kw">const</span> authors = <span class="kw">await</span> User.<span class="fn">withCount</span>(<span class="str">'posts'</span>).<span class="fn">get</span>();
 console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_count);</code></pre>
-                                        </div>
-                                    </div>
-                                </section>
-                                                 <section id="transactions-seeding" style="margin-top: 100px;">
-                                            <h1>Transactions & Seeding</h1>
-                                            <p class="lead">For enterprise-grade applications, data integrity and testability are paramount. Arika provides robust tools for handling complex database transactions and populating your environment with meaningful test data.</p>
-
-                                            <div class="docs-property-grid">
-                                                <div class="property-card">
-                                                    <div class="property-name">Atomicity</div>
-                                                    <p class="property-desc">Ensure "all or nothing" execution for complex operations using database transactions with automatic rollback on failure.</p>
-                                                </div>
-                                                <div class="property-card">
-                                                    <div class="property-name">Model Factories</div>
-                                                    <p class="property-desc">Generate thousands of realistic test records in seconds using blueprint-based factories integrated with Faker.</p>
-                                                </div>
-                                                <div class="property-card">
-                                                    <div class="property-name">Modular Seeders</div>
-                                                    <p class="property-desc">Keep your initial data setup clean and organized by splitting logic into separate, reusable seeder classes.</p>
-                                                </div>
-                                                <div class="property-card">
-                                                    <div class="property-name">Isolation</div>
-                                                    <p class="property-desc">Arika handles transaction isolation levels and deadlocks gracefully for high-concurrency environments.</p>
-                                                </div>
                                             </div>
+                                        </div>
+                                    </section>
+                                    <section id="transactions-seeding" style="margin-top: 100px;">
+                                        <h1>Transactions & Seeding</h1>
+                                        <p class="lead">For enterprise-grade applications, data integrity and
+                                            testability are paramount. Arika provides robust tools for handling complex
+                                            database transactions and populating your environment with meaningful test
+                                            data.</p>
 
-                                            <h2>Database Transactions</h2>
-                                            <p>Transactions allow you to run multiple database operations inside a single "unit of work". If any operation fails, the entire transaction is rolled back.</p>
-                                            <div class="docs-code-window">
-                                                <div class="window-header">
-                                                    <div class="dot dot-red"></div>
-                                                    <div class="dot dot-yellow"></div>
-                                                    <div class="dot dot-green"></div>
-                                                    <div class="window-filename">Transaction Pattern</div>
-                                                    <button class="copy-btn" aria-label="Copy code">
-                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round">
-                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                                <div class="window-body">
-                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { DB } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
+                                        <div class="docs-property-grid">
+                                            <div class="property-card">
+                                                <div class="property-name">Atomicity</div>
+                                                <p class="property-desc">Ensure "all or nothing" execution for complex
+                                                    operations using database transactions with automatic rollback on
+                                                    failure.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">Model Factories</div>
+                                                <p class="property-desc">Generate thousands of realistic test records in
+                                                    seconds using blueprint-based factories integrated with Faker.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">Modular Seeders</div>
+                                                <p class="property-desc">Keep your initial data setup clean and
+                                                    organized by splitting logic into separate, reusable seeder classes.
+                                                </p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">Isolation</div>
+                                                <p class="property-desc">Arika handles transaction isolation levels and
+                                                    deadlocks gracefully for high-concurrency environments.</p>
+                                            </div>
+                                        </div>
+
+                                        <h2>Database Transactions</h2>
+                                        <p>Transactions allow you to run multiple database operations inside a single
+                                            "unit of work". If any operation fails, the entire transaction is rolled
+                                            back.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Transaction Pattern</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { DB } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
 
 <span class="comment">// 1. Basic Transaction (Auto-Commit/Rollback)</span>
 <span class="kw">await</span> DB.<span class="fn">transaction</span>(<span class="kw">async</span> (trx) => {
@@ -4800,27 +4900,31 @@ console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_cou
 <span class="kw">await</span> DB.<span class="fn">connection</span>(<span class="str">'mysql'</span>).<span class="fn">transaction</span>(<span class="kw">async</span> (trx) => {
     <span class="comment">// Business logic...</span>
 });</code></pre>
-                                                </div>
                                             </div>
+                                        </div>
 
-                                            <h2>Model Factories</h2>
-                                            <p>Factories allow you to define a blueprint for your models so you can quickly generate fake data for testing or development.</p>
-                                            <div class="docs-code-window">
-                                                <div class="window-header">
-                                                    <div class="dot dot-red"></div>
-                                                    <div class="dot dot-yellow"></div>
-                                                    <div class="dot dot-green"></div>
-                                                    <div class="window-filename">database/factories/UserFactory.ts</div>
-                                                    <button class="copy-btn" aria-label="Copy code">
-                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round">
-                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                                <div class="window-body">
-                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Factory } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
+                                        <h2>Model Factories</h2>
+                                        <p>Factories allow you to define a blueprint for your models so you can quickly
+                                            generate fake data for testing or development.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">database/factories/UserFactory.ts</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Factory } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
 <span class="kw">import</span> { User } <span class="kw">from</span> <span class="str">'app/Models/User'</span>;
 
 <span class="kw">export default class</span> UserFactory <span class="kw">extends</span> Factory {
@@ -4835,27 +4939,31 @@ console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_cou
         };
     }
 }</code></pre>
-                                                </div>
                                             </div>
+                                        </div>
 
-                                            <h2>Database Seeders</h2>
-                                            <p>Seeders populate your database with initial data. You can run one specific seeder or a "main" seeder that calls others.</p>
-                                            <div class="docs-code-window">
-                                                <div class="window-header">
-                                                    <div class="dot dot-red"></div>
-                                                    <div class="dot dot-yellow"></div>
-                                                    <div class="dot dot-green"></div>
-                                                    <div class="window-filename">database/seeders/DatabaseSeeder.ts</div>
-                                                    <button class="copy-btn" aria-label="Copy code">
-                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round">
-                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                                <div class="window-body">
-                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Seeder } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
+                                        <h2>Database Seeders</h2>
+                                        <p>Seeders populate your database with initial data. You can run one specific
+                                            seeder or a "main" seeder that calls others.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">database/seeders/DatabaseSeeder.ts</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Seeder } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
 <span class="kw">import</span> { User } <span class="kw">from</span> <span class="str">'app/Models/User'</span>;
 
 <span class="kw">export default class</span> DatabaseSeeder <span class="kw">extends</span> Seeder {
@@ -4865,31 +4973,35 @@ console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_cou
 
         <span class="comment">// 2. Use Factory to create 50 users</span>
         <span class="kw">await</span> User.<span class="fn">factory</span>().<span class="fn">count</span>(<span class="nm">50</span>).<span class="fn">create</span>();
-        });
     }
 }</code></pre>
-                                                </div>
+                                            </div>
                                             <h2>CLI Commands</h2>
-                                            <p>Manage your factory and seeding workflow efficiently using the Arika CLI.</p>
+                                            <p>Manage your factory and seeding workflow efficiently using the Arika CLI.
+                                            </p>
                                             <div class="docs-property-grid">
                                                 <div class="property-card">
                                                     <div class="property-name">make:factory [Model]</div>
-                                                    <p class="property-desc">Scaffold a new model factory blueprint in your <code>database/factories</code> directory.</p>
+                                                    <p class="property-desc">Scaffold a new model factory blueprint in
+                                                        your <code>database/factories</code> directory.</p>
                                                 </div>
                                                 <div class="property-card">
                                                     <div class="property-name">make:seeder [Name]</div>
-                                                    <p class="property-desc">Generate a new seeder class. Ideal for setting up roles, admins, or initial settings.</p>
+                                                    <p class="property-desc">Generate a new seeder class. Ideal for
+                                                        setting up roles, admins, or initial settings.</p>
                                                 </div>
                                                 <div class="property-card">
                                                     <div class="property-name">db:seed</div>
-                                                    <p class="property-desc">Execute the <code>run</code> method of the main <code>DatabaseSeeder</code> class.</p>
+                                                    <p class="property-desc">Execute the <code>run</code> method of the
+                                                        main <code>DatabaseSeeder</code> class.</p>
                                                 </div>
                                                 <div class="property-card">
                                                     <div class="property-name">db:seed --class=N</div>
-                                                    <p class="property-desc">Run a specific seeder class individually without running the entire suite.</p>
+                                                    <p class="property-desc">Run a specific seeder class individually
+                                                        without running the entire suite.</p>
                                                 </div>
                                             </div>
-                                        </section>
+                                    </section>
     </div>
 
     <footer class="footer" style="padding-top: 60px;">
