@@ -5169,27 +5169,127 @@ arika benchmark --duration=15 --connections=500</code></pre>
 
                                     <hr style="margin: 100px 0; border: none; border-top: 1px solid var(--border);">
 
-                                    <section id="socialite">
+                                    <section id="socialite" style="margin-top: 100px;">
                                         <h1>Arika Socialite</h1>
                                         <p class="lead">Arika Socialite provides an expressive, fluent interface to
-                                            OAuth authentication with Slack, GitHub, X (Twitter), and more.</p>
-                                        <p>Socialite handles almost all of the boilerplate social authentication code
-                                            you are dreading writing. Integration is as simple as defining your
-                                            credentials and calling the provider.</p>
+                                            OAuth authentication with Google, GitHub, Facebook, X (Twitter), and more.
+                                            It abstracts the complexity of OAuth 2.0 flows into a unified API.</p>
+                                        <p>Integrate social logins into your ArikaJS application in minutes. Socialite
+                                            handles the redirection, token exchange, and profile normalization, so you
+                                            can focus on your application logic.</p>
 
-                                        <div class="docs-code-window">
-                                            <div class="window-header">
-                                                <div class="dot dot-red"></div>
-                                                <div class="dot dot-yellow"></div>
-                                                <div class="dot dot-green"></div>
-                                                <div class="window-filename">auth.ts</div>
+                                        <div id="socialite-installation">
+                                            <h2>Installation & Setup</h2>
+                                            <p>The easiest way to get started with Socialite is using the Arika CLI to
+                                                scaffold the configuration:</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-body">
+                                                    <pre
+                                                        style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Install the package</span>
+npm install @arikajs/socialite
+
+<span class="comment"># Scaffold configuration and env variables</span>
+arika socialite:install</code></pre>
+                                                </div>
                                             </div>
-                                            <div class="window-body">
-                                                <pre
-                                                    style="margin:0;"><code style="color:#e5e7eb;"><span style="color:#34d399;">import</span> { Socialite } <span style="color:#34d399;">from</span> <span style="color:#fbbf24;">'@arikajs/socialite'</span>;
 
-<span style="color:#9ca3af;">// Use GitHub provider</span>
-<span style="color:#34d399;">const</span> user = <span style="color:#34d399;">await</span> Socialite.<span style="color:#60a5fa;">driver</span>(<span style="color:#fbbf24;">'github'</span>).<span style="color:#60a5fa;">user</span>();</code></pre>
+                                            <p>After installation, configure your providers in
+                                                <code>config/socialite.ts</code> and add the credentials to your
+                                                <code>.env</code> file:
+                                            </p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">config/socialite.ts</div>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export default</span> {
+    providers: {
+        github: {
+            client_id: process.env.GITHUB_CLIENT_ID,
+            client_secret: process.env.GITHUB_CLIENT_SECRET,
+            redirect: <span class="str">`${process.env.APP_URL}/auth/github/callback`</span>,
+        },
+        google: {
+            client_id: process.env.GOOGLE_CLIENT_ID,
+            client_secret: process.env.GOOGLE_CLIENT_SECRET,
+            redirect: <span class="str">`${process.env.APP_URL}/auth/google/callback`</span>,
+            scopes: [<span class="str">'https://www.googleapis.com/auth/userinfo.profile'</span>],
+        },
+    },
+};</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="socialite-usage" style="margin-top: 60px;">
+                                            <h2>Authentication Flow</h2>
+                                            <p>A typical Socialite flow involves two routes: one for redirecting the
+                                                user to the provider, and another for receiving the callback after
+                                                authentication.</p>
+
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">app/Controllers/AuthController.ts</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Socialite } <span class="kw">from</span> <span class="str">'@arikajs/socialite'</span>;
+<span class="kw">import</span> { Auth, Request, Response } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="kw">export default class</span> AuthController {
+    <span class="comment">/**
+     * Redirect the user to the GitHub authentication page.
+     */</span>
+    <span class="kw">async</span> <span class="fn">redirectToProvider</span>(req: Request, res: Response) {
+        <span class="kw">return await</span> Socialite.<span class="fn">driver</span>(<span class="str">'github'</span>).<span class="fn">redirect</span>();
+    }
+
+    <span class="comment">/**
+     * Obtain the user information from GitHub.
+     */</span>
+    <span class="kw">async</span> <span class="fn">handleProviderCallback</span>(req: Request, res: Response) {
+        <span class="kw">const</span> socialUser = <span class="kw">await</span> Socialite.<span class="fn">driver</span>(<span class="str">'github'</span>).<span class="fn">user</span>();
+
+        <span class="comment">// socialUser contains: id, nickname, name, email, avatar, etc.</span>
+        <span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">updateOrCreate</span>(
+            { email: socialUser.email },
+            { github_id: socialUser.id, avatar: socialUser.avatar }
+        );
+
+        <span class="kw">await</span> Auth.<span class="fn">login</span>(user);
+        <span class="kw">return</span> res.<span class="fn">redirect</span>(<span class="str">'/dashboard'</span>);
+    }
+}</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="socialite-stateless" style="margin-top: 60px;">
+                                            <h2>Stateless Authentication</h2>
+                                            <p>If you are building an API or a Single Page Application (SPA) and do not
+                                                rely on session-based state verification, you can use the
+                                                <code>stateless</code> method to disable state validation:
+                                            </p>
+                                            <div class="docs-code-window">
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">const</span> user = <span class="kw">await</span> Socialite.<span class="fn">driver</span>(<span class="str">'google'</span>).<span class="fn">stateless</span>().<span class="fn">user</span>();</code></pre>
+                                                </div>
                                             </div>
                                         </div>
                                     </section>
