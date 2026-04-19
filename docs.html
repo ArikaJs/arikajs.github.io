@@ -4599,151 +4599,155 @@ User.<span class="fn">observe</span>(<span class="kw">new</span> <span class="fn
                                 </section>
 
                                 <section id="relationships" style="margin-top: 100px;">
-                                        <h1>Relationships</h1>
-                                        <p class="lead">Database tables are often related to one another. ArikaJS makes
-                                            managing and working with
-                                            these relationships easy, supporting every major relationship type including
-                                            Polymorphic and Through
-                                            associations.</p>
+                                    <h1>Relationships</h1>
+                                    <p class="lead">Database tables are often related to one another. Arika makes managing and working with these relationships easy, supporting every major relationship type including Polymorphic and Through associations.</p>
 
-                                        <div class="docs-property-grid">
-                                            <div class="property-card">
-                                                <div class="property-name">N+1 Prevention</div>
-                                                <p class="property-desc">Eliminate performance bottlenecks using Eager
-                                                    Loading (<code>with()</code>)
-                                                    to fetch all related data in a single optimized query.</p>
-                                            </div>
-                                            <div class="property-card">
-                                                <div class="property-name">Pivot Power</div>
-                                                <p class="property-desc">Work with many-to-many tables effortlessly
-                                                    using <code>sync()</code>,
-                                                    <code>attach()</code>, and <code>detach()</code> helpers.
-                                                </p>
-                                            </div>
-                                            <div class="property-card">
-                                                <div class="property-name">Polymorphic Links</div>
-                                                <p class="property-desc">A single model can belong to multiple other
-                                                    models on a single association
-                                                    (e.g., Photos for both Users and Posts).</p>
-                                            </div>
-                                            <div class="property-card">
-                                                <div class="property-name">Dynamic Counting</div>
-                                                <p class="property-desc">Retrieve related record counts (like
-                                                    <code>comments_count</code>) without
-                                                    loading the actual records into memory.
-                                                </p>
-                                            </div>
+                                    <div class="docs-property-grid">
+                                        <div class="property-card">
+                                            <div class="property-name">N+1 Prevention</div>
+                                            <p class="property-desc">Eliminate performance bottlenecks using Eager Loading (<code>with()</code>) to fetch all related data in a single optimized query.</p>
                                         </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Pivot Power</div>
+                                            <p class="property-desc">Work with many-to-many tables effortlessly using <code>sync()</code>, <code>attach()</code>, and <code>detach()</code> helpers.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Polymorphic Links</div>
+                                            <p class="property-desc">A single model can belong to multiple other models on a single association (e.g., Comments for both Posts and Videos).</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Dynamic Counting</div>
+                                            <p class="property-desc">Retrieve related record counts (like <code>comments_count</code>) without loading real records into memory via <code>withCount()</code>.</p>
+                                        </div>
+                                    </div>
 
-                                        <h2>Basic Relationships</h2>
-                                        <p>Relationships are defined as methods on your model classes. Since they return
-                                            relationship builders, you
-                                            can chain additional query constraints onto them.</p>
-                                        <div class="docs-code-window">
-                                            <div class="window-header">
-                                                <div class="dot dot-red"></div>
-                                                <div class="dot dot-yellow"></div>
-                                                <div class="dot dot-green"></div>
-                                                <div class="window-filename">app/Models/User.ts</div>
-                                                <button class="copy-btn" aria-label="Copy code">
-                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                        <path
-                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// One-to-Many</span>
-<span class="fn">posts</span>() {
-    <span class="kw">return</span> this.<span class="fn">hasMany</span>(Post);
+                                    <h2>One To One / Many</h2>
+                                    <p>The most basic relationships are One-to-One and One-to-Many. These are defined as methods on your model classes.</p>
+                                    <div class="docs-code-window">
+                                        <div class="window-header">
+                                            <div class="dot dot-red"></div>
+                                            <div class="dot dot-yellow"></div>
+                                            <div class="dot dot-green"></div>
+                                            <div class="window-filename">Basic Associations</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="window-body">
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// app/Models/User.ts</span>
+<span class="kw">class</span> User <span class="kw">extends</span> Model {
+    <span class="comment">// One-to-One: A user has one profile</span>
+    <span class="fn">profile</span>() {
+        <span class="kw">return</span> <span class="kw">this</span>.<span class="fn">hasOne</span>(Profile);
+    }
+
+    <span class="comment">// One-to-Many: A user has many posts</span>
+    <span class="fn">posts</span>() {
+        <span class="kw">return</span> <span class="kw">this</span>.<span class="fn">hasMany</span>(Post);
+    }
 }
 
-<span class="comment">// Inverse of Many-to-One</span>
-<span class="fn">user</span>() {
-    <span class="kw">return</span> this.<span class="fn">belongsTo</span>(User);
-}
+<span class="comment">// Usage</span>
+<span class="kw">const</span> user = <span class="kw">await</span> User.<span class="fn">find</span>(<span class="nm">1</span>);
+<span class="kw">const</span> posts = <span class="kw">await</span> user.<span class="fn">posts</span>().<span class="fn">get</span>();</code></pre>
+                                        </div>
+                                    </div>
 
-<span class="comment">// Many-to-Many</span>
+                                    <h2>Many To Many</h2>
+                                    <p>Many-to-many relationships require a "pivot" table. For example, a user may have many roles, and those roles are also shared by other users.</p>
+                                    <div class="docs-code-window">
+                                        <div class="window-header">
+                                            <div class="dot dot-red"></div>
+                                            <div class="dot dot-yellow"></div>
+                                            <div class="dot dot-green"></div>
+                                            <div class="window-filename">Roles & Pivot Tables</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="window-body">
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// app/Models/User.ts</span>
 <span class="fn">roles</span>() {
-    <span class="kw">return</span> this.<span class="fn">belongsToMany</span>(Role, <span class="str">'user_roles'</span>);
-}</code></pre>
-                                            </div>
-                                        </div>
+    <span class="kw">return</span> <span class="kw">this</span>.<span class="fn">belongsToMany</span>(Role, <span class="str">'role_user'</span>);
+}
 
-                                        <h2>Eager Loading</h2>
-                                        <p>When accessing relationships as properties, they are "lazy loaded", meaning
-                                            the query isn't run until you
-                                            access the property. To avoid the N+1 problem, use the <code>with</code>
-                                            method.</p>
-                                        <div class="docs-code-window">
-                                            <div class="window-header">
-                                                <div class="dot dot-red"></div>
-                                                <div class="dot dot-yellow"></div>
-                                                <div class="dot dot-green"></div>
-                                                <div class="window-filename">Optimization</div>
-                                                <button class="copy-btn" aria-label="Copy code">
-                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                        <path
-                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Eager load single relation</span>
-<span class="kw">const</span> users = <span class="kw">await</span> User.<span class="fn">with</span>(<span class="str">'posts'</span>).<span class="fn">get</span>();
-
-<span class="comment">// 2. Eager load multiple relations</span>
-<span class="kw">const</span> results = <span class="kw">await</span> User.<span class="fn">with</span>([<span class="str">'posts'</span>, <span class="str">'roles'</span>]).<span class="fn">get</span>();
-
-<span class="comment">// 3. Loading relationship counts</span>
-<span class="kw">const</span> authors = <span class="kw">await</span> User.<span class="fn">withCount</span>(<span class="str">'posts'</span>).<span class="fn">get</span>();
-console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_count);</code></pre>
-                                            </div>
-                                        </div>
-
-                                        <h2>Pivot Operations</h2>
-                                        <p>Working with many-to-many relationships often requires modifying the "pivot"
-                                            table that joins the two
-                                            models. Arika provides helpful methods to manage these links without
-                                            manually querying the pivot table.
-                                        </p>
-                                        <div class="docs-code-window">
-                                            <div class="window-header">
-                                                <div class="dot dot-red"></div>
-                                                <div class="dot dot-yellow"></div>
-                                                <div class="dot dot-green"></div>
-                                                <div class="window-filename">Many-to-Many Management</div>
-                                                <button class="copy-btn" aria-label="Copy code">
-                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                        <path
-                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="window-body">
-                                                <pre
-                                                    style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Add relationship (Attach)</span>
+<span class="comment">// Attaching records</span>
 <span class="kw">await</span> user.<span class="fn">roles</span>().<span class="fn">attach</span>(adminRoleId);
 
-<span class="comment">// 2. Sync relationships (Keep only these IDs)</span>
-<span class="kw">await</span> user.<span class="fn">roles</span>().<span class="fn">sync</span>([<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>]);
+<span class="comment">// Syncing (Removes old, adds new)</span>
+<span class="kw">await</span> user.<span class="fn">roles</span>().<span class="fn">sync</span>([<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">5</span>]);
 
-<span class="comment">// 3. Toggle relationship</span>
+<span class="comment">// Toggling</span>
 <span class="kw">await</span> user.<span class="fn">roles</span>().<span class="fn">toggle</span>(editorRoleId);</code></pre>
-                                            </div>
                                         </div>
+                                    </div>
+
+                                    <h2>Polymorphic Relationships</h2>
+                                    <p>Polymorphic relationships allow a model to belong to more than one other model on a single association.</p>
+                                    <div class="docs-code-window">
+                                        <div class="window-header">
+                                            <div class="dot dot-red"></div>
+                                            <div class="dot dot-yellow"></div>
+                                            <div class="dot dot-green"></div>
+                                            <div class="window-filename">Morph Logic</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="window-body">
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// app/Models/Post.ts</span>
+<span class="fn">comments</span>() {
+    <span class="kw">return</span> <span class="kw">this</span>.<span class="fn">morphMany</span>(Comment, <span class="str">'commentable'</span>);
+}
+
+<span class="comment">// app/Models/Comment.ts</span>
+<span class="fn">commentable</span>() {
+    <span class="kw">return</span> <span class="kw">this</span>.<span class="fn">morphTo</span>();
+}</code></pre>
+                                        </div>
+                                    </div>
+
+                                    <h2>Eager Loading & Performance</h2>
+                                    <p>To avoid the N+1 query problem, use the <code>with()</code> method to fetch related data upfront.</p>
+                                    <div class="docs-code-window">
+                                        <div class="window-header">
+                                            <div class="dot dot-red"></div>
+                                            <div class="dot dot-yellow"></div>
+                                            <div class="dot dot-green"></div>
+                                            <div class="window-filename">Optimization</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="window-body">
+                                            <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Execute only 2 queries for any number of users</span>
+<span class="kw">const</span> users = <span class="kw">await</span> User.<span class="fn">with</span>(<span class="str">'posts'</span>).<span class="fn">get</span>();
+
+<span class="comment">// Nested Eager Loading</span>
+<span class="kw">const</span> users = <span class="kw">await</span> User.<span class="fn">with</span>(<span class="str">'posts.comments'</span>).<span class="fn">get</span>();
+
+<span class="comment">// Eager load counts only</span>
+<span class="kw">const</span> authors = <span class="kw">await</span> User.<span class="fn">withCount</span>(<span class="str">'posts'</span>).<span class="fn">get</span>();
+console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_count);</code></pre>
+                                        </div>
+                                    </div>
+                                </section>
                                         <section id="database-advanced" style="margin-top: 100px;">
                                             <h1>Transactions & Seeding</h1>
                                             <p class="lead">For enterprise-grade applications, data integrity and
