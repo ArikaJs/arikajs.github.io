@@ -4223,7 +4223,8 @@ AWS_BUCKET=my-app-assets
                                         <div class="property-card">
                                             <div class="property-name">Memory Efficiency</div>
                                             <p class="property-desc">Process millions of records safely using
-                                                <code>chunk()</code> or streaming methods which keep RAM usage flat.</p>
+                                                <code>chunk()</code> or streaming methods which keep RAM usage flat.
+                                            </p>
                                         </div>
                                         <div class="property-card">
                                             <div class="property-name">Unified Syntax</div>
@@ -4441,7 +4442,8 @@ AWS_BUCKET=my-app-assets
                                                 <div class="property-name">Mass Assignment</div>
                                                 <p class="property-desc">Protect your data by defining
                                                     <code>fillable</code> attributes, preventing malicious users from
-                                                    overposting sensitive fields.</p>
+                                                    overposting sensitive fields.
+                                                </p>
                                             </div>
                                             <div class="property-card">
                                                 <div class="property-name">Attribute Casting</div>
@@ -4453,7 +4455,8 @@ AWS_BUCKET=my-app-assets
                                                 <div class="property-name">Lifecycle Hooks</div>
                                                 <p class="property-desc">Tap into model events like
                                                     <code>creating</code> or <code>deleted</code> to run custom logic
-                                                    globally across your application.</p>
+                                                    globally across your application.
+                                                </p>
                                             </div>
                                             <div class="property-card">
                                                 <div class="property-name">Magic Mutators</div>
@@ -4465,7 +4468,8 @@ AWS_BUCKET=my-app-assets
                                         <h2>Defining Models</h2>
                                         <p>Models typically extend the base <code>Model</code> class and reside in
                                             <code>app/Models</code>. By default, Arika assumes the table name is the
-                                            plural form of the class name.</p>
+                                            plural form of the class name.
+                                        </p>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
@@ -4673,7 +4677,8 @@ User.<span class="fn">observe</span>(<span class="kw">new</span> <span class="fn
                                                 <div class="property-name">Pivot Power</div>
                                                 <p class="property-desc">Work with many-to-many tables effortlessly
                                                     using <code>sync()</code>, <code>attach()</code>, and
-                                                    <code>detach()</code> helpers.</p>
+                                                    <code>detach()</code> helpers.
+                                                </p>
                                             </div>
                                             <div class="property-card">
                                                 <div class="property-name">Polymorphic Links</div>
@@ -4685,7 +4690,8 @@ User.<span class="fn">observe</span>(<span class="kw">new</span> <span class="fn
                                                 <div class="property-name">Dynamic Counting</div>
                                                 <p class="property-desc">Retrieve related record counts (like
                                                     <code>comments_count</code>) without loading real records into
-                                                    memory via <code>withCount()</code>.</p>
+                                                    memory via <code>withCount()</code>.
+                                                </p>
                                             </div>
                                         </div>
 
@@ -4972,10 +4978,12 @@ console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_cou
         <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">call</span>([RoleSeeder]);
 
         <span class="comment">// 2. Use Factory to create 50 users</span>
-        <span class="kw">await</span> User.<span class="fn">factory</span>().<span class="fn">count</span>(<span class="nm">25</span>).<span class="fn">create</span>();
+        <span class="kw">await</span> User.<span class="fn">factory</span>().<span class="fn">count</span>(<span class="nm">50</span>).<span class="fn">create</span>();
     }
 }</code></pre>
                                             </div>
+                                        </div>
+
                                             <h2>CLI Commands</h2>
                                             <p>Manage your factory and seeding workflow efficiently using the Arika CLI.
                                             </p>
