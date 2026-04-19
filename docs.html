@@ -5546,11 +5546,143 @@ a.<span class="fn">isBetween</span>(start, end); <span class="comment">// boolea
 
                                     <section id="sweet" style="margin-top: 100px;">
                                         <h1>Arika Sweet</h1>
-                                        <p class="lead">A collection of "sweet" utility functions and helper classes
-                                            used across the ArikaJS ecosystem.</p>
-                                        <p>Includes optimized string manipulation, object traversal, array helpers, and
-                                            functional programming utilities that are faster than alternative generic
-                                            libraries.</p>
+                                        <p class="lead">Premium, advanced alerts and notifications for the ArikaJS
+                                            ecosystem. Arika Sweet provides a high-performance, glassmorphic UI
+                                            experience for modern web applications.</p>
+                                        <p>Built as a zero-dependency alternative to heavy notification libraries,
+                                            Sweet offers a fluent API for everything from simple success toasts to
+                                            complex, multi-step confirmation dialogs and async promise handlers.</p>
+
+                                        <div id="sweet-installation">
+                                            <h2>Installation</h2>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">Terminal</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre
+                                                        style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Add the premium alert package</span>
+npm install @arikajs/sweet</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="sweet-usage" style="margin-top: 60px;">
+                                            <h2>Basic Usage</h2>
+                                            <p>Trigger beautiful alerts with a single line of code. Sweet supports
+                                                shorthand methods for common notification types.</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">Basic Alerts</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { sweet } <span class="kw">from</span> <span class="str">'@arikajs/sweet'</span>;
+
+<span class="comment">// Simple success alert</span>
+sweet.<span class="fn">success</span>(<span class="str">'Settings saved!'</span>);
+
+<span class="comment">// Standard fire method</span>
+sweet.<span class="fn">fire</span>(<span class="str">'Confirm Payment'</span>, <span class="str">'Are you ready to proceed?'</span>, <span class="str">'info'</span>);
+
+<span class="comment">// Stacked Toasts</span>
+sweet.<span class="fn">toast</span>(<span class="str">'Syncing data...'</span>, <span class="str">'info'</span>);
+sweet.<span class="fn">toast</span>(<span class="str">'Sync complete!'</span>, <span class="str">'success'</span>);</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="sweet-exclusive" style="margin-top: 60px;">
+                                            <h2>The Promise Handler</h2>
+                                            <p>Exclusive to the Arika ecosystem, the <code>sweet.promise()</code>
+                                                method handles the entire lifecycle of an asynchronous task—including
+                                                loading states, success notifications, and error handling—in a single fluent call.</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">Async Operations</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Automatically handles UI states for the provided promise</span>
+sweet.<span class="fn">promise</span>(User.<span class="fn">save</span>(data), {
+    loading: <span class="str">'Updating your profile...'</span>,
+    success: <span class="str">'Profile updated successfully!'</span>,
+    error: (err) => <span class="str">`Update failed: ${err.message}`</span>
+});</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="sweet-confirm" style="margin-top: 60px;">
+                                            <h2>Confirmations</h2>
+                                            <p>Using <code>async/await</code>, you can create readable confirmation
+                                                flows that feel native to your code structure.</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">Logic Flow</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">if</span> (<span class="kw">await</span> sweet.<span class="fn">confirm</span>(<span class="str">'Danger Zone'</span>, <span class="str">'Delete this project?'</span>)) {
+    <span class="kw">await</span> Project.<span class="fn">delete</span>(id);
+    sweet.<span class="fn">success</span>(<span class="str">'Project eradicated.'</span>);
+}</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </section>
 
                                     <section id="docs-generator" style="margin-top: 100px;">
