@@ -4689,68 +4689,134 @@ schedule.<span class="fn">command</span>(<span class="str">'logs:clear --days=30
                                                 using Bcrypt or Argon2 algorithms.</p>
                                         </div>
                                         <div class="property-card">
-                                            <div class="property-name">"Remember Me"</div>
-                                            <p class="property-desc">Secure, persistent login across sessions with built-in 
-                                                token rotation and expiry.</p>
+                                            <div class="property-name">Starter Kits</div>
+                                            <p class="property-desc">Scaffold full Login, Registration, and Password 
+                                                Reset systems with one CLI command.</p>
                                         </div>
                                         <div class="property-card">
-                                            <div class="property-name">Email Verification</div>
-                                            <p class="property-desc">Built-in support for verifying user emails before 
-                                                granting access to specific features.</p>
+                                            <div class="property-name">JWT Native</div>
+                                            <p class="property-desc">Built-in support for short-lived access tokens and 
+                                                rotating refresh tokens for modern APIs.</p>
                                         </div>
                                     </div>
 
-                                    <div id="auth-usage" style="margin-top: 60px;">
-                                        <h2>Authenticating Users</h2>
-                                        <p>You can authenticate users using the <code>auth</code> facade. The 
-                                            system automatically identifies the correct guard based on your context.</p>
+                                    <div id="auth-starter-kits" style="margin-top: 60px;">
+                                        <h2>Authentication Starter Kits</h2>
+                                        <p>ArikaJS includes first-party scaffolding commands to get you started 
+                                            instantly with a professional authentication UI or API structure.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">CLI Scaffolding</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># RECOMMENDED: Interactive setup menu</span>
+<span class="kw">arika</span> auth:install
+
+<span class="comment"># WEB: Scaffolds Blade/Inertia views, Controllers, and Migrations</span>
+<span class="kw">arika</span> auth:install:web
+
+<span class="comment"># API: Scaffolds JWT-based endpoints and Controllers</span>
+<span class="kw">arika</span> auth:install:api</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="auth-config" style="margin-top: 60px;">
+                                        <h2>Configuration & Guards</h2>
+                                        <p>Your authentication logic is governed by <strong>Guards</strong>. Sessions 
+                                            are usually the choice for web browsers, while JWT is standard for APIs.</p>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
                                                 <div class="dot dot-yellow"></div>
                                                 <div class="dot dot-green"></div>
-                                                <div class="window-filename">app/Http/Controllers/AuthController.ts</div>
+                                                <div class="window-filename">config/auth.ts</div>
                                             </div>
                                             <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { auth } <span class="kw">from</span> <span class="str">'arikajs'</span>;
-
-<span class="kw">export class</span> AuthController {
-    <span class="kw">async</span> <span class="fn">login</span>({ request, response }) {
-        <span class="kw">const</span> { email, password, remember } = request.<span class="fn">only</span>([<span class="str">'email'</span>, <span class="str">'password'</span>, <span class="str">'remember'</span>]);
-
-        <span class="comment">// Attempt login (true enables Remember Me)</span>
-        <span class="kw">if</span> (<span class="kw">await</span> auth.<span class="fn">attempt</span>({ email, password }, remember)) {
-            <span class="kw">return</span> response.<span class="fn">redirect</span>(<span class="str">'/dashboard'</span>);
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export default</span> {
+    default: <span class="str">'web'</span>,
+    guards: {
+        web: {
+            driver: <span class="str">'session'</span>,
+            provider: <span class="str">'users'</span>,
+        },
+        api: {
+            driver: <span class="str">'jwt'</span>,
+            provider: <span class="str">'users'</span>,
+            secret: process.env.JWT_SECRET,
         }
-
-        <span class="kw">return</span> response.<span class="fn">back</span>().<span class="fn">withErrors</span>({ auth: <span class="str">'Invalid credentials'</span> });
+    },
+    providers: {
+        users: {
+            driver: <span class="str">'eloquent'</span>,
+            model: User,
+        }
     }
+};</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
 
-    <span class="kw">async</span> <span class="fn">profile</span>({ request }) {
-        <span class="comment">// Access the authenticated user</span>
-        <span class="kw">const</span> user = <span class="kw">await</span> auth.<span class="fn">user</span>();
-        <span class="kw">return</span> user;
-    }
-}</code></pre>
+                                    <div id="auth-api-reference" style="margin-top: 60px;">
+                                        <h2>Auth API Reference</h2>
+                                        <p>The <code>auth</code> facade (and <code>request.auth</code>) provides a 
+                                            consistent API regardless of which guard you are using.</p>
+                                        <div class="docs-property-grid" style="grid-template-columns: 1fr;">
+                                            <div class="property-card">
+                                                <div class="property-name"><code>auth.attempt(credentials, remember?)</code></div>
+                                                <p class="property-desc">Attempt to log in with the provided credentials. Returns boolean (session) or token object (JWT).</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>auth.login(user, remember?)</code></div>
+                                                <p class="property-desc">Manually log in an existing user instance into the system.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>auth.logout()</code></div>
+                                                <p class="property-desc">Invalidate the current session or revoke the current JWT token.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>auth.user()</code></div>
+                                                <p class="property-desc">Retrieve the currently authenticated user instance. Returns <code>null</code> if unauthenticated.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>auth.check()</code></div>
+                                                <p class="property-desc">Determine if the current user is authenticated. Returns <code>boolean</code>.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>auth.id()</code></div>
+                                                <p class="property-desc">Get the unique identifier (primary key) of the currently authenticated user.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>auth.viaRemember()</code></div>
+                                                <p class="property-desc">Check if the user was authenticated via a "remember me" cookie.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>auth.guard('name')</code></div>
+                                                <p class="property-desc">Switch to a specific guard instance for a single operation.</p>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div id="auth-middleware" style="margin-top: 60px;">
-                                        <h2>Protecting Routes</h2>
-                                        <p>Use the <code>auth</code> middleware to restrict access to specific routes. 
-                                            You can specify a guard (like <code>jwt</code>) to use for that route.</p>
-                                        <div class="docs-code-window">
+                                        <h2>Middleware Security</h2>
+                                        <p>To restrict access, apply the <code>auth</code> middleware. Users who 
+                                            are not authenticated will be automatically redirected to login or 
+                                            receive a <code>401 Unauthorized</code> response.</p>
+                                        <div class="docs-code-window" style="margin-bottom: 20px;">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
-                                                <div class="window-filename">routes/web.ts</div>
+                                                <div class="window-filename">Route Protection</div>
                                             </div>
                                             <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Protect web routes (uses session guard by default)</span>
-Route.<span class="fn">get</span>(<span class="str">'/settings'</span>, <span class="str">'SettingsController.index'</span>).<span class="fn">middleware</span>([<span class="str">'auth'</span>]);
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Use default guard</span>
+Route.<span class="fn">get</span>(<span class="str">'/dashboard'</span>, handler).<span class="fn">middleware</span>([<span class="str">'auth'</span>]);
 
-<span class="comment">// Protect API routes using JWT</span>
-Route.<span class="fn">get</span>(<span class="str">'/api/user'</span>, <span class="str">'ApiController.user'</span>).<span class="fn">middleware</span>([<span class="str">'auth:jwt'</span>]);</code></pre>
+<span class="comment">// Specify a guard</span>
+Route.<span class="fn">get</span>(<span class="str">'/api/me'</span>, handler).<span class="fn">middleware</span>([<span class="str">'auth:api'</span>]);
+
+<span class="comment">// Only guests can access (e.g., Login page)</span>
+Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<span class="fn">middleware</span>([<span class="str">'guest'</span>]);</code></pre>
                                             </div>
                                         </div>
                                     </div>
