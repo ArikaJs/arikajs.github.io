@@ -4234,6 +4234,84 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div id="mail-html-templates" style="margin-top: 60px;">
+                                        <h2>HTML Ark Templates</h2>
+                                        <p>ArikaJS allows you to build beautiful, responsive HTML emails using the 
+                                            Ark View engine. Simply place your email templates in the 
+                                            <code>resources/views/emails</code> directory.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">resources/views/emails/welcome.ark.html</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;">&lt;div style=<span class="str">"font-family: Arial, sans-serif;"</span>&gt;
+    &lt;h1&gt;Hello {{ user.name }},&lt;/h1&gt;
+    &lt;p&gt;Welcome to ArikaJS! We're excited to have you on board.&lt;/p&gt;
+    &lt;a href=<span class="str">"{{ url }}"</span> style=<span class="str">"background: #6366f1; color: white; padding: 10px 20px; text-decoration: none;"</span>&gt;
+        Verify Account
+    &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="mail-api-reference" style="margin-top: 60px;">
+                                        <h2>Fluent API Reference</h2>
+                                        <p>The <code>Mail</code> facade provides a fluent interface to specify every 
+                                            aspect of your email before delivery.</p>
+                                        
+                                        <div class="docs-property-grid" style="grid-template-columns: 1fr;">
+                                            <div class="property-card">
+                                                <div class="property-name"><code>to(address)</code></div>
+                                                <p class="property-desc">Set the primary recipient. Accepts a string or an array of strings.</p>
+                                                <pre><code style="font-size: 13px;">Mail.to('user@example.com')</code></pre>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>cc(address) / bcc(address)</code></div>
+                                                <p class="property-desc">Add carbon-copy or blind-carbon-copy recipients.</p>
+                                                <pre><code style="font-size: 13px;">Mail.to(u).cc('admin@arika.dev').bcc('audit@arika.dev')</code></pre>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>subject(text)</code></div>
+                                                <p class="property-desc">Set the email subject line.</p>
+                                                <pre><code style="font-size: 13px;">Mail.to(u).subject('Order Confirmation #1234')</code></pre>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>view(name, data)</code></div>
+                                                <p class="property-desc">Render an HTML template from <code>resources/views</code>.</p>
+                                                <pre><code style="font-size: 13px;">Mail.to(u).view('emails.invoice', { order })</code></pre>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>text(content)</code></div>
+                                                <p class="property-desc">Set the fallback plain-text content of the email.</p>
+                                                <pre><code style="font-size: 13px;">Mail.to(u).text('Please view this email in an HTML client.')</code></pre>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>attach(path, options?)</code></div>
+                                                <p class="property-desc">Attach a file from your local storage.</p>
+                                                <pre><code style="font-size: 13px;">Mail.to(u).attach('invoices/inv_123.pdf', { as: 'YourInvoice.pdf' })</code></pre>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>replyTo(address)</code></div>
+                                                <p class="property-desc">Set the Reply-To header for the email.</p>
+                                                <pre><code style="font-size: 13px;">Mail.to(u).replyTo('support@arika.dev')</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </section>
 
                                 <section id="database-getting-started" style="margin-top: 100px;">
