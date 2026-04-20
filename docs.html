@@ -5057,17 +5057,19 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 <div class="window-filename">app/Http/Controllers/DownloadController.ts</div>
                                             </div>
                                             <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Crypt } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { app } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+<span class="kw">import</span> { Encrypter } <span class="kw">from</span> <span class="str">'@arikajs/encryption'</span>;
 
 <span class="kw">export class</span> DownloadController {
     
     <span class="comment">// 1. Generate the secure encrypted token</span>
     <span class="kw">async</span> <span class="fn">generateLink</span>({ request, view }) {
         <span class="kw">const</span> user = <span class="kw">await</span> request.<span class="fn">user</span>();
+        <span class="kw">const</span> encrypter = app.<span class="fn">make</span>&lt;Encrypter&gt;(<span class="str">'encrypter'</span>);
         
         <span class="comment">// Encrypt an object with a 5-minute TTL (300 seconds) </span>
         <span class="comment">// and a specific AAD context to prevent payload reuse.</span>
-        <span class="kw">const</span> token = Crypt.<span class="fn">encrypt</span>({ id: user.id, file: <span class="str">'report.pdf'</span> }, { 
+        <span class="kw">const</span> token = encrypter.<span class="fn">encrypt</span>({ id: user.id, file: <span class="str">'report.pdf'</span> }, { 
             ttl: <span class="nm">300</span>, 
             context: <span class="str">'secure-download'</span> 
         });
@@ -5080,10 +5082,11 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
     <span class="kw">async</span> <span class="fn">processDownload</span>({ request, response }) {
         <span class="kw">try</span> {
             <span class="kw">const</span> token = request.<span class="fn">param</span>(<span class="str">'token'</span>);
+            <span class="kw">const</span> encrypter = app.<span class="fn">make</span>&lt;Encrypter&gt;(<span class="str">'encrypter'</span>);
             
             <span class="comment">// Decrypt ensuring the context matches exactly.</span>
             <span class="comment">// DecryptionException is thrown if tampered, expired, or wrong context.</span>
-            <span class="kw">const</span> payload = Crypt.<span class="fn">decrypt</span>(token, { context: <span class="str">'secure-download'</span> });
+            <span class="kw">const</span> payload = encrypter.<span class="fn">decrypt</span>(token, { context: <span class="str">'secure-download'</span> });
             
             <span class="kw">return</span> response.<span class="fn">download</span>(payload.file);
 
@@ -5130,12 +5133,16 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 <div class="window-filename">Signed Payloads</div>
                                             </div>
                                             <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Sign data (Creates an HMAC-SHA256 hash appended to the payload)</span>
-<span class="kw">const</span> signedToken = Crypt.<span class="fn">sign</span>({ email: <span class="str">'user@example.com'</span> });
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { app } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="kw">const</span> encrypter = app.<span class="fn">make</span>(<span class="str">'encrypter'</span>);
+
+<span class="comment">// 1. Sign data (Creates an HMAC-SHA256 hash appended to the payload)</span>
+<span class="kw">const</span> signedToken = encrypter.<span class="fn">sign</span>({ email: <span class="str">'user@example.com'</span> });
 
 <span class="comment">// 2. Verify data (Ensures it wasn't tampered with)</span>
 <span class="comment">// Throws VerificationException if the signature is invalid</span>
-<span class="kw">const</span> validPayload = Crypt.<span class="fn">verify</span>(signedToken);
+<span class="kw">const</span> validPayload = encrypter.<span class="fn">verify</span>(signedToken);
 
 <span class="kw">console</span>.<span class="fn">log</span>(validPayload.email); <span class="comment">// "user@example.com"</span></code></pre>
                                             </div>
