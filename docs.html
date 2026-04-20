@@ -3893,7 +3893,7 @@ AWS_BUCKET=my-app-assets
                                         style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
                                         Digging Deeper</div>
                                     <h1>Localization</h1>
-                                    <p class="lead">Arika Localization provide a convenient way to retrieve strings in
+                                    <p class="lead">Arika Localization provides a convenient way to retrieve strings in
                                         various languages, allowing you to easily support multiple languages within your
                                         application. It supports dot-notation lookups, pluralization, and dynamic
                                         replacements.</p>
@@ -3918,6 +3918,164 @@ AWS_BUCKET=my-app-assets
                                             <div class="property-name">Automatic Fallbacks</div>
                                             <p class="property-desc">Seamlessly fall back to your default language if a
                                                 translation is missing in the user's current locale.</p>
+                                        </div>
+                                    </div>
+
+                                    <div id="localization-structure" style="margin-top: 60px;">
+                                        <h2>Language Files</h2>
+                                        <p>By default, ArikaJS stores translation files in the
+                                            <code>resources/lang</code> directory. Each subdirectory represents a
+                                            supported language (e.g., <code>en</code>, <code>es</code>, <code>fr</code>).
+                                        </p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">resources/lang/en/messages.json</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;">{
+    <span class="str">"welcome"</span>: <span class="str">"Welcome to our application!"</span>,
+    <span class="str">"greeting"</span>: <span class="str">"Hello, :name"</span>
+}</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="localization-usage" style="margin-top: 60px;">
+                                        <h2>Basic Usage & Helpers</h2>
+                                        <p>ArikaJS provides several global helpers for retrieving translations:
+                                            <code>lang()</code>, <code>trans()</code>, and the shortcut
+                                            <code>__()</code>. You can also pass an object of replacements for dynamic
+                                            content.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">app/Controllers/HomeController.ts</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { __ } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="kw">export class</span> HomeController {
+    <span class="kw">public async</span> <span class="fn">index</span>() {
+        <span class="comment">// Simple lookup</span>
+        <span class="kw">const</span> welcome = <span class="fn">__</span>(<span class="str">'messages.welcome'</span>);
+        
+        <span class="comment">// With placeholders</span>
+        <span class="kw">const</span> hello = <span class="fn">__</span>(<span class="str">'messages.greeting'</span>, { name: <span class="str">'Prakash'</span> });
+        
+        <span class="kw">return</span> <span class="fn">view</span>(<span class="str">'welcome'</span>, { welcome, hello });
+    }
+}</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="localization-pluralization" style="margin-top: 60px;">
+                                        <h2>Advanced Pluralization</h2>
+                                        <p>Pluralization is handled using the "pipe" (<code>|</code>) character to
+                                            distinguish between singular and plural forms. You can use explicit ranges
+                                            like <code>{0}</code>, <code>[1,5]</code>, or <code>[6,*]</code> for complex
+                                            logic.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">resources/lang/en/cart.json</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;">{
+    <span class="str">"items"</span>: <span class="str">"{0} Your cart is empty|{1} You have one item|[2,*] You have :count items"</span>
+}</code></pre>
+                                            </div>
+                                        </div>
+                                        <p style="margin-top: 20px;">Use the <code>choice</code> method on the Translator instance or the <code>lang</code> helper to resolve plural forms:</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Controller Usage</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Resolve based on the numeric value</span>
+<span class="kw">const</span> status = translator.<span class="fn">choice</span>(<span class="str">'cart.items'</span>, count);</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="localization-views" style="margin-top: 60px;">
+                                        <h2>Using in Ark Blade Templates</h2>
+                                        <p>The global helpers are shared with all views automatically. You can use
+                                            standard mustache syntax to render localized strings directly in your HTML.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">resources/views/welcome.ark.html</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;">&lt;h1&gt;{{ <span class="fn">__</span>(<span class="str">'messages.welcome'</span>) }}&lt;/h1&gt;
+&lt;p&gt;{{ <span class="fn">__</span>(<span class="str">'messages.greeting'</span>, { name: user.name }) }}&lt;/p&gt;
+
+&lt;!-- Pluralization in blade --&gt;
+&lt;span&gt;{{ <span class="fn">__</span>(<span class="str">'cart.items'</span>, { count: cart.total }) }}&lt;/span&gt;</code></pre>
+                                            </div>
                                         </div>
                                     </div>
                                 </section>
