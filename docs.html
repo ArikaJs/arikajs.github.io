@@ -4485,6 +4485,54 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
                                         </div>
                                     </div>
 
+                                    <div id="scheduling-commands" style="margin-top: 60px;">
+                                        <h2>Generating Commands</h2>
+                                        <p>Before scheduling a console command, you must first create it. Use the 
+                                            <code>make:command</code> utility to scaffold a new command class.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">Terminal</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">arika</span> make:command SendNewsletter</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="scheduling-structure" style="margin-top: 60px;">
+                                        <h2>Directory Structure</h2>
+                                        <p>Scheduled tasks and custom console commands are organized within the 
+                                            <code>app/Console</code> directory.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Directory Tree</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;">arikajs-app/
+├── <span class="kw">app/</span>
+│   └── <span class="kw">Console/</span>
+│       ├── <span class="kw">Commands/</span>
+│       │   └── <span class="str">SendNewsletter.ts</span>
+│       └── <span class="str">Kernel.ts</span>  <span class="comment">// <-- Schedule defined here</span>
+└── <span class="str">package.json</span></code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div id="scheduling-kernel" style="margin-top: 60px;">
                                         <h2>Defining Schedules</h2>
                                         <p>All scheduled tasks are defined in your <code>app/Console/Kernel.ts</code> 
@@ -4496,6 +4544,16 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
                                                 <div class="dot dot-yellow"></div>
                                                 <div class="dot dot-green"></div>
                                                 <div class="window-filename">app/Console/Kernel.ts</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Schedule } <span class="kw">from</span> <span class="str">'arikajs'</span>;
@@ -4580,18 +4638,31 @@ schedule.<span class="fn">command</span>(<span class="str">'logs:clear --days=30
                                     <div id="scheduling-running" style="margin-top: 60px;">
                                         <h2>Executing the Scheduler</h2>
                                         <p>To start processing tasks, you can either run a persistent daemon or 
-                                            configure a standard system cron job to trigger the scheduler every minute.</p>
+                                            use the standard system cron utility to trigger the scheduler every minute.</p>
+                                        
+                                        <h3>Option 1: Persistent Daemon (Recommended)</h3>
+                                        <p>Run the scheduler as a worker process. This mode is more efficient because 
+                                            it keeps the application in memory, allowing for sub-minute precision if needed.</p>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
                                                 <div class="window-filename">Terminal</div>
                                             </div>
                                             <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># RECOMMENDED: Run as a persistent background daemon</span>
-<span class="kw">arika</span> schedule:work
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">arika</span> schedule:work</code></pre>
+                                            </div>
+                                        </div>
 
-<span class="comment"># CRON MODE: Run once to process due tasks (set this to run every minute)</span>
-<span class="kw">arika</span> schedule:run</code></pre>
+                                        <h3 style="margin-top: 30px;">Option 2: System Cron</h3>
+                                        <p>If you prefer using the built-in system crontab, add the following entry to 
+                                            your server's <code>crontab -e</code> configuration:</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">Crontab</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;">* * * * * cd /path-to-your-project && <span class="kw">arika</span> schedule:run >> /dev/null 2>&1</code></pre>
                                             </div>
                                         </div>
                                     </div>
