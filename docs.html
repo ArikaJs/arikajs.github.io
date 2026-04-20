@@ -5687,10 +5687,160 @@ sweet.<span class="fn">promise</span>(User.<span class="fn">save</span>(data), {
 
                                     <section id="docs-generator" style="margin-top: 100px;">
                                         <h1>Arika Docs</h1>
-                                        <p class="lead">Automatic OpenAPI and Swagger documentation generation for your
-                                            ArikaJS APIs.</p>
-                                        <p>Arika Docs scans your routes and controller annotations to produce a fully
-                                            interactive Swagger UI without requiring manual YAML maintenance.</p>
+                                        <p class="lead">Modern, automated, and multi-format documentation engine for the
+                                            ArikaJS ecosystem. It eliminates the manual work of maintaining API specs by
+                                            analyzing your routes and generating high-quality artifacts automatically.</p>
+                                        <p>Maintain a single source of truth for your API. Arika Docs keeps your
+                                            OpenAPI specs, Postman collections, and interactive HTML documentation
+                                            perfectly in sync with your codebase, saving hundreds of hours of manual
+                                            maintenance.</p>
+
+                                        <div id="docs-install">
+                                            <h2>Getting Started</h2>
+                                            <p>To begin generating documentation, install the package and use the Arika
+                                                CLI to scaffold your configuration:</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">Terminal</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># 1. Install the documentation engine</span>
+npm install @arikajs/docs
+
+<span class="comment"># 2. Scaffold config/docs.ts</span>
+arika docs:install</code></pre>
+                                                </div>
+                                            </div>
+
+                                            <p>Once installed, register the <code>DocsServiceProvider</code> in your
+                                                <code>bootstrap/app.ts</code> file to enable the documentation
+                                                commands:
+                                            </p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">bootstrap/app.ts</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { DocsServiceProvider } <span class="kw">from</span> <span class="str">'@arikajs/docs'</span>;
+
+app.<span class="fn">register</span>(DocsServiceProvider);</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="docs-usage" style="margin-top: 60px;">
+                                            <h2>Generating Artifacts</h2>
+                                            <p>Arika Docs scans your actual route definitions and group structures to
+                                                build the documentation. To generate your artifacts, run the
+                                                following command:</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">Terminal</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Analyze routes and generate HTML, OpenAPI, and Postman files</span>
+arika docs:generate</code></pre>
+                                                </div>
+                                            </div>
+
+                                            <p>You can customize headings, descriptions, and exclusion patterns in
+                                                <code>config/docs.ts</code>:
+                                            </p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">config/docs.ts</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export default</span> {
+    title: <span class="str">'Horizon API'</span>,
+    version: <span class="str">'2.1.0'</span>,
+    output: {
+        html: <span class="str">'./public/docs'</span>,
+        openapi: <span class="str">'./docs/specs.yaml'</span>,
+        postman: <span class="str">'./docs/collection.json'</span>
+    }
+};</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="docs-benefits" style="margin-top: 60px;">
+                                            <h2>Why use Arika Docs?</h2>
+                                            <div class="docs-property-grid">
+                                                <div class="property-card">
+                                                    <div class="property-name">Interactive Testing</div>
+                                                    <p class="property-desc">Generate a live Swagger UI that allows
+                                                        developers to test endpoints directly from the browser.</p>
+                                                </div>
+                                                <div class="property-card">
+                                                    <div class="property-name">Team Integration</div>
+                                                    <p class="property-desc">Export Postman collections instantly,
+                                                        empowering your frontend and mobile teams with ready-to-use
+                                                        requests.</p>
+                                                </div>
+                                                <div class="property-card">
+                                                    <div class="property-name">Zero Drift</div>
+                                                    <p class="property-desc">Since docs are generated from actual
+                                                        routes, they never become outdated or "drift" from the implementation.</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </section>
         </main>
     </div>
