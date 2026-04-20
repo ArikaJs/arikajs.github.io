@@ -4828,32 +4828,53 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                         Security</div>
                                     <h1>Authorization</h1>
                                     <p class="lead">While authentication identifies who a user is, authorization 
-                                        determines what they are allowed to do. Arika provides a clean system using 
-                                        simple Gates and structured Policies.</p>
+                                        determines what they are allowed to do. Arika provides a clean, enterprise-grade system using 
+                                        simple Gates, structured Policies, and robust Role-Based Access Control (RBAC).</p>
 
-                                    <div id="auth-gates" style="margin-top: 60px;">
-                                        <h2>Gates (Closure Checks)</h2>
-                                        <p>Gates are ideal for simple, non-resource-specific checks. You define 
-                                            them in your <code>AuthServiceProvider</code>.</p>
+                                    <div class="docs-property-grid">
+                                        <div class="property-card">
+                                            <div class="property-name">Gates & Policies</div>
+                                            <p class="property-desc">Use Closure-based Gates for simple checks, or class-based Policies to organize logic around models.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Response Customization</div>
+                                            <p class="property-desc">Return custom deny messages and error codes instead of plain booleans.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Roles & Permissions</div>
+                                            <p class="property-desc">First-class support for <code>hasRole()</code> and <code>hasPermission()</code> checks integrated seamlessly.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Concurrency Safe</div>
+                                            <p class="property-desc">Every request receives an isolated AuthorizationContext with automatic result caching.</p>
+                                        </div>
+                                    </div>
+
+                                    <div id="auth-structure" style="margin-top: 60px;">
+                                        <h2>Directory Structure</h2>
+                                        <p>Authorization logic is naturally divided between global Gates (usually registered in providers) and resource-specific Policies within the <code>app/Policies</code> directory.</p>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
-                                                <div class="window-filename">app/Providers/AuthServiceProvider.ts</div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Directory Tree</div>
                                             </div>
                                             <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Gate } <span class="kw">from</span> <span class="str">'arikajs'</span>;
-
-Gate.<span class="fn">define</span>(<span class="str">'access-admin-panel'</span>, (user) => {
-    <span class="kw">return</span> user.role === <span class="str">'admin'</span>;
-});</code></pre>
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;">arikajs-app/
+├── <span class="kw">app/</span>
+│   ├── <span class="kw">Policies/</span>
+│   │   ├── <span class="str">PostPolicy.ts</span>      <span class="comment">// Protects Post model</span>
+│   │   └── <span class="str">CommentPolicy.ts</span>   <span class="comment">// Protects Comment model</span>
+│   └── <span class="kw">Providers/</span>
+│       └── <span class="str">AuthServiceProvider.ts</span> <span class="comment">// Discovers policies & registers Gates</span></code></pre>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div id="auth-policies" style="margin-top: 60px;">
-                                        <h2>Policies (Resource Logic)</h2>
-                                        <p>Policies organize authorization logic around a specific model. For 
-                                            example, a <code>PostPolicy</code> manages access to Blog Posts.</p>
+                                    <div id="auth-realworld" style="margin-top: 60px;">
+                                        <h2>Real-World Example: Advanced RBAC</h2>
+                                        <p>In real-world applications, authorization checks need to handle complex rules such as super-admin bypasses and specific denial messages. Policies allow you to encapsulate all this logic cleanly.</p>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
@@ -4862,40 +4883,116 @@ Gate.<span class="fn">define</span>(<span class="str">'access-admin-panel'</span
                                                 <div class="window-filename">app/Policies/PostPolicy.ts</div>
                                             </div>
                                             <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> PostPolicy {
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { AuthResponse } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="kw">export class</span> PostPolicy {
+    <span class="comment">/**
+     * Bypasses all checks for super admins.
+     */</span>
+    <span class="kw">async</span> <span class="fn">before</span>(user, ability) {
+        <span class="kw">if</span> (user.<span class="fn">hasRole</span>(<span class="str">'super-admin'</span>)) {
+            <span class="kw">return true</span>;
+        }
+        <span class="kw">return null</span>; <span class="comment">// Continue to specific check</span>
+    }
+
     <span class="kw">async</span> <span class="fn">update</span>(user, post) {
-        <span class="comment">// Only the author can update the post</span>
+        <span class="comment">// Return a standard boolean</span>
         <span class="kw">return</span> user.id === post.userId;
     }
 
     <span class="kw">async</span> <span class="fn">delete</span>(user, post) {
-        <span class="comment">// Admins or the author can delete</span>
-        <span class="kw">return</span> user.role === <span class="str">'admin'</span> || user.id === post.userId;
+        <span class="kw">if</span> (user.id !== post.userId) {
+            <span class="comment">// Return a detailed AuthResponse</span>
+            <span class="kw">return</span> AuthResponse.<span class="fn">deny</span>(<span class="str">'You do not own this post.'</span>, <span class="str">'POST_NOT_OWNED'</span>);
+        }
+        <span class="kw">return</span> AuthResponse.<span class="fn">allow</span>();
     }
 }</code></pre>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div id="auth-checks" style="margin-top: 60px;">
-                                        <h2>Performing Checks</h2>
-                                        <p>You can verify permissions in Controllers, Blade templates, or even 
-                                            directly inside route definitions.</p>
+                                    <div id="auth-controller" style="margin-top: 60px;">
+                                        <h2>Usage in Controllers</h2>
+                                        <p>You can directly check abilities against models inside your HTTP controllers. Arika will automatically resolve the correct Policy based on the class of the model provided.</p>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
-                                                <div class="window-filename">Usage Example</div>
+                                                <div class="window-filename">app/Http/Controllers/PostController.ts</div>
                                             </div>
                                             <div class="window-body">
-                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// In a Controller</span>
-<span class="kw">if</span> (<span class="kw">await</span> request.<span class="fn">can</span>(<span class="str">'update'</span>, post)) {
-    <span class="comment">// Authorized...</span>
-}
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> PostController {
+    <span class="kw">async</span> <span class="fn">update</span>(req: Request, res: Response) {
+        <span class="kw">const</span> post = <span class="kw">await</span> Post.<span class="fn">find</span>(req.<span class="fn">param</span>(<span class="str">'id'</span>));
 
-<span class="comment">// In an Ark Blade Template</span>
+        <span class="comment">// The authorize proxy automatically throws a 403 response</span>
+        <span class="comment">// if the 'update' ability on the 'post' fails.</span>
+        <span class="kw">await</span> req.<span class="fn">authorize</span>(<span class="str">'update'</span>, post);
+
+        <span class="comment">// Or handle the logic manually if preferred</span>
+        <span class="kw">if</span> (<span class="kw">await</span> req.<span class="fn">cannot</span>(<span class="str">'delete'</span>, post)) {
+            <span class="kw">return</span> res.<span class="fn">json</span>({ error: <span class="str">'Unauthorized'</span> }, <span class="nm">403</span>);
+        }
+
+        <span class="comment">// Proceed to update logic...</span>
+    }
+}</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="auth-views" style="margin-top: 60px;">
+                                        <h2>Usage in Views</h2>
+                                        <p>Arika’s templating engine provides intuitive directives to show or hide portions of your UI conditionally based on user permissions or roles.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">resources/views/posts/show.ark.html</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">&lt;!-- Policy check directly in the template --&gt;</span>
 @can('update', post)
-    &lt;button&gt;Edit Post&lt;/button&gt;
-@endcan</code></pre>
+    &lt;a href="/posts/{{ post.id }}/edit" class="btn"&gt;Edit Article&lt;/a&gt;
+@else
+    &lt;span class="text-muted"&gt;Read Only Context&lt;/span&gt;
+@endcan
+
+<span class="comment">&lt;!-- Role check --&gt;</span>
+@role('admin')
+    &lt;button class="btn btn-danger"&gt;Force Delete&lt;/button&gt;
+@endrole</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="auth-api" style="margin-top: 60px;">
+                                        <h2>API Reference</h2>
+                                        <p>The <code>AuthorizationContext</code> handles requests behind the scenes. It exposes the following methods, available on the <code>req</code> object.</p>
+                                        <div class="docs-property-grid" style="grid-template-columns: 1fr;">
+                                            <div class="property-card">
+                                                <div class="property-name"><code>req.can(ability, ...args)</code></div>
+                                                <p class="property-desc">Returns a boolean indicating if the authenticated user is allowed to perform the given ability.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>req.cannot(ability, ...args)</code></div>
+                                                <p class="property-desc">The inverse of `can()`. Returns true if the user is denied access.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>req.authorize(ability, ...args)</code></div>
+                                                <p class="property-desc">Throws an `AuthorizationException` (403 Forbidden) immediately if the ability fails.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>req.any(abilities, ...args)</code></div>
+                                                <p class="property-desc">Returns true if the user can perform ANY of the multiple abilities provided in the array.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>req.every(abilities, ...args)</code></div>
+                                                <p class="property-desc">Returns true only if the user can perform ALL of the abilities.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name"><code>req.hasRole(role)</code> / <code>req.hasPermission(permission)</code></div>
+                                                <p class="property-desc">Performs a direct check against the user's role and permission arrays without evaluating a full policy.</p>
                                             </div>
                                         </div>
                                     </div>
