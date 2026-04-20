@@ -5002,50 +5002,146 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                     <div
                                         style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
                                         Security</div>
-                                    <h1>Encryption & Hashing</h1>
-                                    <p class="lead">ArikaJS provides simple, secure tools for handling sensitive data. 
-                                        Encryption is used for data that needs to be decrypted later, while 
-                                        Hashing is used for one-way security (like passwords).</p>
+                                    <h1>Encryption & Security</h1>
+                                    <p class="lead">ArikaJS provides simple, highly secure application-level encryption tools. 
+                                        Instead of wrestling with low-level Node.js <code>crypto</code> modules, Arika 
+                                        provides a clean <code>Crypt</code> facade built on top of modern AES-256-GCM standards.</p>
 
                                     <div class="docs-property-grid">
                                         <div class="property-card">
                                             <div class="property-name">AES-256-GCM</div>
-                                            <p class="property-desc">Secure, modern encryption with built-in integrity 
-                                                checks to prevent tampering.</p>
+                                            <p class="property-desc">Secure, modern authenticated encryption that guarantees 
+                                                both confidentiality and integrity of your data.</p>
                                         </div>
                                         <div class="property-card">
-                                            <div class="property-name">Argon2 & Bcrypt</div>
-                                            <p class="property-desc">State-of-the-art password hashing that is resistant 
-                                                to brute force and rainbow table attacks.</p>
+                                            <div class="property-name">Auto-Serialization</div>
+                                            <p class="property-desc">Easily encrypt complex JavaScript objects and arrays; 
+                                                they are automatically serialized to JSON under the hood.</p>
                                         </div>
                                         <div class="property-card">
-                                            <div class="property-name">Key Rotation</div>
-                                            <p class="property-desc">Support for multiple framework keys allows for seamless 
-                                                security updates without breaking existing data.</p>
+                                            <div class="property-name">Expirable Payloads (TTL)</div>
+                                            <p class="property-desc">Set time-to-live bounds on encrypted strings, 
+                                                perfect for temporary secure links or API tokens.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Signed Payloads</div>
+                                            <p class="property-desc">Generate HMAC-SHA256 authenticated payloads allowing you to transmit data seamlessly without encryption but with full tamper detection.</p>
                                         </div>
                                     </div>
 
-                                    <div id="crypto-encryption" style="margin-top: 60px;">
-                                        <h2>Encryption</h2>
-                                        <p>Encryption uses your <code>APP_KEY</code> to turn data into unreadable strings 
-                                            that can be safely stored or transmitted.</p>
+                                    <div id="crypto-config" style="margin-top: 60px;">
+                                        <h2>Configuration</h2>
+                                        <p>Before using the encryption services, your application must have a secure <code>APP_KEY</code> configured. 
+                                            This key is used to generate the initialization vectors (IV) and authentication tags.</p>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
-                                                <div class="window-filename">Crypt Usage</div>
+                                                <div class="window-filename">Terminal</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Generate a secure 32-byte Base64 key</span>
+<span class="kw">arika</span> key:generate</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="crypto-realworld" style="margin-top: 60px;">
+                                        <h2>Real-World Example: Secure Links</h2>
+                                        <p>A common real-world use case involves encrypting sensitive IDs (like a user's ID) 
+                                            to create temporary, tamper-proof download or unsubscribe links in a Controller.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">app/Http/Controllers/DownloadController.ts</div>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Crypt } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
-<span class="comment">// Encrypt any value (strings, objects, arrays)</span>
-<span class="kw">const</span> secret = Crypt.<span class="fn">encrypt</span>({ apiKey: <span class="str">'12345'</span> });
+<span class="kw">export class</span> DownloadController {
+    
+    <span class="comment">// 1. Generate the secure encrypted token</span>
+    <span class="kw">async</span> <span class="fn">generateLink</span>({ request, view }) {
+        <span class="kw">const</span> user = <span class="kw">await</span> request.<span class="fn">user</span>();
+        
+        <span class="comment">// Encrypt an object with a 5-minute TTL (300 seconds) </span>
+        <span class="comment">// and a specific AAD context to prevent payload reuse.</span>
+        <span class="kw">const</span> token = Crypt.<span class="fn">encrypt</span>({ id: user.id, file: <span class="str">'report.pdf'</span> }, { 
+            ttl: <span class="nm">300</span>, 
+            context: <span class="str">'secure-download'</span> 
+        });
 
-<span class="comment">// Decrypt it back</span>
-<span class="kw">const</span> original = Crypt.<span class="fn">decrypt</span>(secret);</code></pre>
+        <span class="comment">// Pass token to the view</span>
+        <span class="kw">return</span> view.<span class="fn">render</span>(<span class="str">'downloads.show'</span>, { secureToken: token });
+    }
+
+    <span class="comment">// 2. Verify and decrypt on the download route</span>
+    <span class="kw">async</span> <span class="fn">processDownload</span>({ request, response }) {
+        <span class="kw">try</span> {
+            <span class="kw">const</span> token = request.<span class="fn">param</span>(<span class="str">'token'</span>);
+            
+            <span class="comment">// Decrypt ensuring the context matches exactly.</span>
+            <span class="comment">// DecryptionException is thrown if tampered, expired, or wrong context.</span>
+            <span class="kw">const</span> payload = Crypt.<span class="fn">decrypt</span>(token, { context: <span class="str">'secure-download'</span> });
+            
+            <span class="kw">return</span> response.<span class="fn">download</span>(payload.file);
+
+        } <span class="kw">catch</span> (error) {
+            <span class="kw">return</span> response.<span class="fn">status</span>(<span class="nm">403</span>).<span class="fn">send</span>(<span class="str">'Invalid or Expired Link'</span>);
+        }
+    }
+}</code></pre>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <div id="crypto-views" style="margin-top: 60px;">
+                                        <h2>Usage in Ark Views</h2>
+                                        <p>When you pass encrypted strings from your controllers to your Ark templates, you can safely pipe them directly into your HTML attributes. 
+                                            Because they are Base64 encoded, they are URL-safe.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">resources/views/downloads/show.ark.html</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">&lt;!-- Generate a secure downloadable link --&gt;</span>
+&lt;div class="card"&gt;
+    &lt;h3&gt;Your secure download is ready&lt;/h3&gt;
+    &lt;p&gt;This link will expire automatically in 5 minutes.&lt;/p&gt;
+    
+    <span class="comment">&lt;!-- Use the pre-encrypted variable directly --&gt;</span>
+    &lt;a href="/download/{{ secureToken }}" class="btn btn-primary"&gt;
+        Download Report Now
+    &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="crypto-signed" style="margin-top: 60px;">
+                                        <h2>Signed Data (Non-Encrypted)</h2>
+                                        <p>Sometimes you need to transmit data over the wire (like sending an email verification link) 
+                                            where the data doesn't need to be kept secret, but it <strong>must not be modified</strong> by the user.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">Signed Payloads</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Sign data (Creates an HMAC-SHA256 hash appended to the payload)</span>
+<span class="kw">const</span> signedToken = Crypt.<span class="fn">sign</span>({ email: <span class="str">'user@example.com'</span> });
+
+<span class="comment">// 2. Verify data (Ensures it wasn't tampered with)</span>
+<span class="comment">// Throws VerificationException if the signature is invalid</span>
+<span class="kw">const</span> validPayload = Crypt.<span class="fn">verify</span>(signedToken);
+
+<span class="kw">console</span>.<span class="fn">log</span>(validPayload.email); <span class="comment">// "user@example.com"</span></code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     <div id="crypto-hashing" style="margin-top: 60px;">
                                         <h2>Password Hashing</h2>
                                         <p>Unlike encryption, hashing is a one-way process. You never "decrypt" a password; 
@@ -5058,7 +5154,7 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Hash } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
-<span class="comment">// Securely hash a password</span>
+<span class="comment">// Securely hash a password (uses Bcrypt or Argon2 internally)</span>
 <span class="kw">const</span> hashed = <span class="kw">await</span> Hash.<span class="fn">make</span>(plaintextPassword);
 
 <span class="comment">// Check password against a hash</span>
