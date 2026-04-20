@@ -4314,6 +4314,169 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
                                     </div>
                                 </section>
 
+                                <section id="queues" style="margin-top: 100px;">
+                                    <div
+                                        style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
+                                        Digging Deeper</div>
+                                    <h1>Queues</h1>
+                                    <p class="lead">ArikaJS Queues allow you to defer the processing of a 
+                                        time-consuming task, such as sending an email or performing an expensive 
+                                        calculation, until a later time, drastically speeding up web requests.</p>
+
+                                    <div id="queue-configuration">
+                                        <h2>Configuration</h2>
+                                        <p>Queue configuration is managed in <code>config/queue.ts</code>. You can 
+                                            define multiple connections, such as <code>sync</code> for local development 
+                                            and <code>redis</code> or <code>database</code> for production environments.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">config/queue.ts</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export default</span> {
+    default: <span class="fn">env</span>(<span class="str">'QUEUE_CONNECTION'</span>, <span class="str">'sync'</span>),
+    connections: {
+        sync: { driver: <span class="str">'sync'</span> },
+        database: {
+            driver: <span class="str">'database'</span>,
+            table: <span class="str">'jobs'</span>,
+            queue: <span class="str">'default'</span>,
+        },
+        redis: {
+            driver: <span class="str">'redis'</span>,
+            connection: <span class="str">'default'</span>,
+            queue: <span class="str">'default'</span>,
+        }
+    }
+};</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="queue-jobs" style="margin-top: 60px;">
+                                        <h2>Creating Jobs</h2>
+                                        <p>By default, all jobs are stored in the <code>app/Jobs</code> directory. A 
+                                            job class should extend <code>BaseJob</code> and implement the 
+                                            <code>handle()</code> method which is called when the worker processes the job.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">app/Jobs/ProcessPodcast.ts</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { BaseJob } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="kw">export class</span> ProcessPodcast <span class="kw">extends</span> BaseJob {
+    <span class="kw">constructor</span>(<span class="kw">public</span> podcast: <span class="kw">any</span>) { <span class="kw">super</span>(); }
+
+    <span class="kw">public async</span> <span class="fn">handle</span>() {
+        <span class="comment">// Expensive logic here...</span>
+        <span class="kw">await</span> <span class="fn">encodePodcast</span>(<span class="kw">this</span>.podcast);
+    }
+}</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="queue-dispatching" style="margin-top: 60px;">
+                                        <h2>Dispatching Jobs</h2>
+                                        <p>You can dispatch jobs from your controllers or services using the 
+                                            <code>Queue</code> facade. Jobs can be delayed or sent to specific queues.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Usage Examples</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Queue } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+<span class="kw">import</span> { ProcessPodcast } <span class="kw">from</span> <span class="str">'app/Jobs/ProcessPodcast'</span>;
+
+<span class="comment">// Basic dispatch</span>
+<span class="kw">await</span> Queue.<span class="fn">dispatch</span>(<span class="kw">new</span> <span class="fn">ProcessPodcast</span>(podcast));
+
+<span class="comment">// Delayed dispatch (in seconds)</span>
+<span class="kw">await</span> Queue.<span class="fn">later</span>(<span class="nm">60</span>, <span class="kw">new</span> <span class="fn">ProcessPodcast</span>(podcast));
+
+<span class="comment">// Specific queue and connection</span>
+<span class="kw">await</span> Queue.<span class="fn">connection</span>(<span class="str">'redis'</span>).<span class="fn">push</span>(
+    <span class="kw">new</span> <span class="fn">ProcessPodcast</span>(podcast).<span class="fn">onQueue</span>(<span class="str">'high'</span>)
+);</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="queue-workers" style="margin-top: 60px;">
+                                        <h2>Running Workers</h2>
+                                        <p>ArikaJS includes a CLI command to process jobs as they are pushed onto 
+                                            the queue. You should use a process manager like PM2 to keep your workers 
+                                            alive in production.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">Terminal</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Process the default queue</span>
+<span class="kw">arika</span> queue:work
+
+<span class="comment"># Process a specific connection and queue</span>
+<span class="kw">arika</span> queue:work --connection=redis --queue=high
+
+<span class="comment"># Setup database queue table</span>
+<span class="kw">arika</span> queue:table
+<span class="kw">arika</span> migrate</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
                                 <section id="database-getting-started" style="margin-top: 100px;">
                                     <div
                                         style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
