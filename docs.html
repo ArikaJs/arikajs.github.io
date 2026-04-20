@@ -240,7 +240,7 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre
                             style="margin:0;"><code style="color:#e5e7eb;">npm i @arikajs/core@latest @arikajs/cli@latest</code></pre>
                     </div>
@@ -268,7 +268,7 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre
                             style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Old (Deprecating)</span>
 Route.<span class="fn">get</span>(<span class="str">'/users'</span>, <span class="str">'UserController@index'</span>);
@@ -343,7 +343,7 @@ Route.<span class="fn">get</span>(<span class="str">'/users'</span>, [UserContro
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">npx @arikajs/cli new my-app
 <span class="kw">cd</span> my-app
 npm install</code></pre>
@@ -367,7 +367,7 @@ npm install</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">npm run dev</code></pre>
                     </div>
                 </div>
@@ -423,7 +423,7 @@ npm install</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">APP_NAME=ArikaJS
 APP_ENV=local
 APP_KEY=base64:Abc123...
@@ -454,7 +454,7 @@ DB_PORT=5432</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre
                             style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Config } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
@@ -487,7 +487,7 @@ Config.<span class="fn">set</span>(<span class="str">'app.timezone'</span>, <spa
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">arika config:cache   <span class="comment"># Enable caching</span>
 arika config:clear   <span class="comment"># Remove cached file</span></code></pre>
                     </div>
@@ -616,7 +616,7 @@ arika config:clear   <span class="comment"># Remove cached file</span></code></p
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">npm run build</code></pre>
                     </div>
                 </div>
@@ -647,7 +647,7 @@ arika config:clear   <span class="comment"># Remove cached file</span></code></p
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Start a single instance of the app</span>
 pm2 start build/server.js --name "arika-app"</code></pre>
                     </div>
@@ -671,7 +671,7 @@ pm2 start build/server.js --name "arika-app"</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Start the app taking advantage of all CPU cores</span>
 pm2 start build/server.js --name "arika-app" -i max</code></pre>
                     </div>
@@ -698,7 +698,7 @@ pm2 start build/server.js --name "arika-app" -i max</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">server {
     listen 80;
     server_name example.com;
@@ -803,7 +803,7 @@ pm2 start build/server.js --name "arika-app" -i max</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Transistor } <span class="kw">from</span> <span class="str">'./services/Transistor'</span>;
 <span class="kw">import</span> { PodcastParser } <span class="kw">from</span> <span class="str">'./services/PodcastParser'</span>;
 
@@ -832,7 +832,7 @@ pm2 start build/server.js --name "arika-app" -i max</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">this</span>.app.<span class="fn">singleton</span>(<span class="str">'Transistor'</span>, (app) => {
     <span class="kw">return new</span> Transistor(app.<span class="fn">make</span>(PodcastParser));
 });</code></pre>
@@ -858,7 +858,7 @@ pm2 start build/server.js --name "arika-app" -i max</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { App } <span class="kw">from</span> <span class="str">'@arikajs/foundation'</span>;
 
 <span class="kw">const</span> api = App.<span class="fn">make</span>(<span class="str">'Transistor'</span>);
@@ -896,7 +896,7 @@ api.<span class="fn">publish</span>();</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { ServiceProvider } <span class="kw">from</span> <span class="str">'@arikajs/foundation'</span>;
 <span class="kw">import</span> { RiakConnection } <span class="kw">from</span> <span class="str">'./services/RiakConnection'</span>;
 
@@ -949,7 +949,7 @@ api.<span class="fn">publish</span>();</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { EventServiceProvider <span class="kw">as</span> ServiceProvider } <span class="kw">from</span> <span class="str">'@arikajs/foundation'</span>;
 <span class="kw">import</span> { OrderShipped } <span class="kw">from</span> <span class="str">'../Events/OrderShipped'</span>;
 <span class="kw">import</span> { SendShipmentNotification } <span class="kw">from</span> <span class="str">'../Listeners/SendShipmentNotification'</span>;
@@ -985,7 +985,7 @@ api.<span class="fn">publish</span>();</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { OrderShipped } <span class="kw">from</span> <span class="str">'../../events/OrderShipped'</span>;
 <span class="kw">import</span> { Event } <span class="kw">from</span> <span class="str">'@arikajs/events'</span>;
 
@@ -1026,7 +1026,7 @@ Event.<span class="fn">dispatch</span>(<span class="kw">new</span> OrderShipped(
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Cache, Route } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
 Route.<span class="fn">get</span>(<span class="str">'/profile/{id}'</span>, <span class="kw">async</span> (req, res) => {
@@ -1053,7 +1053,7 @@ Route.<span class="fn">get</span>(<span class="str">'/profile/{id}'</span>, <spa
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { App } <span class="kw">from</span> <span class="str">'@arikajs/foundation'</span>;
 <span class="kw">import</span> { CacheManager } <span class="kw">from</span> <span class="str">'@arikajs/cache'</span>;
 <span class="kw">import</span> { Route } <span class="kw">from</span> <span class="str">'arikajs'</span>;
@@ -1095,7 +1095,7 @@ Route.<span class="fn">get</span>(<span class="str">'/profile/{id}'</span>, <spa
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Route } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
 Route.<span class="fn">get</span>(<span class="str">'/greeting'</span>, <span class="kw">function</span> (req, res) {
@@ -1121,7 +1121,7 @@ Route.<span class="fn">get</span>(<span class="str">'/greeting'</span>, <span cl
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">Route.<span class="fn">get</span>(<span class="str">'/path'</span>, callback);
 Route.<span class="fn">post</span>(<span class="str">'/path'</span>, callback);
 Route.<span class="fn">put</span>(<span class="str">'/path'</span>, callback);
@@ -1149,7 +1149,7 @@ Route.<span class="fn">options</span>(<span class="str">'/path'</span>, callback
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">Route.<span class="fn">match</span>([<span class="str">'get'</span>, <span class="str">'post'</span>], <span class="str">'/path'</span>, callback);
 
 Route.<span class="fn">any</span>(<span class="str">'/path'</span>, callback);</code></pre>
@@ -1174,7 +1174,7 @@ Route.<span class="fn">any</span>(<span class="str">'/path'</span>, callback);</
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, <span class="kw">function</span> (req, res) {
     <span class="kw">return</span> res.<span class="fn">send</span>(<span class="str">'User '</span> + req.params.id);
 });</code></pre>
@@ -1199,7 +1199,7 @@ Route.<span class="fn">any</span>(<span class="str">'/path'</span>, callback);</
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre
                             style="margin:0;"><code style="color:#e5e7eb;">Route.<span class="fn">get</span>(<span class="str">'/user/profile'</span>, [UserProfileController, <span class="str">'show'</span>]).<span class="fn">name</span>(<span class="str">'profile'</span>);</code></pre>
                     </div>
@@ -1225,7 +1225,7 @@ Route.<span class="fn">any</span>(<span class="str">'/path'</span>, callback);</
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">Route.<span class="fn">middleware</span>([AuthMiddleware]).<span class="fn">prefix</span>(<span class="str">'api/v1'</span>).<span class="fn">group</span>(() => {
     
     Route.<span class="fn">get</span>(<span class="str">'/dashboard'</span>, [DashboardController, <span class="str">'index'</span>]);
@@ -1254,7 +1254,7 @@ Route.<span class="fn">any</span>(<span class="str">'/path'</span>, callback);</
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Generates 7 standard CRUD routes for the photos resource</span>
 Route.<span class="fn">resource</span>(<span class="str">'photos'</span>, PhotoController);</code></pre>
                     </div>
@@ -1286,7 +1286,7 @@ Route.<span class="fn">resource</span>(<span class="str">'photos'</span>, PhotoC
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Middleware } <span class="kw">from</span> <span class="str">'@arikajs/middleware'</span>;
 <span class="kw">import</span> { Request, Response } <span class="kw">from</span> <span class="str">'@arikajs/http'</span>;
 
@@ -1326,7 +1326,7 @@ Route.<span class="fn">resource</span>(<span class="str">'photos'</span>, PhotoC
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> AddSecurityHeader <span class="kw">implements</span> Middleware {
     <span class="kw">public async</span> handle(request: Request, next: <span class="kw">Function</span>, response: Response) {
         <span class="kw">const</span> result = <span class="kw">await</span> <span class="fn">next</span>(request);
@@ -1363,7 +1363,7 @@ Route.<span class="fn">resource</span>(<span class="str">'photos'</span>, PhotoC
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> Kernel {
     <span class="comment">/**
      * The application's global HTTP middleware stack.
@@ -1397,7 +1397,7 @@ Route.<span class="fn">resource</span>(<span class="str">'photos'</span>, PhotoC
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Inside Kernel.ts</span>
 <span class="kw">protected</span> routeMiddleware: Record<<span class="kw">string</span>, any> = {
     <span class="str">'auth'</span>: Authenticate,
@@ -1432,7 +1432,7 @@ Route.<span class="fn">get</span>(<span class="str">'/dashboard'</span>, [Dashbo
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> EnsureUserHasRole <span class="kw">implements</span> Middleware {
     <span class="kw">public async</span> handle(request: Request, next: <span class="kw">Function</span>, response: Response, role: <span class="kw">string</span>) {
         <span class="kw">if</span> (!request.user() || !request.user().<span class="fn">hasRole</span>(role)) {
@@ -1463,7 +1463,7 @@ Route.<span class="fn">get</span>(<span class="str">'/dashboard'</span>, [Dashbo
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">Route.<span class="fn">put</span>(<span class="str">'/post/{id}'</span>, [PostController, <span class="str">'update'</span>])
      .<span class="fn">middleware</span>([<span class="str">'role:editor'</span>]);</code></pre>
                     </div>
@@ -1497,7 +1497,7 @@ Route.<span class="fn">get</span>(<span class="str">'/dashboard'</span>, [Dashbo
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Request, Response } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 <span class="kw">import</span> { User } <span class="kw">from</span> <span class="str">'@Models/User'</span>;
 
@@ -1539,7 +1539,7 @@ Route.<span class="fn">get</span>(<span class="str">'/dashboard'</span>, [Dashbo
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre
                             style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Route } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 <span class="kw">import</span> { UserController } <span class="kw">from</span> <span class="str">'./Http/Controllers/UserController'</span>;
@@ -1573,7 +1573,7 @@ Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, [UserCon
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Request, Response } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
 <span class="kw">export class</span> PhotoController {
@@ -1617,7 +1617,7 @@ Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, [UserCon
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { UserRepository } <span class="kw">from</span> <span class="str">'../Repositories/UserRepository'</span>;
 
 <span class="kw">export class</span> UserController {
@@ -1650,7 +1650,7 @@ Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, [UserCon
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> UserController {
     <span class="comment">// This middleware will be applied to all methods in this controller</span>
     <span class="kw">static</span> middleware = [<span class="str">'auth'</span>, <span class="str">'log'</span>];
@@ -1689,7 +1689,7 @@ Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, [UserCon
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Request } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
 <span class="kw">export class</span> UserController {
@@ -1719,7 +1719,7 @@ Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, [UserCon
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Get the request path</span>
 <span class="kw">const</span> path = req.<span class="fn">path</span>(); <span class="comment">// e.g. /user/profile</span>
 
@@ -1757,7 +1757,7 @@ Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, [UserCon
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre
                             style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Retrieve all input data (Body + Query + Route Params)</span>
 <span class="kw">const</span> all = req.<span class="fn">all</span>();
@@ -1794,7 +1794,7 @@ Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, [UserCon
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">const</span> photo = req.<span class="fn">file</span>(<span class="str">'photo'</span>);
 
 <span class="kw">if</span> (photo) {
@@ -1824,7 +1824,7 @@ Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, [UserCon
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Get a header</span>
 <span class="kw">const</span> value = req.<span class="fn">header</span>(<span class="str">'X-Header-Name'</span>);
 
@@ -1863,7 +1863,7 @@ Route.<span class="fn">get</span>(<span class="str">'/user/:id'</span>, [UserCon
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">Route.<span class="fn">get</span>(<span class="str">'/'</span>, () => {
     <span class="kw">return</span> <span class="str">'Hello World'</span>; <span class="comment">// Sent as text/plain</span>
 });
@@ -1892,7 +1892,7 @@ Route.<span class="fn">get</span>(<span class="str">'/api'</span>, () => {
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">Route.<span class="fn">get</span>(<span class="str">'/dashboard'</span>, (req, res) => {
     <span class="kw">return</span> res.<span class="fn">redirect</span>(<span class="str">'/home'</span>);
 });
@@ -1923,7 +1923,7 @@ Route.<span class="fn">post</span>(<span class="str">'/user/profile'</span>, (re
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">return</span> res.<span class="fn">json</span>({
     <span class="str">'name'</span>: <span class="str">'Abigail'</span>,
     <span class="str">'state'</span>: <span class="str">'CA'</span>,
@@ -1948,7 +1948,7 @@ Route.<span class="fn">post</span>(<span class="str">'/user/profile'</span>, (re
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">return</span> res.<span class="fn">header</span>(<span class="str">'Content-Type'</span>, <span class="str">'text/plain'</span>)
           .<span class="fn">header</span>(<span class="str">'X-Header-One'</span>, <span class="str">'value'</span>)
           .<span class="fn">cookie</span>(<span class="str">'name'</span>, <span class="str">'value'</span>, { expiration: <span class="num">3600</span> })
@@ -1974,7 +1974,7 @@ Route.<span class="fn">post</span>(<span class="str">'/user/profile'</span>, (re
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { view } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
 Route.<span class="fn">get</span>(<span class="str">'/profile'</span>, <span class="kw">async</span> (req, res) => {
@@ -2001,7 +2001,7 @@ Route.<span class="fn">get</span>(<span class="str">'/profile'</span>, <span cla
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { createReadStream } <span class="kw">from</span> <span class="str">'fs'</span>;
 
 Route.<span class="fn">get</span>(<span class="str">'/video'</span>, (req, res) => {
@@ -2039,7 +2039,7 @@ Route.<span class="fn">get</span>(<span class="str">'/video'</span>, (req, res) 
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">&lt;html&gt;
     &lt;body&gt;
         &lt;h1&gt;Hello, {{ name }}&lt;/h1&gt;
@@ -2065,7 +2065,7 @@ Route.<span class="fn">get</span>(<span class="str">'/video'</span>, (req, res) 
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">Route.<span class="fn">get</span>(<span class="str">'/'</span>, () => {
     <span class="kw">return</span> <span class="fn">view</span>(<span class="str">'greeting'</span>, { name: <span class="str">'James'</span> });
 });</code></pre>
@@ -2092,7 +2092,7 @@ Route.<span class="fn">get</span>(<span class="str">'/video'</span>, (req, res) 
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Basic If/Else</span>
 @if(count > 0)
     &lt;p&gt;Items found!&lt;/p&gt;
@@ -2136,7 +2136,7 @@ Route.<span class="fn">get</span>(<span class="str">'/video'</span>, (req, res) 
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Smart Foreach with the 'loop' tracking object</span>
 @foreach(users as user)
     &lt;li&gt;{{ user.name }} (Index: {{ loop.index }})&lt;/li&gt;
@@ -2172,7 +2172,7 @@ Route.<span class="fn">get</span>(<span class="str">'/video'</span>, (req, res) 
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">&lt;form @action="createPost"&gt;
     &lt;input name="title"&gt;
     &lt;button&gt;Submit&lt;/button&gt;
@@ -2216,7 +2216,7 @@ actions.createPost
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. View Composers: Run logic before a specific view renders</span>
 view.<span class="fn">composer</span>(<span class="str">'dashboard'</span>, async (data) => {
     data.notifications = await Notifications.recent();
@@ -2246,7 +2246,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">@meta({
     title: product.name,
     description: product.summary,
@@ -2275,7 +2275,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Native Promise Support</span>
 @await(Database.query('...'))
 
@@ -2306,7 +2306,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">&lt;form action="/auth" method="POST"&gt;
     @csrf
     @method('DELETE')
@@ -2339,7 +2339,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">&lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;App - @yield('title')&lt;/title&gt;
@@ -2373,7 +2373,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">&lt;body&gt;
     @spa <span class="comment">// Activates instant navigation across your site</span>
     @yield('content')
@@ -2435,7 +2435,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export default</span> {
     driver: <span class="str">'redis'</span>,
     lifetime: <span class="nm">120</span>, <span class="comment">// Minutes</span>
@@ -2461,7 +2461,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Storing Data</span>
 <span class="kw">await</span> req.session.<span class="fn">set</span>(<span class="str">'theme'</span>, <span class="str">'dark'</span>);
 <span class="kw">await</span> req.session.<span class="fn">put</span>(<span class="str">'cart:total'</span>, <span class="nm">450</span>);
@@ -2562,7 +2562,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">public async</span> <span class="fn">store</span>(req: Request) {
     <span class="kw">const</span> data = <span class="kw">await</span> req.<span class="fn">validate</span>({
         title: <span class="str">'required|string|max:255'</span>,
@@ -2593,7 +2593,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { FormRequest } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
 <span class="kw">export class</span> StoreUserRequest <span class="kw">extends</span> FormRequest {
@@ -2629,7 +2629,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> Uppercase <span class="kw">implements</span> Rule {
     <span class="kw">async</span> <span class="fn">validate</span>(value: any): <span class="kw">Promise</span>&lt;<span class="kw">boolean</span>&gt; {
         <span class="kw">return</span> <span class="kw">typeof</span> value === <span class="str">'string'</span> && value === value.<span class="fn">toUpperCase</span>();
@@ -2784,7 +2784,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Handler <span class="kw">as</span> BaseHandler } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 <span class="kw">import</span> { Log } <span class="kw">from</span> <span class="str">'@arikajs/logging'</span>;
 
@@ -2826,7 +2826,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;">&lt;div class="error-container"&gt;
     &lt;h1&gt;Page Not Found&lt;/h1&gt;
     &lt;p&gt;The URL you requested could not be found.&lt;/p&gt;
@@ -2882,7 +2882,7 @@ view.<span class="fn">helper</span>(<span class="str">'money'</span>, (val) => `
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre
                             style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Log } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
@@ -2917,7 +2917,7 @@ Log.<span class="fn">withContext</span>({ trace_id: <span class="str">'req_001'<
                             </svg>
                         </button>
                     </div>
-                    <div class="window-body">
+                                            <div class="window-body">
                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export default</span> {
     default: <span class="fn">env</span>(<span class="str">'LOG_CHANNEL'</span>, <span class="str">'stack'</span>),
     channels: {
@@ -3156,7 +3156,7 @@ Log.<span class="fn">withContext</span>({ trace_id: <span class="str">'req_001'<
                                     </svg>
                                 </button>
                             </div>
-                            <div class="window-body">
+                                            <div class="window-body">
                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export default</span> {
     <span class="comment">// Default store used when Cache.get() is called without a store selection</span>
     default: <span class="fn">env</span>(<span class="str">'CACHE_STORE'</span>, <span class="str">'file'</span>),
@@ -3200,7 +3200,7 @@ Log.<span class="fn">withContext</span>({ trace_id: <span class="str">'req_001'<
                                     </svg>
                                 </button>
                             </div>
-                            <div class="window-body">
+                                            <div class="window-body">
                                 <pre style="margin:0;"><code style="color:#e5e7eb;">CACHE_STORE=redis
 REDIS_HOST=127.0.0.1
 REDIS_PASSWORD=null
@@ -3225,7 +3225,7 @@ REDIS_PORT=6379</code></pre>
                                     </svg>
                                 </button>
                             </div>
-                            <div class="window-body">
+                                            <div class="window-body">
                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Cache } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 <span class="kw">import</span> { User } <span class="kw">from</span> <span class="str">'../Models/User'</span>;
 
@@ -3260,7 +3260,7 @@ REDIS_PORT=6379</code></pre>
                                     </svg>
                                 </button>
                             </div>
-                            <div class="window-body">
+                                            <div class="window-body">
                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">&lt;!-- Cache this sidebar for 1 hour using a unique key --&gt;</span>
 <span class="kw">@cache</span>(<span class="str">'sidebar_stats'</span>, <span class="nm">3600</span>)
     &lt;div class="stats"&gt;
@@ -3313,7 +3313,7 @@ REDIS_PORT=6379</code></pre>
                                     </svg>
                                 </button>
                             </div>
-                            <div class="window-body">
+                                            <div class="window-body">
                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">const</span> lock = Cache.<span class="fn">lock</span>(<span class="str">'processing-payment'</span>, <span class="nm">10</span>);
 
 <span class="kw">if</span> (<span class="kw">await</span> lock.<span class="fn">acquire</span>()) {
@@ -3378,7 +3378,7 @@ REDIS_PORT=6379</code></pre>
                                             </svg>
                                         </button>
                                     </div>
-                                    <div class="window-body">
+                                            <div class="window-body">
                                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">arika</span> make:event OrderPlaced
 <span class="kw">arika</span> make:listener UpdateInventory --event=OrderPlaced
 <span class="kw">arika</span> make:listener SendOrderEmail --event=OrderPlaced</code></pre>
@@ -3396,8 +3396,14 @@ REDIS_PORT=6379</code></pre>
                                         <div class="dot dot-yellow"></div>
                                         <div class="dot dot-green"></div>
                                         <div class="window-filename">app/Events/OrderPlaced.ts</div>
-                                    </div>
-                                    <div class="window-body">
+                                    <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
                                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Order } <span class="kw">from</span> <span class="str">'app/Models/Order'</span>;
 
 <span class="kw">export class</span> OrderPlaced {
@@ -3417,8 +3423,14 @@ REDIS_PORT=6379</code></pre>
                                         <div class="dot dot-yellow"></div>
                                         <div class="dot dot-green"></div>
                                         <div class="window-filename">app/Listeners/SendOrderEmail.ts</div>
-                                    </div>
-                                    <div class="window-body">
+                                    <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
                                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { OrderPlaced } <span class="kw">from</span> <span class="str">'app/Events/OrderPlaced'</span>;
 <span class="kw">import</span> { Mail } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
@@ -3445,8 +3457,14 @@ REDIS_PORT=6379</code></pre>
                                         <div class="dot dot-yellow"></div>
                                         <div class="dot dot-green"></div>
                                         <div class="window-filename">app/Providers/EventServiceProvider.ts</div>
-                                    </div>
-                                    <div class="window-body">
+                                    <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
                                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Event } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 <span class="kw">import</span> { OrderPlaced } <span class="kw">from</span> <span class="str">'app/Events/OrderPlaced'</span>;
 <span class="kw">import</span> { UpdateInventory, SendOrderEmail } <span class="kw">from</span> <span class="str">'app/Listeners'</span>;
@@ -3481,8 +3499,14 @@ Event.<span class="fn">dispatch</span>(<span class="kw">new</span> <span class="
                                         <div class="dot dot-yellow"></div>
                                         <div class="dot dot-green"></div>
                                         <div class="window-filename">app/Listeners/UserSubscriber.ts</div>
-                                    </div>
-                                    <div class="window-body">
+                                    <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
                                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> UserSubscriber {
     <span class="kw">public</span> <span class="fn">subscribe</span>(events) {
         <span class="comment">// Register multiple mappings at once</span>
@@ -3520,8 +3544,14 @@ Event.<span class="fn">dispatch</span>(<span class="kw">new</span> <span class="
                                         <div class="dot dot-yellow"></div>
                                         <div class="dot dot-green"></div>
                                         <div class="window-filename">Priorities & Wildcards</div>
-                                    </div>
-                                    <div class="window-body">
+                                    <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
                                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// High priority runs first</span>
 Event.<span class="fn">listen</span>(OrderPlaced, ProcessPayment, <span class="nm">100</span>);
 Event.<span class="fn">listen</span>(OrderPlaced, NotifyCustomer, <span class="nm">10</span>);
@@ -3590,7 +3620,7 @@ Event.<span class="fn">listen</span>(<span class="str">'order.*'</span>, (event)
                                             </svg>
                                         </button>
                                     </div>
-                                    <div class="window-body">
+                                            <div class="window-body">
                                         <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// 1. Environment Controls</span>
 FILESYSTEM_DISK=s3
 AWS_ACCESS_KEY_ID=your-key
@@ -3687,7 +3717,7 @@ AWS_BUCKET=my-app-assets
                                             </svg>
                                         </button>
                                     </div>
-                                    <div class="window-body">
+                                            <div class="window-body">
                                         <pre
                                             style="margin:0;"><code style="color:#e5e7eb;">arika storage:link</code></pre>
                                     </div>
@@ -3717,7 +3747,7 @@ AWS_BUCKET=my-app-assets
                                             </svg>
                                         </button>
                                     </div>
-                                    <div class="window-body">
+                                            <div class="window-body">
                                         <pre
                                             style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Store with public-read ACL</span>
 <span class="kw">await</span> Storage.<span class="fn">disk</span>(<span class="str">'s3'</span>).<span class="fn">put</span>(<span class="str">'avatar.jpg'</span>, fileContent, {
@@ -3749,7 +3779,7 @@ AWS_BUCKET=my-app-assets
                                             </svg>
                                         </button>
                                     </div>
-                                    <div class="window-body">
+                                            <div class="window-body">
                                         <pre
                                             style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">await</span> Storage.<span class="fn">copy</span>(<span class="str">'source.jpg'</span>, <span class="str">'backup/source.jpg'</span>);
 <span class="kw">await</span> Storage.<span class="fn">move</span>(<span class="str">'temp.csv'</span>, <span class="str">'archive/2024.csv'</span>);
@@ -3779,7 +3809,7 @@ AWS_BUCKET=my-app-assets
                                             </svg>
                                         </button>
                                     </div>
-                                    <div class="window-body">
+                                            <div class="window-body">
                                         <pre
                                             style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Link that expires in 5 minutes</span>
 <span class="kw">const</span> expiry = <span class="kw">new</span> <span class="fn">Date</span>(Date.<span class="fn">now</span>() + <span class="nm">5</span> * <span class="nm">60</span> * <span class="nm">1000</span>);
@@ -3807,7 +3837,7 @@ AWS_BUCKET=my-app-assets
                                             </svg>
                                         </button>
                                     </div>
-                                    <div class="window-body">
+                                            <div class="window-body">
                                         <pre
                                             style="margin:0;"><code style="color:#e5e7eb;">arika storage:link</code></pre>
                                     </div>
@@ -4301,6 +4331,8 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">Terminal</div>
                                                 <button class="copy-btn" aria-label="Copy code">
                                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -4329,6 +4361,12 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
                                                 <div class="dot dot-yellow"></div>
                                                 <div class="dot dot-green"></div>
                                                 <div class="window-filename">Directory Tree</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;">arikajs-app/
@@ -4426,6 +4464,8 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">Terminal</div>
                                                 <button class="copy-btn" aria-label="Copy code">
                                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -4492,6 +4532,8 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">Terminal</div>
                                                 <button class="copy-btn" aria-label="Copy code">
                                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -4520,6 +4562,12 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
                                                 <div class="dot dot-yellow"></div>
                                                 <div class="dot dot-green"></div>
                                                 <div class="window-filename">Directory Tree</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;">arikajs-app/
@@ -4585,6 +4633,12 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
                                                 <div class="dot dot-yellow"></div>
                                                 <div class="dot dot-green"></div>
                                                 <div class="window-filename">System Maintenance Schedule</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;">schedule.<span class="fn">command</span>(<span class="str">'db:backup'</span>)
@@ -4646,7 +4700,15 @@ schedule.<span class="fn">command</span>(<span class="str">'logs:clear --days=30
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">Terminal</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">arika</span> schedule:work</code></pre>
@@ -4659,7 +4721,15 @@ schedule.<span class="fn">command</span>(<span class="str">'logs:clear --days=30
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">Crontab</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;">* * * * * cd /path-to-your-project && <span class="kw">arika</span> schedule:run >> /dev/null 2>&1</code></pre>
@@ -4707,7 +4777,15 @@ schedule.<span class="fn">command</span>(<span class="str">'logs:clear --days=30
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">CLI Scaffolding</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># RECOMMENDED: Interactive setup menu</span>
@@ -4732,6 +4810,12 @@ schedule.<span class="fn">command</span>(<span class="str">'logs:clear --days=30
                                                 <div class="dot dot-yellow"></div>
                                                 <div class="dot dot-green"></div>
                                                 <div class="window-filename">config/auth.ts</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export default</span> {
@@ -4806,7 +4890,15 @@ schedule.<span class="fn">command</span>(<span class="str">'logs:clear --days=30
                                         <div class="docs-code-window" style="margin-bottom: 20px;">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">Route Protection</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Use default guard</span>
@@ -4859,6 +4951,12 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 <div class="dot dot-yellow"></div>
                                                 <div class="dot dot-green"></div>
                                                 <div class="window-filename">Directory Tree</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;">arikajs-app/
@@ -4881,6 +4979,12 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 <div class="dot dot-yellow"></div>
                                                 <div class="dot dot-green"></div>
                                                 <div class="window-filename">app/Policies/PostPolicy.ts</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { AuthResponse } <span class="kw">from</span> <span class="str">'arikajs'</span>;
@@ -4919,7 +5023,15 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">app/Http/Controllers/PostController.ts</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> PostController {
@@ -4948,7 +5060,15 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">resources/views/posts/show.ark.html</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">&lt;!-- Policy check directly in the template --&gt;</span>
@@ -5036,7 +5156,15 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">Terminal</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Generate a secure 32-byte Base64 key</span>
@@ -5055,6 +5183,12 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 <div class="dot dot-yellow"></div>
                                                 <div class="dot dot-green"></div>
                                                 <div class="window-filename">app/Http/Controllers/DownloadController.ts</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { app } <span class="kw">from</span> <span class="str">'arikajs'</span>;
@@ -5106,7 +5240,15 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">resources/views/downloads/show.ark.html</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">&lt;!-- Generate a secure downloadable link --&gt;</span>
@@ -5130,7 +5272,15 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">Signed Payloads</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { app } <span class="kw">from</span> <span class="str">'arikajs'</span>;
@@ -5156,7 +5306,15 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
                                                 <div class="window-filename">Hash Usage</div>
+                                            <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div class="window-body">
                                                 <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Hash } <span class="kw">from</span> <span class="str">'arikajs'</span>;
@@ -5226,7 +5384,7 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 </svg>
                                             </button>
                                         </div>
-                                        <div class="window-body">
+                                            <div class="window-body">
                                             <pre style="margin:0;"><code style="color:#e5e7eb;">database/
 └── migrations/
     ├── 2024_01_01_000000_create_users_table.ts
@@ -5257,7 +5415,7 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 </svg>
                                             </button>
                                         </div>
-                                        <div class="window-body">
+                                            <div class="window-body">
                                             <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Schema, Blueprint } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
 
 <span class="kw">export default class</span> CreatePostsTable {
@@ -5396,7 +5554,7 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 </svg>
                                             </button>
                                         </div>
-                                        <div class="window-body">
+                                            <div class="window-body">
                                             <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">await</span> Schema.<span class="fn">table</span>(<span class="str">'users'</span>, (table) => {
     <span class="comment">// Single column index</span>
     table.<span class="fn">index</span>(<span class="str">'email'</span>);
@@ -5507,7 +5665,7 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 </svg>
                                             </button>
                                         </div>
-                                        <div class="window-body">
+                                            <div class="window-body">
                                             <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { DB } <span class="kw">from</span> <span class="str">'@arikajs/database'</span>;
 
 <span class="comment">// 1. Retrieve all records</span>
@@ -5547,7 +5705,7 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 </svg>
                                             </button>
                                         </div>
-                                        <div class="window-body">
+                                            <div class="window-body">
                                             <pre
                                                 style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Basic comparison</span>
 <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">where</span>(<span class="str">'votes'</span>, <span class="str">'&gt;'</span>, <span class="nm">100</span>).<span class="fn">get</span>();
@@ -5589,7 +5747,7 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 </svg>
                                             </button>
                                         </div>
-                                        <div class="window-body">
+                                            <div class="window-body">
                                             <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Basic Inner Join</span>
 <span class="kw">const</span> posts = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>)
     .<span class="fn">join</span>(<span class="str">'posts'</span>, <span class="str">'users.id'</span>, <span class="str">'='</span>, <span class="str">'posts.user_id'</span>)
@@ -5622,7 +5780,7 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 </svg>
                                             </button>
                                         </div>
-                                        <div class="window-body">
+                                            <div class="window-body">
                                             <pre
                                                 style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Insert a single record</span>
 <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">insert</span>({
@@ -5662,7 +5820,7 @@ Route.<span class="fn">get</span>(<span class="str">'/login'</span>, handler).<s
                                                 </svg>
                                             </button>
                                         </div>
-                                        <div class="window-body">
+                                            <div class="window-body">
                                             <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Aggregate Helpers</span>
 <span class="kw">const</span> count = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">count</span>();
 <span class="kw">const</span> maxPrice = <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'orders'</span>).<span class="fn">max</span>(<span class="str">'total'</span>);
@@ -6293,7 +6451,7 @@ console.<span class="fn">log</span>(authors[<span class="nm">0</span>].posts_cou
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { describe, it } <span class="kw">from</span> <span class="str">'node:test'</span>;
 <span class="kw">import</span> assert <span class="kw">from</span> <span class="str">'node:assert'</span>;
 <span class="kw">import</span> { MathService } <span class="kw">from</span> <span class="str">'app/Services/MathService'</span>;
@@ -6345,7 +6503,7 @@ npx tsx --test tests/**/*.test.ts</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { describe, it, before } <span class="kw">from</span> <span class="str">'node:test'</span>;
 <span class="kw">import</span> assert <span class="kw">from</span> <span class="str">'node:assert'</span>;
 <span class="kw">import</span> { createApp, Kernel, Request, Response } <span class="kw">from</span> <span class="str">'arikajs'</span>;
@@ -6449,7 +6607,7 @@ arika benchmark --duration=15 --connections=500</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre
                                                         style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Install the package</span>
 npm install @arikajs/socialite
@@ -6481,7 +6639,7 @@ arika socialite:install</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export default</span> {
     providers: {
         github: {
@@ -6525,7 +6683,7 @@ arika socialite:install</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Socialite } <span class="kw">from</span> <span class="str">'@arikajs/socialite'</span>;
 <span class="kw">import</span> { Auth, Request, Response } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
@@ -6581,7 +6739,7 @@ arika socialite:install</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">const</span> user = <span class="kw">await</span> Socialite.<span class="fn">driver</span>(<span class="str">'google'</span>).<span class="fn">stateless</span>().<span class="fn">user</span>();</code></pre>
                                                 </div>
                                             </div>
@@ -6619,7 +6777,7 @@ arika socialite:install</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Carbon } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
 <span class="kw">const</span> now = Carbon.<span class="fn">now</span>();                 <span class="comment">// Current time</span>
@@ -6653,7 +6811,7 @@ arika socialite:install</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">const</span> dt = Carbon.<span class="fn">parse</span>(<span class="str">'2025-03-22 14:30:00'</span>);
 
 dt.<span class="fn">format</span>(<span class="str">'Y-m-d'</span>);          <span class="comment">// 2025-03-22</span>
@@ -6708,7 +6866,7 @@ dt.<span class="fn">diffForHumans</span>();          <span class="comment">// "2
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">const</span> dt = Carbon.<span class="fn">now</span>()
     .<span class="fn">addWeeks</span>(<span class="nm">2</span>)
     .<span class="fn">subDays</span>(<span class="nm">1</span>)
@@ -6745,7 +6903,7 @@ dt.<span class="fn">nextSunday</span>();</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">const</span> a = Carbon.<span class="fn">parse</span>(<span class="str">'2025-01-01'</span>);
 <span class="kw">const</span> b = Carbon.<span class="fn">parse</span>(<span class="str">'2025-12-31'</span>);
 
@@ -6781,7 +6939,7 @@ a.<span class="fn">isBetween</span>(start, end); <span class="comment">// boolea
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;">&lt;p&gt;Joined: {{ <span class="fn">carbon</span>(user.created_at).<span class="fn">diffForHumans</span>() }}&lt;/p&gt;
 &lt;p&gt;Last Update: {{ <span class="fn">carbon</span>(user.updated_at).<span class="fn">format</span>(<span class="str">'d M Y'</span>) }}&lt;/p&gt;
 
@@ -6822,7 +6980,7 @@ a.<span class="fn">isBetween</span>(start, end); <span class="comment">// boolea
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre
                                                         style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Add the premium alert package</span>
 npm install @arikajs/sweet</code></pre>
@@ -6852,7 +7010,7 @@ npm install @arikajs/sweet</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { sweet } <span class="kw">from</span> <span class="str">'@arikajs/sweet'</span>;
 
 <span class="comment">// Simple success alert</span>
@@ -6891,7 +7049,7 @@ sweet.<span class="fn">toast</span>(<span class="str">'Sync complete!'</span>, <
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Automatically handles UI states for the provided promise</span>
 sweet.<span class="fn">promise</span>(User.<span class="fn">save</span>(data), {
     loading: <span class="str">'Updating your profile...'</span>,
@@ -6924,7 +7082,7 @@ sweet.<span class="fn">promise</span>(User.<span class="fn">save</span>(data), {
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">if</span> (<span class="kw">await</span> sweet.<span class="fn">confirm</span>(<span class="str">'Danger Zone'</span>, <span class="str">'Delete this project?'</span>)) {
     <span class="kw">await</span> Project.<span class="fn">delete</span>(id);
     sweet.<span class="fn">success</span>(<span class="str">'Project eradicated.'</span>);
@@ -6966,7 +7124,7 @@ sweet.<span class="fn">promise</span>(User.<span class="fn">save</span>(data), {
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># 1. Install the documentation engine</span>
 npm install @arikajs/docs
 
@@ -6997,7 +7155,7 @@ arika docs:install</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { DocsServiceProvider } <span class="kw">from</span> <span class="str">'@arikajs/docs'</span>;
 
 app.<span class="fn">register</span>(DocsServiceProvider);</code></pre>
@@ -7028,7 +7186,7 @@ app.<span class="fn">register</span>(DocsServiceProvider);</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># Analyze routes and generate HTML, OpenAPI, and Postman files</span>
 arika docs:generate</code></pre>
                                                 </div>
@@ -7055,7 +7213,7 @@ arika docs:generate</code></pre>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="window-body">
+                                            <div class="window-body">
                                                     <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export default</span> {
     title: <span class="str">'Horizon API'</span>,
     version: <span class="str">'2.1.0'</span>,
