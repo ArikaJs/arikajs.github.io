@@ -4668,6 +4668,243 @@ schedule.<span class="fn">command</span>(<span class="str">'logs:clear --days=30
                                     </div>
                                 </section>
 
+                                <section id="authentication" style="margin-top: 100px;">
+                                    <div
+                                        style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
+                                        Security</div>
+                                    <h1>Authentication</h1>
+                                    <p class="lead">ArikaJS provides a robust, multi-guard authentication system that 
+                                        supports both traditional session-based web applications and modern, 
+                                        stateless API architectures using JSON Web Tokens (JWT).</p>
+
+                                    <div class="docs-property-grid">
+                                        <div class="property-card">
+                                            <div class="property-name">Multi-Guard</div>
+                                            <p class="property-desc">Configure different authentication strategies for 
+                                                your Web and API routes independently.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Password Hashing</div>
+                                            <p class="property-desc">Automatic, industry-standard password security 
+                                                using Bcrypt or Argon2 algorithms.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">"Remember Me"</div>
+                                            <p class="property-desc">Secure, persistent login across sessions with built-in 
+                                                token rotation and expiry.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Email Verification</div>
+                                            <p class="property-desc">Built-in support for verifying user emails before 
+                                                granting access to specific features.</p>
+                                        </div>
+                                    </div>
+
+                                    <div id="auth-usage" style="margin-top: 60px;">
+                                        <h2>Authenticating Users</h2>
+                                        <p>You can authenticate users using the <code>auth</code> facade. The 
+                                            system automatically identifies the correct guard based on your context.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">app/Http/Controllers/AuthController.ts</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { auth } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="kw">export class</span> AuthController {
+    <span class="kw">async</span> <span class="fn">login</span>({ request, response }) {
+        <span class="kw">const</span> { email, password, remember } = request.<span class="fn">only</span>([<span class="str">'email'</span>, <span class="str">'password'</span>, <span class="str">'remember'</span>]);
+
+        <span class="comment">// Attempt login (true enables Remember Me)</span>
+        <span class="kw">if</span> (<span class="kw">await</span> auth.<span class="fn">attempt</span>({ email, password }, remember)) {
+            <span class="kw">return</span> response.<span class="fn">redirect</span>(<span class="str">'/dashboard'</span>);
+        }
+
+        <span class="kw">return</span> response.<span class="fn">back</span>().<span class="fn">withErrors</span>({ auth: <span class="str">'Invalid credentials'</span> });
+    }
+
+    <span class="kw">async</span> <span class="fn">profile</span>({ request }) {
+        <span class="comment">// Access the authenticated user</span>
+        <span class="kw">const</span> user = <span class="kw">await</span> auth.<span class="fn">user</span>();
+        <span class="kw">return</span> user;
+    }
+}</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="auth-middleware" style="margin-top: 60px;">
+                                        <h2>Protecting Routes</h2>
+                                        <p>Use the <code>auth</code> middleware to restrict access to specific routes. 
+                                            You can specify a guard (like <code>jwt</code>) to use for that route.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">routes/web.ts</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Protect web routes (uses session guard by default)</span>
+Route.<span class="fn">get</span>(<span class="str">'/settings'</span>, <span class="str">'SettingsController.index'</span>).<span class="fn">middleware</span>([<span class="str">'auth'</span>]);
+
+<span class="comment">// Protect API routes using JWT</span>
+Route.<span class="fn">get</span>(<span class="str">'/api/user'</span>, <span class="str">'ApiController.user'</span>).<span class="fn">middleware</span>([<span class="str">'auth:jwt'</span>]);</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="authorization" style="margin-top: 100px;">
+                                    <div
+                                        style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
+                                        Security</div>
+                                    <h1>Authorization</h1>
+                                    <p class="lead">While authentication identifies who a user is, authorization 
+                                        determines what they are allowed to do. Arika provides a clean system using 
+                                        simple Gates and structured Policies.</p>
+
+                                    <div id="auth-gates" style="margin-top: 60px;">
+                                        <h2>Gates (Closure Checks)</h2>
+                                        <p>Gates are ideal for simple, non-resource-specific checks. You define 
+                                            them in your <code>AuthServiceProvider</code>.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">app/Providers/AuthServiceProvider.ts</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Gate } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+Gate.<span class="fn">define</span>(<span class="str">'access-admin-panel'</span>, (user) => {
+    <span class="kw">return</span> user.role === <span class="str">'admin'</span>;
+});</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="auth-policies" style="margin-top: 60px;">
+                                        <h2>Policies (Resource Logic)</h2>
+                                        <p>Policies organize authorization logic around a specific model. For 
+                                            example, a <code>PostPolicy</code> manages access to Blog Posts.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">app/Policies/PostPolicy.ts</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> PostPolicy {
+    <span class="kw">async</span> <span class="fn">update</span>(user, post) {
+        <span class="comment">// Only the author can update the post</span>
+        <span class="kw">return</span> user.id === post.userId;
+    }
+
+    <span class="kw">async</span> <span class="fn">delete</span>(user, post) {
+        <span class="comment">// Admins or the author can delete</span>
+        <span class="kw">return</span> user.role === <span class="str">'admin'</span> || user.id === post.userId;
+    }
+}</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="auth-checks" style="margin-top: 60px;">
+                                        <h2>Performing Checks</h2>
+                                        <p>You can verify permissions in Controllers, Blade templates, or even 
+                                            directly inside route definitions.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">Usage Example</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// In a Controller</span>
+<span class="kw">if</span> (<span class="kw">await</span> request.<span class="fn">can</span>(<span class="str">'update'</span>, post)) {
+    <span class="comment">// Authorized...</span>
+}
+
+<span class="comment">// In an Ark Blade Template</span>
+@can('update', post)
+    &lt;button&gt;Edit Post&lt;/button&gt;
+@endcan</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="encryption" style="margin-top: 100px;">
+                                    <div
+                                        style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
+                                        Security</div>
+                                    <h1>Encryption & Hashing</h1>
+                                    <p class="lead">ArikaJS provides simple, secure tools for handling sensitive data. 
+                                        Encryption is used for data that needs to be decrypted later, while 
+                                        Hashing is used for one-way security (like passwords).</p>
+
+                                    <div class="docs-property-grid">
+                                        <div class="property-card">
+                                            <div class="property-name">AES-256-GCM</div>
+                                            <p class="property-desc">Secure, modern encryption with built-in integrity 
+                                                checks to prevent tampering.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Argon2 & Bcrypt</div>
+                                            <p class="property-desc">State-of-the-art password hashing that is resistant 
+                                                to brute force and rainbow table attacks.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Key Rotation</div>
+                                            <p class="property-desc">Support for multiple framework keys allows for seamless 
+                                                security updates without breaking existing data.</p>
+                                        </div>
+                                    </div>
+
+                                    <div id="crypto-encryption" style="margin-top: 60px;">
+                                        <h2>Encryption</h2>
+                                        <p>Encryption uses your <code>APP_KEY</code> to turn data into unreadable strings 
+                                            that can be safely stored or transmitted.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">Crypt Usage</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Crypt } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="comment">// Encrypt any value (strings, objects, arrays)</span>
+<span class="kw">const</span> secret = Crypt.<span class="fn">encrypt</span>({ apiKey: <span class="str">'12345'</span> });
+
+<span class="comment">// Decrypt it back</span>
+<span class="kw">const</span> original = Crypt.<span class="fn">decrypt</span>(secret);</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="crypto-hashing" style="margin-top: 60px;">
+                                        <h2>Password Hashing</h2>
+                                        <p>Unlike encryption, hashing is a one-way process. You never "decrypt" a password; 
+                                            instead, you hash the input and compare it to the stored hash.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">Hash Usage</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Hash } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="comment">// Securely hash a password</span>
+<span class="kw">const</span> hashed = <span class="kw">await</span> Hash.<span class="fn">make</span>(plaintextPassword);
+
+<span class="comment">// Check password against a hash</span>
+<span class="kw">const</span> isValid = <span class="kw">await</span> Hash.<span class="fn">check</span>(inputPassword, storedHash);</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
                                 <section id="database-getting-started" style="margin-top: 100px;">
                                     <div
                                         style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
