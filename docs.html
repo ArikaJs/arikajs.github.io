@@ -3330,134 +3330,136 @@ REDIS_PORT=6379</code></pre>
                                 style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
                                 Digging Deeper</div>
                             <h1>Events</h1>
-                            <p class="lead">Arika Events provide a simple observer implementation, allowing you to
-                                subscribe and listen for various events that occur in your application. It follow the
-                                "Don't Call, React" philosophy to ensure your codebase stays decoupled and scalable.</p>
+                            <p class="lead">Arika Events provide a sophisticated observer implementation, allowing you to 
+                                subscribe and react to various occurrences in your application. By following the 
+                                "React, Don't Call" philosophy, you ensure your business logic remains decoupled, 
+                                testable, and highly scalable.</p>
 
                             <div class="docs-property-grid">
                                 <div class="property-card">
-                                    <div class="property-name">Decoupled Architecture</div>
-                                    <p class="property-desc">Separate core business logic from side effects like
-                                        notifications, reporting, or data syncing.</p>
+                                    <div class="property-name">Automatic Injection</div>
+                                    <p class="property-desc">Listeners are automatically resolved via the Service Container, 
+                                        allowing you to inject any dependency (e.g., Mailer, DB) into the constructor.</p>
                                 </div>
                                 <div class="property-card">
                                     <div class="property-name">Queued Listeners</div>
-                                    <p class="property-desc">Offload time-consuming tasks to the background by simply
-                                        adding a <code>shouldQueue</code> property to your listener.</p>
+                                    <p class="property-desc">Simply add <code>public shouldQueue = true</code> to any 
+                                        listener class to offload the work to the background queue system automagically.</p>
                                 </div>
                                 <div class="property-card">
-                                    <div class="property-name">Priority Control</div>
-                                    <p class="property-desc">Precisely order how listeners react to a specific event
-                                        using numeric priority rankings.</p>
+                                    <div class="property-name">Ordered Execution</div>
+                                    <p class="property-desc">Gain precise control over side-effect execution order using 
+                                        numeric priorities—higher priorities run before lower ones.</p>
                                 </div>
                                 <div class="property-card">
-                                    <div class="property-name">Wildcard Support</div>
-                                    <p class="property-desc">Listen to multiple related events at once using pattern
-                                        matching like <code>user.*</code>.</p>
+                                    <div class="property-name">Wildcard Patterns</div>
+                                    <p class="property-desc">React to groups of events using wildcard matching. For example, 
+                                        <code>order.*</code> catches <code>order.created</code> and <code>order.shipped</code>.</p>
                                 </div>
                             </div>
 
-                            <h2>Real-Life Scenario: User Registration</h2>
-                            <p>Imagine a user signs up. You need to: 1. Sync their data with a CRM (Sync) and 2. Send a
-                                welcome email (ASync/Queued). First, generate the necessary classes using the CLI:</p>
-
-                            <div class="docs-code-window">
-                                <div class="window-header">
-                                    <div class="dot dot-red"></div>
-                                    <div class="dot dot-yellow"></div>
-                                    <div class="dot dot-green"></div>
-                                    <div class="window-filename">CLI Scaffolding</div>
-                                    <button class="copy-btn" aria-label="Copy code">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="window-body">
-                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># 1. Create the event</span>
-arika make:event UserRegistered
-
-<span class="comment"># 2. Create the listeners</span>
-arika make:listener SyncWithCRM
-arika make:listener SendWelcomeEmail</code></pre>
+                            <div id="events-real-world" style="margin-top: 60px;">
+                                <h2>Real-World Example: Order Processing</h2>
+                                <p>In a typical e-commerce application, placing an order triggers multiple side effects: 
+                                    reducing inventory stock (Synchronous/Immediate) and sending a confirmation email (Asynchronous/Queued). 
+                                    First, generate your components:</p>
+                                <div class="docs-code-window">
+                                    <div class="window-header">
+                                        <div class="dot dot-red"></div>
+                                        <div class="dot dot-yellow"></div>
+                                        <div class="dot dot-green"></div>
+                                        <div class="window-filename">Terminal</div>
+                                        <button class="copy-btn" aria-label="Copy code">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="window-body">
+                                        <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">arika</span> make:event OrderPlaced
+<span class="kw">arika</span> make:listener UpdateInventory --event=OrderPlaced
+<span class="kw">arika</span> make:listener SendOrderEmail --event=OrderPlaced</code></pre>
+                                    </div>
                                 </div>
                             </div>
 
-                            <p>Now, implement the logic in the generated files:</p>
+                            <div id="events-implementation" style="margin-top: 60px;">
+                                <h2>Defining Class-Based Events</h2>
+                                <p>An event class is a simple data container for the information associated with the 
+                                    event, usually acting as a DTO (Data Transfer Object).</p>
+                                <div class="docs-code-window">
+                                    <div class="window-header">
+                                        <div class="dot dot-red"></div>
+                                        <div class="dot dot-yellow"></div>
+                                        <div class="dot dot-green"></div>
+                                        <div class="window-filename">app/Events/OrderPlaced.ts</div>
+                                    </div>
+                                    <div class="window-body">
+                                        <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Order } <span class="kw">from</span> <span class="str">'app/Models/Order'</span>;
 
-                            <div class="docs-code-window">
-                                <div class="window-header">
-                                    <div class="dot dot-red"></div>
-                                    <div class="dot dot-yellow"></div>
-                                    <div class="dot dot-green"></div>
-                                    <div class="window-filename">Event & Listener Implementation</div>
-                                    <button class="copy-btn" aria-label="Copy code">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                        </svg>
-                                    </button>
+<span class="kw">export class</span> OrderPlaced {
+    <span class="kw">constructor</span>(<span class="kw">public</span> order: Order) {}
+}</code></pre>
+                                    </div>
                                 </div>
-                                <div class="window-body">
-                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// app/Events/UserRegistered.ts</span>
-<span class="kw">export class</span> UserRegistered {
-    <span class="kw">constructor</span>(<span class="kw">public</span> user: User) {}
-}
+                            </div>
 
-<span class="comment">// app/Listeners/SyncWithCRM.ts (Immediate)</span>
-<span class="kw">export class</span> SyncWithCRM {
-    <span class="kw">async</span> <span class="fn">handle</span>(event: UserRegistered) {
-        <span class="kw">await</span> CRM.<span class="fn">sync</span>(event.user);
-    }
-}
+                            <div id="events-listeners" style="margin-top: 60px;">
+                                <h2>Implementing Listeners</h2>
+                                <p>Listeners contain the logic for the side-effect. They receive the event instance 
+                                    in their <code>handle()</code> method.</p>
+                                <div class="docs-code-window">
+                                    <div class="window-header">
+                                        <div class="dot dot-red"></div>
+                                        <div class="dot dot-yellow"></div>
+                                        <div class="dot dot-green"></div>
+                                        <div class="window-filename">app/Listeners/SendOrderEmail.ts</div>
+                                    </div>
+                                    <div class="window-body">
+                                        <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { OrderPlaced } <span class="kw">from</span> <span class="str">'app/Events/OrderPlaced'</span>;
+<span class="kw">import</span> { Mail } <span class="kw">from</span> <span class="str">'arikajs'</span>;
 
-<span class="comment">// app/Listeners/SendWelcomeEmail.ts (Queued)</span>
-<span class="kw">export class</span> SendWelcomeEmail {
+<span class="kw">export class</span> SendOrderEmail {
+    <span class="comment">// Offload to background queue automatically</span>
     <span class="kw">public</span> shouldQueue = <span class="kw">true</span>;
 
-    <span class="kw">async</span> <span class="fn">handle</span>(event: UserRegistered) {
-        <span class="kw">await</span> Mail.<span class="fn">to</span>(event.user.email).<span class="fn">send</span>(<span class="kw">new</span> WelcomeMail(event.user));
+    <span class="kw">async</span> <span class="fn">handle</span>(event: OrderPlaced) {
+        <span class="kw">await</span> Mail.<span class="fn">to</span>(event.order.customer.email)
+            .<span class="fn">send</span>(<span class="kw">new</span> <span class="fn">OrderConfirmationEmail</span>(event.order));
     }
 }</code></pre>
+                                    </div>
                                 </div>
                             </div>
 
-                            <h2>Dispatching & Registration</h2>
-                            <p>Register your events in your <code>EventServiceProvider</code> or directly using the
-                                <code>Event</code> facade.
-                            </p>
-                            <div class="docs-code-window">
-                                <div class="window-header">
-                                    <div class="dot dot-red"></div>
-                                    <div class="dot dot-yellow"></div>
-                                    <div class="dot dot-green"></div>
-                                    <div class="window-filename">app/Providers/EventServiceProvider.ts</div>
-                                    <button class="copy-btn" aria-label="Copy code">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="window-body">
-                                    <pre
-                                        style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Event } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+                            <div id="events-registration" style="margin-top: 60px;">
+                                <h2>Registration & Dispatching</h2>
+                                <p>Register your mappings in the <code>EventServiceProvider</code> and dispatch 
+                                    them using the <code>Event</code> facade from your Controllers.</p>
+                                <div class="docs-code-window">
+                                    <div class="window-header">
+                                        <div class="dot dot-red"></div>
+                                        <div class="dot dot-yellow"></div>
+                                        <div class="dot dot-green"></div>
+                                        <div class="window-filename">app/Providers/EventServiceProvider.ts</div>
+                                    </div>
+                                    <div class="window-body">
+                                        <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Event } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+<span class="kw">import</span> { OrderPlaced } <span class="kw">from</span> <span class="str">'app/Events/OrderPlaced'</span>;
+<span class="kw">import</span> { UpdateInventory, SendOrderEmail } <span class="kw">from</span> <span class="str">'app/Listeners'</span>;
 
-<span class="comment">// Registering listeners</span>
-Event.<span class="fn">listen</span>(UserRegistered, [
-    SyncWithCRM,
-    SendWelcomeEmail
+<span class="comment">// Within boot() or register()</span>
+Event.<span class="fn">listen</span>(OrderPlaced, [
+    UpdateInventory, <span class="comment">// Executes first (Priority 0)</span>
+    SendOrderEmail,   <span class="comment">// Dispatched to background queue</span>
 ]);
 
-<span class="comment">// --- Dispatching in a Controller ---</span>
-Event.<span class="fn">dispatch</span>(<span class="kw">new</span> <span class="fn">UserRegistered</span>(user));</code></pre>
+<span class="comment">// --- In your CheckoutController ---</span>
+Event.<span class="fn">dispatch</span>(<span class="kw">new</span> <span class="fn">OrderPlaced</span>(newOrder));</code></pre>
+                                    </div>
                                 </div>
                             </div>
 
@@ -3469,144 +3471,70 @@ Event.<span class="fn">dispatch</span>(<span class="kw">new</span> <span class="
                                     <div class="dot dot-red"></div>
                                     <div class="dot dot-yellow"></div>
                                     <div class="dot dot-green"></div>
-                                    <div class="window-filename">app/Listeners/UserEventSubscriber.ts</div>
-                                    <button class="copy-btn" aria-label="Copy code">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="window-body">
-                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> UserEventSubscriber {
-    <span class="fn">subscribe</span>(events) {
-        events.<span class="fn">listen</span>(<span class="str">'auth.login'</span>, this.<span class="fn">onUserLogin</span>);
-        events.<span class="fn">listen</span>(<span class="str">'auth.logout'</span>, this.<span class="fn">onUserLogout</span>);
+                            <div id="events-subscribers" style="margin-top: 60px;">
+                                <h2>Event Subscribers</h2>
+                                <p>Subscribers allow you to handle multiple event types from a single class, 
+                                    grouping related event logic together for better organization.</p>
+                                <div class="docs-code-window">
+                                    <div class="window-header">
+                                        <div class="dot dot-red"></div>
+                                        <div class="dot dot-yellow"></div>
+                                        <div class="dot dot-green"></div>
+                                        <div class="window-filename">app/Listeners/UserSubscriber.ts</div>
+                                    </div>
+                                    <div class="window-body">
+                                        <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export class</span> UserSubscriber {
+    <span class="kw">public</span> <span class="fn">subscribe</span>(events) {
+        <span class="comment">// Register multiple mappings at once</span>
+        events.<span class="fn">listen</span>(<span class="str">'auth.login'</span>, <span class="kw">this</span>.<span class="fn">onLogin</span>);
+        events.<span class="fn">listen</span>(<span class="str">'auth.logout'</span>, <span class="kw">this</span>.<span class="fn">onLogout</span>);
     }
 
-    <span class="fn">onUserLogin</span>(event) { <span class="comment">/* ... */</span> }
-    <span class="fn">onUserLogout</span>(event) { <span class="comment">/* ... */</span> }
+    <span class="kw">async</span> <span class="fn">onLogin</span>(event) { <span class="comment">/* Logic... */</span> }
+    <span class="kw">async</span> <span class="fn">onLogout</span>(event) { <span class="comment">/* Logic... */</span> }
 }</code></pre>
+                                    </div>
                                 </div>
                             </div>
 
-                            <h2>Core API Reference</h2>
-                            <div class="docs-property-grid" style="grid-template-columns: 1fr;">
-                                <div class="property-card">
-                                    <div class="property-name">Event.listen(event, listener, priority = 0)</div>
-                                    <p class="property-desc">Assign a listener to an event. Use a closure or a class
-                                        name. Higher priority numbers execute first.</p>
-                                </div>
-                                <div class="property-card">
-                                    <div class="property-name">Event.dispatch(instance)</div>
-                                    <p class="property-desc">Fire an event instance, triggering all registered sync and
-                                        queued listeners.</p>
-                                </div>
-                                <div class="property-card">
-                                    <div class="property-name">Event.subscribe(SubscriberClass)</div>
-                                    <p class="property-desc">Register a subscriber class that handles multiple event
-                                        types within a single context.</p>
-                                </div>
-                                <div class="property-card">
-                                    <div class="property-name">Event.forget(event)</div>
-                                    <p class="property-desc">Removes all registered listeners and wildcard patterns for
-                                        the specified event.</p>
+                            <div id="events-api" style="margin-top: 60px;">
+                                <h2>Core API Reference</h2>
+                                <div class="docs-property-grid" style="grid-template-columns: 1fr;">
+                                    <div class="property-card">
+                                        <div class="property-name"><code>Event.listen(event, listener, priority = 0)</code></div>
+                                        <p class="property-desc">Assign a listener to an event. Use a closure or a class name. Higher priority numbers execute first.</p>
+                                    </div>
+                                    <div class="property-card">
+                                        <div class="property-name"><code>Event.dispatch(instance)</code></div>
+                                        <p class="property-desc">Fire an event instance, triggering all registered sync and queued listeners.</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <h2>Listener Priorities</h2>
-                            <p>When multiple listeners are assigned to the same event, you can control their execution
-                                order using the third argument of the <code>listen</code> method.</p>
-                            <div class="docs-code-window">
-                                <div class="window-header">
-                                    <div class="dot dot-red"></div>
-                                    <div class="dot dot-yellow"></div>
-                                    <div class="dot dot-green"></div>
-                                    <div class="window-filename">Execution Order</div>
-                                    <button class="copy-btn" aria-label="Copy code">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="window-body">
-                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Runs first</span>
+                            <div id="events-advanced" style="margin-top: 60px;">
+                                <h2>Advanced Patterns</h2>
+                                <p>Gain precise control over execution flow using priorities and catch-all listeners.</p>
+                                <div class="docs-code-window">
+                                    <div class="window-header">
+                                        <div class="dot dot-red"></div>
+                                        <div class="dot dot-yellow"></div>
+                                        <div class="dot dot-green"></div>
+                                        <div class="window-filename">Priorities & Wildcards</div>
+                                    </div>
+                                    <div class="window-body">
+                                        <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// High priority runs first</span>
 Event.<span class="fn">listen</span>(OrderPlaced, ProcessPayment, <span class="nm">100</span>);
+Event.<span class="fn">listen</span>(OrderPlaced, NotifyCustomer, <span class="nm">10</span>);
 
-<span class="comment">// Runs later</span>
-Event.<span class="fn">listen</span>(OrderPlaced, SendConfirmationEmail, <span class="nm">10</span>);</code></pre>
-                                </div>
-                            </div>
-
-                            <h2>Wildcard Listeners</h2>
-                            <p>Register listeners that catch multiple events using the <code>*</code> character. This is
-                                highly effective for logging or auditing modules.</p>
-                            <div class="docs-code-window">
-                                <div class="window-header">
-                                    <div class="dot dot-red"></div>
-                                    <div class="dot dot-yellow"></div>
-                                    <div class="dot dot-green"></div>
-                                    <div class="window-filename">Patterns</div>
-                                    <button class="copy-btn" aria-label="Copy code">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="window-body">
-                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment">// Catches 'user.login', 'user.registered', etc.</span>
-Event.<span class="fn">listen</span>(<span class="str">'user.*'</span>, (eventName, data) => {
-    console.<span class="fn">log</span>(<span class="str">`Activity on \${eventName}`</span>);
+<span class="comment">// Wildcard catch-all</span>
+Event.<span class="fn">listen</span>(<span class="str">'order.*'</span>, (event) => {
+    <span class="comment">// Triggers for order.placed, order.shipped, etc.</span>
+    Log.<span class="fn">info</span>(<span class="str">'Order activity detected'</span>, event);
 });</code></pre>
+                                    </div>
                                 </div>
                             </div>
-
-                            <h2>Testing & Assertions</h2>
-                            <p>Never trigger real-world side effects during tests. ArikaJS allows you to "fake" the
-                                entire event system to verify that events were dispatched without actually executing
-                                listeners.</p>
-                            <div class="docs-code-window">
-                                <div class="window-header">
-                                    <div class="dot dot-red"></div>
-                                    <div class="dot dot-yellow"></div>
-                                    <div class="dot dot-green"></div>
-                                    <div class="window-filename">tests/Auth.test.ts</div>
-                                    <button class="copy-btn" aria-label="Copy code">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="window-body">
-                                    <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Event } <span class="kw">from</span> <span class="str">'arikajs'</span>;
-
-<span class="fn">it</span>(<span class="str">'dispatches user registered event'</span>, <span class="kw">async</span> () => {
-    Event.<span class="fn">fake</span>();
-
-    <span class="kw">await</span> <span class="fn">post</span>(<span class="str">'/register'</span>, userData);
-
-    <span class="comment">// Basic Assertion</span>
-    Event.<span class="fn">assertDispatched</span>(UserRegistered);
-
-    <span class="comment">// Advanced Assertion with logic</span>
-    Event.<span class="fn">assertDispatched</span>(UserRegistered, (event) => {
-        <span class="kw">return</span> event.user.email === <span class="str">'test@example.com'</span>;
-    });
-});</code></pre>
-                                </div>
-                            </div>
-
+                        </section>
                             <section id="storage" style="margin-top: 100px;">
                                 <div
                                     style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
@@ -4520,6 +4448,150 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
 <span class="comment"># Setup database queue table</span>
 <span class="kw">arika</span> queue:table
 <span class="kw">arika</span> migrate</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="task-scheduling" style="margin-top: 100px;">
+                                    <div
+                                        style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
+                                        Queue & Scheduling</div>
+                                    <h1>Task Scheduling</h1>
+                                    <p class="lead">ArikaJS Task Scheduling provides a clean, fluent interface for 
+                                        managing periodic tasks within your application. Instead of managing complex 
+                                        cron entries on your server, you define your schedule directly in code.</p>
+
+                                    <div class="docs-property-grid">
+                                        <div class="property-card">
+                                            <div class="property-name">Fluent Definition</div>
+                                            <p class="property-desc">Define schedules using human-readable methods like 
+                                                <code>daily()</code>, <code>hourly()</code>, or <code>everyMinute()</code>.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Overlap Protection</div>
+                                            <p class="property-desc">Prevent a task from starting if its previous instance 
+                                                is still running using the <code>withoutOverlapping()</code> builder.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Cluster Safety</div>
+                                            <p class="property-desc">Built-in leader election ensures that scheduled tasks 
+                                                run only on one server in a clustered environment.</p>
+                                        </div>
+                                        <div class="property-card">
+                                            <div class="property-name">Queue Integration</div>
+                                            <p class="property-desc">Automatically offload scheduled tasks to your 
+                                                background queue system for high-performance execution.</p>
+                                        </div>
+                                    </div>
+
+                                    <div id="scheduling-kernel" style="margin-top: 60px;">
+                                        <h2>Defining Schedules</h2>
+                                        <p>All scheduled tasks are defined in your <code>app/Console/Kernel.ts</code> 
+                                            file. The scheduler receives a <code>Schedule</code> instance that you 
+                                            can use to build your task list.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">app/Console/Kernel.ts</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Schedule } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="kw">export default</span> (<span class="fn">schedule</span>: Schedule) => {
+    <span class="comment">// Run a console command daily</span>
+    schedule.<span class="fn">command</span>(<span class="str">'app:cleanup'</span>).<span class="fn">daily</span>();
+
+    <span class="comment">// Dispatch a job to the queue every hour</span>
+    schedule.<span class="fn">job</span>(<span class="kw">new</span> <span class="fn">SyncInventory</span>()).<span class="fn">hourly</span>();
+
+    <span class="comment">// Execute a closure every 5 minutes</span>
+    schedule.<span class="fn">call</span>(<span class="kw">async</span> () => {
+        <span class="kw">await</span> DB.<span class="fn">table</span>(<span class="str">'users'</span>).<span class="fn">where</span>(<span class="str">'active'</span>, <span class="kw">false</span>).<span class="fn">delete</span>();
+    }).<span class="fn">everyFiveMinutes</span>().<span class="fn">name</span>(<span class="str">'delete-inactive-users'</span>);
+};</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="scheduling-real-world" style="margin-top: 60px;">
+                                        <h2>Real-World Example: Nightly Maintenance</h2>
+                                        <p>Common maintenance tasks like backing up the database and clearing logs 
+                                            should run during low-traffic periods. Here is how you implement a 
+                                            robust maintenance schedule:</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">System Maintenance Schedule</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;">schedule.<span class="fn">command</span>(<span class="str">'db:backup'</span>)
+    .<span class="fn">dailyAt</span>(<span class="str">'01:30'</span>)
+    .<span class="fn">timezone</span>(<span class="str">'Asia/Kolkata'</span>)
+    .<span class="fn">withoutOverlapping</span>()
+    .<span class="fn">onFailure</span>(<span class="kw">async</span> (err) => {
+        <span class="kw">await</span> Notification.<span class="fn">send</span>(<span class="str">'Backup Failed: '</span> + err.message);
+    });
+
+schedule.<span class="fn">command</span>(<span class="str">'logs:clear --days=30'</span>)
+    .<span class="fn">weekly</span>()
+    .<span class="fn">mondays</span>()
+    .<span class="fn">at</span>(<span class="str">'03:00'</span>);</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="scheduling-frequency" style="margin-top: 60px;">
+                                        <h2>Frequency Reference</h2>
+                                        <p>The scheduler provides a wide variety of frequency constraints that 
+                                            you can chain to your tasks for precise timing.</p>
+                                        <div class="docs-property-grid" style="grid-template-columns: 1fr 1fr;">
+                                            <div class="property-card">
+                                                <div class="property-name">everyMinute()</div>
+                                                <p class="property-desc">Run the task every single minute.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">hourly()</div>
+                                                <p class="property-desc">Run the task every hour at the top of the hour.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">daily()</div>
+                                                <p class="property-desc">Run the task every day at midnight (00:00).</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">dailyAt('13:00')</div>
+                                                <p class="property-desc">Run the task daily at a specific 24h time.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">weekdays()</div>
+                                                <p class="property-desc">Limit the task to Monday through Friday.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">cron('* * * * *')</div>
+                                                <p class="property-desc">Use a custom cron expression for complex timings.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="scheduling-running" style="margin-top: 60px;">
+                                        <h2>Executing the Scheduler</h2>
+                                        <p>To start processing tasks, you can either run a persistent daemon or 
+                                            configure a standard system cron job to trigger the scheduler every minute.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">Terminal</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># RECOMMENDED: Run as a persistent background daemon</span>
+<span class="kw">arika</span> schedule:work
+
+<span class="comment"># CRON MODE: Run once to process due tasks (set this to run every minute)</span>
+<span class="kw">arika</span> schedule:run</code></pre>
                                             </div>
                                         </div>
                                     </div>
