@@ -4079,6 +4079,163 @@ AWS_BUCKET=my-app-assets
                                     </div>
                                 </section>
 
+                                <section id="mail" style="margin-top: 100px;">
+                                    <div
+                                        style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
+                                        Digging Deeper</div>
+                                    <h1>Mail</h1>
+                                    <p class="lead">ArikaJS provides a clean, driver-based email delivery system built on
+                                        top of popular transports. It supports templated emails, attachments, and 
+                                        asynchronous delivery through the Arika Queue system.</p>
+
+                                    <div id="mail-configuration">
+                                        <h2>Configuration</h2>
+                                        <p>You can configure your mailers in the <code>config/mail.ts</code> file. 
+                                            Arika supports multiple mailers, allowing you to use different transports 
+                                            for different parts of your application.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">config/mail.ts</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">export default</span> {
+    default: <span class="fn">env</span>(<span class="str">'MAIL_MAILER'</span>, <span class="str">'smtp'</span>),
+    mailers: {
+        smtp: {
+            transport: <span class="str">'smtp'</span>,
+            host: <span class="fn">env</span>(<span class="str">'MAIL_HOST'</span>, <span class="str">'smtp.mailtrap.io'</span>),
+            port: <span class="fn">env</span>(<span class="str">'MAIL_PORT'</span>, <span class="nm">587</span>),
+            username: <span class="fn">env</span>(<span class="str">'MAIL_USERNAME'</span>),
+            password: <span class="fn">env</span>(<span class="str">'MAIL_PASSWORD'</span>),
+        },
+        log: { transport: <span class="str">'log'</span> }
+    },
+    from: {
+        address: <span class="fn">env</span>(<span class="str">'MAIL_FROM_ADDRESS'</span>, <span class="str">'hello@arika.dev'</span>),
+        name: <span class="fn">env</span>(<span class="str">'MAIL_FROM_NAME'</span>, <span class="str">'ArikaJS'</span>)
+    }
+};</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="mail-env" style="margin-top: 60px;">
+                                        <h2>Environment Settings</h2>
+                                        <p>Update your <code>.env</code> file with your mail provider credentials:</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">.env</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;">MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=587
+MAIL_USERNAME=your_username
+MAIL_PASSWORD=your_password
+MAIL_FROM_ADDRESS=hello@example.com</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="mail-mailables" style="margin-top: 60px;">
+                                        <h2>Mailables</h2>
+                                        <p>ArikaJS uses "Mailables" to represent each type of email sent by your 
+                                            application. These classes are stored in <code>app/Mail</code> and contain 
+                                            the logic for building the email.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">app/Mail/WelcomeEmail.ts</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Mailable } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+
+<span class="kw">export class</span> WelcomeEmail <span class="kw">extends</span> Mailable {
+    <span class="kw">constructor</span>(<span class="kw">public</span> user: <span class="kw">any</span>) { <span class="kw">super</span>(); }
+
+    <span class="kw">public</span> <span class="fn">build</span>() {
+        <span class="kw">return</span> <span class="kw">this</span>
+            .<span class="fn">subject</span>(<span class="str">'Welcome to Arika!'</span>)
+            .<span class="fn">view</span>(<span class="str">'emails.welcome'</span>, { user: <span class="kw">this</span>.user });
+    }
+}</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="mail-sending" style="margin-top: 60px;">
+                                        <h2>Sending & Queuing</h2>
+                                        <p>You can send emails synchronously using <code>send()</code>, or dispatch 
+                                            them to the background using <code>queue()</code> for better performance.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Usage Example</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">import</span> { Mail } <span class="kw">from</span> <span class="str">'arikajs'</span>;
+<span class="kw">import</span> { WelcomeEmail } <span class="kw">from</span> <span class="str">'app/Mail/WelcomeEmail'</span>;
+
+<span class="comment">// Send immediately</span>
+<span class="kw">await</span> Mail.<span class="fn">to</span>(user.email).<span class="fn">send</span>(<span class="kw">new</span> <span class="fn">WelcomeEmail</span>(user));
+
+<span class="comment">// Queue for background processing</span>
+<span class="kw">await</span> Mail.<span class="fn">to</span>(user.email).<span class="fn">queue</span>(<span class="kw">new</span> <span class="fn">WelcomeEmail</span>(user));</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
                                 <section id="database-getting-started" style="margin-top: 100px;">
                                     <div
                                         style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 8px; font-weight: 600;">
