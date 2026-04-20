@@ -4366,11 +4366,60 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
                                         </div>
                                     </div>
 
-                                    <div id="queue-jobs" style="margin-top: 60px;">
-                                        <h2>Creating Jobs</h2>
-                                        <p>By default, all jobs are stored in the <code>app/Jobs</code> directory. A 
-                                            job class should extend <code>BaseJob</code> and implement the 
-                                            <code>handle()</code> method which is called when the worker processes the job.</p>
+                                    <div id="queue-generating" style="margin-top: 60px;">
+                                        <h2>Generating Jobs</h2>
+                                        <p>To create a new job, use the <code>make:job</code> CLI command. This will 
+                                            scaffold a new class in the <code>app/Jobs</code> directory.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="window-filename">Terminal</div>
+                                                <button class="copy-btn" aria-label="Copy code">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                        </rect>
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="kw">arika</span> make:job ProcessPodcast</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="queue-structure" style="margin-top: 60px;">
+                                        <h2>Directory Structure</h2>
+                                        <p>All queue-related files are organized within the <code>app/Jobs</code> 
+                                            directory, keeping your background logic clean and isolated.</p>
+                                        <div class="docs-code-window">
+                                            <div class="window-header">
+                                                <div class="dot dot-red"></div>
+                                                <div class="dot dot-yellow"></div>
+                                                <div class="dot dot-green"></div>
+                                                <div class="window-filename">Directory Tree</div>
+                                            </div>
+                                            <div class="window-body">
+                                                <pre style="margin:0;"><code style="color:#e5e7eb;">arikajs-app/
+├── <span class="kw">app/</span>
+│   └── <span class="kw">Jobs/</span>
+│       ├── <span class="str">ProcessPodcast.ts</span>
+│       └── <span class="str">SendWelcomeEmail.ts</span>
+├── <span class="kw">config/</span>
+│   └── <span class="str">queue.ts</span>
+└── <span class="str">.env</span></code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="queue-defining" style="margin-top: 60px;">
+                                        <h2>Defining Jobs</h2>
+                                        <p>A job class should extend <code>BaseJob</code> and implement the 
+                                            <code>handle()</code> method. You can use dependency injection in the 
+                                            constructor to pass data to the job.</p>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
@@ -4444,9 +4493,8 @@ MAIL_FROM_ADDRESS=hello@example.com</code></pre>
 
                                     <div id="queue-workers" style="margin-top: 60px;">
                                         <h2>Running Workers</h2>
-                                        <p>ArikaJS includes a CLI command to process jobs as they are pushed onto 
-                                            the queue. You should use a process manager like PM2 to keep your workers 
-                                            alive in production.</p>
+                                        <p>ArikaJS includes a CLI command to process jobs from the queue. Use a 
+                                            process manager like <b>PM2</b> or <b>Supervisor</b> in production.</p>
                                         <div class="docs-code-window">
                                             <div class="window-header">
                                                 <div class="dot dot-red"></div>
