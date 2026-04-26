@@ -7355,10 +7355,14 @@ sudo apt install -y nodejs</code></pre>
 
                                             <div class="feature-item">
                                                 <strong>Step 9: Deploy 🚀</strong>
-                                                <p>Run the deployment command. The first time, it will interactively guide you through setup:</p>
+                                                <p>Run the deployment command. On the first run, the tool will interactively guide you through the initial configuration. For subsequent deployments, you can use the <code>--yes</code> flag to skip prompts.</p>
                                                 <div class="docs-code-window" style="margin-top: 15px;">
                                                     <div class="window-body">
-                                                        <pre style="margin:0;"><code style="color:#e5e7eb;">arika deploy</code></pre>
+                                                        <pre style="margin:0;"><code style="color:#e5e7eb;"><span class="comment"># First-time interactive setup</span>
+arika deploy
+
+<span class="comment"># Subsequent automated deploys</span>
+arika deploy --yes</code></pre>
                                                     </div>
                                                 </div>
                                             </div>
@@ -7366,6 +7370,43 @@ sudo apt install -y nodejs</code></pre>
                                             <div class="feature-item">
                                                 <strong>Step 10: Profit!</strong>
                                                 <p>Your app is now live with HTTPS enabled! Use <code>arika status</code> to monitor processes.</p>
+                                            </div>
+                                        </div>
+
+                                        <div id="deploy-interactive" style="margin-top: 60px;">
+                                            <h2>Interactive Setup Questions</h2>
+                                            <p>When you run <code>arika deploy</code> for the first time, the CLI will ask the following questions to build your configuration:</p>
+                                            
+                                            <ul class="docs-list">
+                                                <li><strong>Domain(s):</strong> A comma-separated list of domains pointing to this server (e.g., <code>example.com,www.example.com</code>).</li>
+                                                <li><strong>App Port:</strong> The internal port your application listens on (default is <code>3000</code>).</li>
+                                                <li><strong>Entry File:</strong> The main entry point of your application (e.g., <code>server.js</code> or <code>app.ts</code>).</li>
+                                                <li><strong>Web Server:</strong> Choose between <code>nginx</code>, <code>apache</code>, or <code>none</code>. The tool will auto-detect installed servers.</li>
+                                                <li><strong>Enable SSL:</strong> Whether to automatically provision a Let's Encrypt certificate via Certbot.</li>
+                                            </ul>
+                                        </div>
+
+                                        <div id="deploy-config-json" style="margin-top: 60px;">
+                                            <h2>Deployment Configuration</h2>
+                                            <p>All answers from the interactive setup are persisted in a <code>.arika/config.json</code> file at your project root. You can modify this file directly to update your deployment settings.</p>
+                                            
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">.arika/config.json</div>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;">{
+  "name": "my-ariak-app",
+  "domains": ["example.com", "www.example.com"],
+  "port": 3000,
+  "server": "nginx",
+  "ssl": true,
+  "entry": "server.js"
+}</code></pre>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -7430,6 +7471,26 @@ sudo apt install -y nodejs</code></pre>
                                             <div class="feature-item">
                                                 <strong>Security Tip:</strong>
                                                 <p>Always run <code>arika doctor</code> after installing new server-level packages to ensure they are correctly detected by the deployment engine.</p>
+                                            </div>
+                                        </div>
+
+                                        <div id="deploy-troubleshooting" style="margin-top: 60px;">
+                                            <h2>Troubleshooting</h2>
+                                            <p>Deployment can sometimes run into environment-specific issues. Here are the most common solutions:</p>
+                                            
+                                            <div class="feature-item">
+                                                <strong>SSL Failure (DNS Propagation)</strong>
+                                                <p>If SSL setup fails, ensure your domain's A-record is pointing to the server IP. DNS propagation can take up to 30 minutes. You can retry SSL setup by running <code>arika deploy</code> again.</p>
+                                            </div>
+
+                                            <div class="feature-item">
+                                                <strong>Port Busy</strong>
+                                                <p>If the process fails to start because a port is busy, check for existing processes using <code>lsof -i :PORT</code> or change the port in <code>.arika/config.json</code>.</p>
+                                            </div>
+
+                                            <div class="feature-item">
+                                                <strong>Permission Denied</strong>
+                                                <p>Writing Nginx/Apache configs requires sudo privileges. If you encounter permission errors, ensure you are running the command as a user with <code>sudo</code> access.</p>
                                             </div>
                                         </div>
                                     </section>
