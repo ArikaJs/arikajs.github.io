@@ -1058,25 +1058,18 @@ h1, h2, h3, h4 {
 .search-modal {
     width: 100%;
     max-width: 680px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 24px;
-    box-shadow: 
-        0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 20px 50px -12px rgba(0, 0, 0, 0.25);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     transform: translateY(-20px) scale(0.98);
     transition: var(--transition-smooth);
 }
 
 [data-theme="dark"] .search-modal {
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 
-        0 4px 6px -1px rgba(0, 0, 0, 0.4),
-        0 20px 70px -12px rgba(0, 0, 0, 0.6);
+    background: #0f172a;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
 }
 
 .search-overlay.active .search-modal {
@@ -1086,9 +1079,8 @@ h1, h2, h3, h4 {
 .search-modal-header {
     display: flex;
     align-items: center;
-    padding: 24px 28px;
-    gap: 20px;
-    background: rgba(255, 255, 255, 0.05);
+    padding: 20px 24px;
+    gap: 16px;
     border-bottom: 1px solid var(--border);
 }
 
@@ -1104,10 +1096,8 @@ h1, h2, h3, h4 {
     border: none;
     outline: none;
     color: var(--text-main);
-    font-size: 20px;
-    font-weight: 500;
-    font-family: var(--font-heading);
-    letter-spacing: -0.01em;
+    font-size: 18px;
+    font-family: var(--font-body);
 }
 
 .search-modal-header input::placeholder {
@@ -1116,15 +1106,16 @@ h1, h2, h3, h4 {
 }
 
 .search-modal-close {
-    padding: 6px 10px;
+    padding: 8px 16px;
     background: var(--border);
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 8px;
     color: var(--text-muted);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     cursor: pointer;
     transition: var(--transition-smooth);
+    margin-left: auto;
 }
 
 .search-modal-close:hover {
@@ -1193,15 +1184,17 @@ h1, h2, h3, h4 {
 .search-modal-footer {
     display: flex;
     align-items: center;
-    padding: 16px 28px;
-    gap: 28px;
-    background: rgba(0, 0, 0, 0.03);
+    padding: 12px 24px;
+    gap: 24px;
+    background: rgba(0, 0, 0, 0.02);
     border-top: 1px solid var(--border);
-    backdrop-filter: blur(10px);
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
 
 [data-theme="dark"] .search-modal-footer {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .footer-item {
