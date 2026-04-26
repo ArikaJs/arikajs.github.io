@@ -171,6 +171,7 @@
                         <li><a href="#carbon">Arika Carbon</a></li>
                         <li><a href="#sweet">Arika Sweet</a></li>
                         <li><a href="#docs-generator">Arika Docs</a></li>
+                        <li><a href="#arika-deploy">Arika Deploy</a></li>
                     </ul>
                 </div>
             </nav>
@@ -7249,6 +7250,189 @@ arika docs:generate</code></pre>
                                             </div>
                                         </div>
                                     </section>
+
+                                    <section id="arika-deploy" style="margin-top: 100px;">
+                                        <h1>Arika Deploy</h1>
+                                        <p class="lead">Arika Deploy is a professional, zero-config deployment utility for the ArikaJS ecosystem. It automates the complex lifecycle of process management, reverse-proxy configuration, and SSL termination.</p>
+                                        
+                                        <p>Stop wasting time with manual Nginx configs and PM2 boilerplate. Arika Deploy handles everything from environment health checks to automatic Let's Encrypt SSL setup, allowing you to focus on building features while we handle the infrastructure.</p>
+
+                                        <div class="docs-property-grid">
+                                            <div class="property-card">
+                                                <div class="property-name">Zero-Config</div>
+                                                <p class="property-desc">Automatic detection of your app entry point, port, and package manager.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">SSL Automated</div>
+                                                <p class="property-desc">Native integration with Certbot for free, auto-renewing Let's Encrypt certificates.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">Multi-Server</div>
+                                                <p class="property-desc">Full support for both Nginx and Apache reverse-proxy configurations.</p>
+                                            </div>
+                                            <div class="property-card">
+                                                <div class="property-name">Health Checks</div>
+                                                <p class="property-desc">Built-in <code>arika doctor</code> command to verify your server environment.</p>
+                                            </div>
+                                        </div>
+
+                                        <div id="deploy-install" style="margin-top: 60px;">
+                                            <h2>Installation</h2>
+                                            <p>Arika Deploy should be installed globally on your production server to manage all your ArikaJS applications:</p>
+                                            <div class="docs-code-window">
+                                                <div class="window-header">
+                                                    <div class="dot dot-red"></div>
+                                                    <div class="dot dot-yellow"></div>
+                                                    <div class="dot dot-green"></div>
+                                                    <div class="window-filename">Terminal</div>
+                                                    <button class="copy-btn" aria-label="Copy code">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="window-body">
+                                                    <pre style="margin:0;"><code style="color:#e5e7eb;">npm install -g arika-deploy</code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="deploy-guide" style="margin-top: 60px;">
+                                            <h2>Complete Deployment Guide</h2>
+                                            <p>Follow these 10 steps to take your ArikaJS application from development to a secure, live production environment.</p>
+
+                                            <div class="feature-item">
+                                                <strong>Step 1: Get a Linux Server</strong>
+                                                <p>Deploy a fresh VPS (Ubuntu 22.04 LTS recommended) from providers like DigitalOcean, Vultr, or AWS.</p>
+                                            </div>
+
+                                            <div class="feature-item">
+                                                <strong>Step 2: Point Your Domain</strong>
+                                                <p>Set an <b>A Record</b> in your DNS settings pointing to your server IP. (e.g., <code>@ -> IP</code> and <code>www -> IP</code>).</p>
+                                            </div>
+
+                                            <div class="feature-item">
+                                                <strong>Step 3: Connect to Server</strong>
+                                                <p>SSH into your machine: <code>ssh root@your-server-ip</code></p>
+                                            </div>
+
+                                            <div class="feature-item">
+                                                <strong>Step 4: Install Node.js</strong>
+                                                <div class="docs-code-window" style="margin-top: 15px;">
+                                                    <div class="window-body">
+                                                        <pre style="margin:0;"><code style="color:#e5e7eb;">curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs</code></pre>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="feature-item">
+                                                <strong>Step 5: Install Arika Deploy</strong>
+                                                <p>Run <code>npm install -g arika-deploy</code> globally.</p>
+                                            </div>
+
+                                            <div class="feature-item">
+                                                <strong>Step 6: Upload Your App</strong>
+                                                <p>Clone your repository into <code>/var/www/your-app</code>.</p>
+                                            </div>
+
+                                            <div class="feature-item">
+                                                <strong>Step 7: Environment Variables</strong>
+                                                <p>Configure your <code>.env</code> file with production keys and set <code>NODE_ENV=production</code>.</p>
+                                            </div>
+
+                                            <div class="feature-item">
+                                                <strong>Step 8: Run Doctor</strong>
+                                                <p>Verify your environment is healthy and all dependencies (PM2, Nginx) are present:</p>
+                                                <div class="docs-code-window" style="margin-top: 15px;">
+                                                    <div class="window-body">
+                                                        <pre style="margin:0;"><code style="color:#e5e7eb;">arika doctor</code></pre>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="feature-item">
+                                                <strong>Step 9: Deploy 🚀</strong>
+                                                <p>Run the deployment command. The first time, it will interactively guide you through setup:</p>
+                                                <div class="docs-code-window" style="margin-top: 15px;">
+                                                    <div class="window-body">
+                                                        <pre style="margin:0;"><code style="color:#e5e7eb;">arika deploy</code></pre>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="feature-item">
+                                                <strong>Step 10: Profit!</strong>
+                                                <p>Your app is now live with HTTPS enabled! Use <code>arika status</code> to monitor processes.</p>
+                                            </div>
+                                        </div>
+
+                                        <div id="deploy-commands" style="margin-top: 60px;">
+                                            <h2>Commands Reference</h2>
+                                            <p>Arika Deploy provides a clean CLI interface for managing your production processes.</p>
+                                            
+                                            <table class="docs-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Command</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><code>arika deploy</code></td>
+                                                        <td>Initialize or update your application deployment.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>arika deploy --yes</code></td>
+                                                        <td>Automatic re-deployment using saved configuration.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>arika logs</code></td>
+                                                        <td>Stream live application logs directly to your terminal.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>arika status</code></td>
+                                                        <td>View detailed status of all running Arika processes.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>arika doctor</code></td>
+                                                        <td>Perform a 7-point health check of the server environment.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>arika restart</code></td>
+                                                        <td>Safely restart application instances with zero downtime.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>arika stop</code></td>
+                                                        <td>Shut down the application processes gracefully.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>arika remove</code></td>
+                                                        <td>Complete teardown of PM2, Nginx, and SSL configs.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div id="deploy-config" style="margin-top: 60px;">
+                                            <h2>Process & Web Server Logic</h2>
+                                            <p>Arika Deploy automatically generates optimized configuration files for your environment.</p>
+                                            
+                                            <h3>PM2 Integration</h3>
+                                            <p>Applications are managed via PM2 in <strong>Cluster Mode</strong> (using <code>-i max</code>) to ensure high availability and utilize all available CPU cores. For TypeScript applications, Arika Deploy integrates the <code>tsx</code> interpreter to allow direct execution of source files without manual transpilation steps.</p>
+
+                                            <h3>Reverse Proxy</h3>
+                                            <p>Arika Deploy writes native configuration files to <code>/etc/nginx/sites-available</code> or <code>/etc/apache2/sites-available</code>. It handles proxy headers, web-socket upgrades, and client IP forwarding automatically.</p>
+
+                                            <div class="feature-item">
+                                                <strong>Security Tip:</strong>
+                                                <p>Always run <code>arika doctor</code> after installing new server-level packages to ensure they are correctly detected by the deployment engine.</p>
+                                            </div>
+                                        </div>
+                                    </section>
         </main>
     </div>
     </div>
@@ -7301,6 +7485,7 @@ arika docs:generate</code></pre>
                         <li><a href="#carbon">Arika Carbon</a></li>
                         <li><a href="#sweet">Arika Sweet</a></li>
                         <li><a href="#docs-generator">Arika Docs</a></li>
+                        <li><a href="#arika-deploy">Arika Deploy</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
