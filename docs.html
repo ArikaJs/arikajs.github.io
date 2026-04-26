@@ -192,7 +192,27 @@
                     You should always ensure your application's <code>@arikajs/*</code> dependencies are kept in sync.
                 </p>
 
-                <h2>ArikaJS 0.10.13 (Current)</h2>
+                <h2>ArikaJS 0.10.19 (Current)</h2>
+                <h3>Circular Dependency Resolution</h3>
+                <p>We've completely resolved a core circular dependency issue within the <code>DatabaseServiceProvider</code> that was previously causing stack overflow errors during application boot. The framework now features a deeply optimized and stable Service Provider lifecycle.</p>
+
+                <h3>Robust Monorepo Publishing</h3>
+                <p>The framework's internal dependency management has been overhauled. All core packages now correctly map their workspace relationships, ensuring flawless synchronization and preventing mismatched peer dependencies when installed from NPM.</p>
+
+                <h3>Deployment CLI Namespace Separation</h3>
+                <p>The <code>arika-deploy</code> tool now operates within its own dedicated binary namespace (<code>arika deploy</code>), preventing conflicts with the main framework CLI. This guarantees smooth sailing when scaffolding new applications using <code>npx arika new</code>.</p>
+
+                <h2>ArikaJS 0.10.14</h2>
+                <h3>Base Controller Class</h3>
+                <p>We've introduced a new <code>Controller</code> base class in the <code>@arikajs/http</code> package. This provides a clean foundation for all your application controllers, complete with built-in helpers like <code>this.json()</code> and an asynchronous <code>this.validate()</code> method.</p>
+
+                <h3>Robust CLI Loader</h3>
+                <p>The <code>@arikajs/cli</code> now uses <strong>jiti</strong> for loading application configurations. This resolve the "Maximum call stack size" errors previously encountered in complex monorepos and provides better support for ESM/CommonJS interop during migration and bootstrapping.</p>
+
+                <h3>Enhanced Diagnostics</h3>
+                <p>The CLI now features improved error messaging for missing native database bindings. If <code>better-sqlite3</code> fails to load due to missing binary components, the CLI will provide clear, actionable instructions to resolve the issue for your specific architecture.</p>
+
+                <h2>ArikaJS 0.10.13</h2>
                 <h3>Unique Validation Rule</h3>
                 <p>The <code>@arikajs/validation</code> package now features a native <code>unique</code> rule. This allow you to perform real-time database checks during request validation, ensuring data integrity for fields like emails and usernames with zero boilerplate.</p>
 
