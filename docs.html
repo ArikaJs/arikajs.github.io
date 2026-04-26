@@ -192,17 +192,15 @@
                     You should always ensure your application's <code>@arikajs/*</code> dependencies are kept in sync.
                 </p>
 
-                <h2>ArikaJS 0.10.12 (Current)</h2>
-                <h3>High-Performance Event Dispatcher</h3>
-                <p>The new <code>@arikajs/dispatcher</code> package has been completely rewritten from the ground up to
-                    support sync and asynchronous event handling with zero observable latency. We have replaced standard
-                    Node <code>EventEmitter</code> bindings with a highly optimized, custom memory structure that
-                    handles 10,000+ events per second without garbage collection overhead.</p>
+                <h2>ArikaJS 0.10.13 (Current)</h2>
+                <h3>Unique Validation Rule</h3>
+                <p>The <code>@arikajs/validation</code> package now features a native <code>unique</code> rule. This allow you to perform real-time database checks during request validation, ensuring data integrity for fields like emails and usernames with zero boilerplate.</p>
 
-                <h3>Active Record Relationships overhaul</h3>
-                <p>The <code>@arikajs/database</code> package now supports dynamic lazy-loading and eager-loading of
-                    relationships right out of the box using a proxy-based resolution strategy. This effectively
-                    eliminates N+1 query problems common in heavy REST APIs.</p>
+                <h3>CLI & Workspace Improvements</h3>
+                <p>We've enhanced the <code>@arikajs/cli</code> with new interactive <code>choice()</code> menus and updated project templates. New projects now come with <code>DatabaseServiceProvider</code> pre-registered, making it easier than ever to start building database-driven applications.</p>
+
+                <h3>Standardized Test Runner</h3>
+                <p>The framework has transitioned to a unified <code>tsx</code> based testing infrastructure. This simplifies the development workflow by allowing you to run tests directly from TypeScript source files without manual compilation steps.</p>
 
                 <div class="feature-item">
                     <strong>Note:</strong>
