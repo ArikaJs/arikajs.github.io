@@ -110,7 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach(section => {
             const category = section.querySelector('div[style*="text-transform: uppercase"]')?.innerText || 'Documentation';
             const h1 = section.querySelector('h1');
-            const subheadings = section.querySelectorAll('h2, h3');
+            // Only get subheadings that belong DIRECTLY to this section (not nested ones)
+            const subheadings = Array.from(section.querySelectorAll('h2, h3')).filter(sub => sub.closest('section') === section);
             const paragraphs = section.querySelectorAll('p:not(.lead)');
             const sectionId = section.getAttribute('id');
 
